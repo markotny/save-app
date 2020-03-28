@@ -1,0 +1,17 @@
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+	box-shadow: none;
+}
+
+::ng-deep .mat-expansion-panel-content > .mat-expansion-panel-body {
+	padding: 0;
+}
+
+.sidebar-list {
+	.mat-list-base {
+        padding: 0;
+    }
+    .mat-expansion-panel-header,
+    .mat-expansion-panel-content {
+        padding: 0 16px;
+    }
+}

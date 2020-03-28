@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+@mixin sidenav-component-theme($theme) {
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+
+	mat-sidenav {
+		button,
+		.mat-list-item {
+			&.active {
+				color: mat-color($accent, default-contrast);
+				background-color: mat-color($accent);
+
+				&:hover {
+					background-color: mat-color($accent, darker);
+				}
+			}
+		}
+	}
+}
