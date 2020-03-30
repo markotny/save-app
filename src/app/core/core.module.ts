@@ -37,6 +37,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
+import {AuthEffects} from './auth/auth.effects';
 
 export {
   AppState,
@@ -81,7 +82,7 @@ export {
     //ngrx
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([SettingsEffects]),
+    EffectsModule.forRoot([AuthEffects, SettingsEffects]),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({

@@ -1,8 +1,9 @@
+import {actionOidcRegister} from '@core/auth/auth.actions';
+import {Store} from '@ngrx/store';
 import {OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {share, map} from 'rxjs/operators';
 import {OidcFacade} from 'ng-oidc-client';
-import {environment} from '@env/environment';
 
 export class NavigationBase implements OnInit {
   exampleMenuLinks = [
@@ -17,7 +18,7 @@ export class NavigationBase implements OnInit {
 
   userName$: Observable<string>;
 
-  constructor(protected oidcFacade: OidcFacade) {}
+  constructor(protected oidcFacade: OidcFacade, protected store: Store) {}
 
   ngOnInit() {
     this.userName$ = this.oidcFacade.identity$.pipe(
@@ -27,8 +28,7 @@ export class NavigationBase implements OnInit {
   }
 
   register() {
-    const returnUrl = `${environment.thisUri}/register-callback`;
-    window.location.href = `${environment.authServerUri}/Identity/Account/Register?ReturnUrl=${returnUrl}`;
+    this.store.dispatch(actionOidcRegister());
   }
 
   signin() {

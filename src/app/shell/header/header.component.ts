@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {environment} from '@env/environment';
 import {NavigationBase} from '@shell/navigation-base/navigation-base';
 import {OidcFacade} from 'ng-oidc-client';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,8 @@ export class HeaderComponent extends NavigationBase implements OnInit {
 
   appName: string;
 
-  constructor(protected oidcFacade: OidcFacade) {
-    super(oidcFacade);
+  constructor(protected oidcFacade: OidcFacade, protected store: Store) {
+    super(oidcFacade, store);
   }
 
   ngOnInit() {

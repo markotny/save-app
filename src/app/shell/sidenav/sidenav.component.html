@@ -21,7 +21,7 @@
 
 		<mat-divider fxFlexFill></mat-divider>
 
-		<mat-expansion-panel *ngIf="userName$ | async as userName else signIn">
+		<mat-expansion-panel *ngIf="userName$ | async as userName; else signIn">
 			<mat-expansion-panel-header>
 				<mat-panel-title>{{userName}}</mat-panel-title>
 			</mat-expansion-panel-header>
