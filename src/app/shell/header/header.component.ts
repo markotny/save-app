@@ -2,7 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {environment} from '@env/environment';
 import {NavigationBase} from '@shell/navigation-base/navigation-base';
 import {OidcFacade} from 'ng-oidc-client';
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-header',

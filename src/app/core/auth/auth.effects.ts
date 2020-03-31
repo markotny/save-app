@@ -48,16 +48,11 @@ export class AuthEffects {
       ofType(actionOidcRegisterSuccess),
       switchMap(() => this.oidcFacade.getUserManager().signinSilent()),
       tap(() => this.router.navigate(['/'])),
-      concatMap(user =>
-        this.userService
-          .addNewUser({
-            username: user.profile.name,
-            email: user.profile.email
-          })
-          .pipe(
-            map(() => actionApiUserAddUserSuccess()),
-            catchError(error => of(actionApiUserAddUserFail({error})))
-          )
+      concatMap(() =>
+        this.userService.addNewUser().pipe(
+          map(() => actionApiUserAddUserSuccess()),
+          catchError(error => of(actionApiUserAddUserFail({error})))
+        )
       )
     )
   );
