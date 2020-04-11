@@ -12,6 +12,7 @@ import {OidcActions, OidcFacade} from 'ng-oidc-client';
 import {environment} from '@env/environment';
 import {of} from 'rxjs';
 import {UserService} from '@services/user.service';
+import {MessageService} from 'primeng/api';
 
 @Injectable()
 export class AuthEffects {
@@ -19,7 +20,8 @@ export class AuthEffects {
     private actions$: Actions,
     private router: Router,
     private oidcFacade: OidcFacade,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) {}
 
   userSignedOut$ = createEffect(
@@ -27,6 +29,21 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(OidcActions.OidcActionTypes.OnUserSignedOut),
         tap(() => this.router.navigate(['/']))
+      ),
+    {dispatch: false}
+  );
+
+  oidcDisplayError$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(OidcActions.OidcActionTypes.SignInError, OidcActions.OidcActionTypes.OidcError),
+        tap(err =>
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Auth error',
+            detail: (err as {payload: string})?.payload
+          })
+        )
       ),
     {dispatch: false}
   );

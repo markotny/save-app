@@ -4,17 +4,10 @@ import {OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {share, map} from 'rxjs/operators';
 import {OidcFacade} from 'ng-oidc-client';
+import {MenuItem} from 'primeng/api/menuitem';
 
 export class NavigationBase implements OnInit {
-  exampleMenuLinks = [
-    {name: 'Example 1', route: '/'},
-    {name: 'Example 2', route: '/'}
-  ];
-
-  accountLinks = [
-    {name: 'Profile', route: '/'},
-    {name: 'Settings', route: '/'}
-  ];
+  accountMenuItems: MenuItem[];
 
   userName$: Observable<string>;
 
@@ -25,6 +18,17 @@ export class NavigationBase implements OnInit {
       map(user => (user && !user.expired ? user.profile.name : '')),
       share()
     );
+
+    this.accountMenuItems = [
+      {
+        label: 'Profile',
+        routerLink: ['/']
+      },
+      {
+        label: 'Sign out',
+        command: () => this.signout()
+      }
+    ];
   }
 
   register() {

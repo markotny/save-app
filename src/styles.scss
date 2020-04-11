@@ -1,23 +1,10 @@
 @import 'styles-variables';
 
-@import '~@angular/material/theming';
-
-@include mat-core();
-
-@import 'themes/dark-theme';
-@import 'themes/light-theme';
-
-@mixin custom-components-theme($theme) {
-}
-
+// TODO: create mixins from primeng themes
 .light-theme {
-	@include angular-material-theme($light-theme);
-	@include custom-components-theme($light-theme);
 }
 
 .dark-theme {
-	@include angular-material-theme($dark-theme);
-	@include custom-components-theme($dark-theme);
 }
 
 
