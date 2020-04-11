@@ -4,13 +4,12 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HeaderComponent} from '@shell/header/header.component';
-import {SidenavComponent} from '@shell/sidenav/sidenav.component';
-import { WelcomeAppComponent } from './shell/welcome-app/welcome-app.component';
+import {WelcomeAppComponent} from './shell/welcome-app/welcome-app.component';
+import {ShellModule} from '@shell/shell.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SidenavComponent, WelcomeAppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, CoreModule, AppRoutingModule],
+  declarations: [AppComponent, WelcomeAppComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, ShellModule, CoreModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

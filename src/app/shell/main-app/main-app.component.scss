@@ -1,0 +1,29 @@
+$header-height: 70px;
+$sidenav-width: 300px;
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .sidenav {
+    app-sidenav {
+      height: 100%;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+  }
+
+  .footer {
+    padding: 0 15px;
+    text-align: center;
+
+    .row {
+      padding: 10px 0;
+    }
+  }
+}

@@ -82,6 +82,7 @@ export {AppState, LocalStorageService, AuthGuard, selectTheme};
   ],
   exports: [
     AuthCallbackComponent,
+    CommonModule,
     FormsModule,
     FlexLayoutModule,
 

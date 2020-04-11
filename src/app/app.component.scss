@@ -1,5 +1,6 @@
 .theme-wrapper {
   position: absolute;
+  display: flex;
   top: 0;
   bottom: 0;
   left: 0;
@@ -8,31 +9,3 @@
   width: 100%;
 }
 
-.toolbar {
-  width: 100%;
-  z-index: 2;
-  position: fixed;
-}
-
-.wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  .content {
-    flex: 1 0 auto;
-    margin-top: 64px;
-    overflow: hidden;
-  }
-
-  .footer {
-    padding: 0 15px;
-    text-align: center;
-
-    .row {
-      padding: 10px 0;
-    }
-  }
-}

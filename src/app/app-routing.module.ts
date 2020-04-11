@@ -5,6 +5,15 @@ import {WelcomeAppComponent} from '@shell/welcome-app/welcome-app.component';
 
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
+import {MainAppComponent} from '@shell/main-app/main-app.component';
+import {AuthGuard} from '@core/core.module';
+
+const appRoutes: Routes = [
+  {
+    path: 'dashboard',
+    loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+  }
+];
 
 const routes: Routes = [
   {
@@ -30,7 +39,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: WelcomeAppComponent
-  }
+  },
+  {
+    path: 'app',
+    component: MainAppComponent,
+    // canActivate: [AuthGuard],
+    children: appRoutes
+  },
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({
