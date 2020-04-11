@@ -4,6 +4,7 @@ import {OidcFacade} from 'ng-oidc-client';
 import {Store} from '@ngrx/store';
 import {MenuItem} from 'primeng/api/menuitem';
 import {Subscription} from 'rxjs';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-sidenav',
@@ -19,8 +20,8 @@ export class SidenavComponent extends NavigationBase implements OnInit, OnDestro
 
   @Output() sidenavClose = new EventEmitter();
 
-  constructor(protected oidcFacade: OidcFacade, protected store: Store) {
-    super(oidcFacade, store);
+  constructor(oidcFacade: OidcFacade, store: Store, mediaObserver: MediaObserver) {
+    super(oidcFacade, store, mediaObserver);
   }
 
   ngOnInit() {
@@ -29,6 +30,17 @@ export class SidenavComponent extends NavigationBase implements OnInit, OnDestro
     this.subscription = this.userName$.subscribe(userName => {
       this.userName = userName;
     });
+
+    this.accountMenuItems = [
+      {
+        label: 'Profile',
+        routerLink: ['/']
+      },
+      {
+        label: 'Sign out',
+        command: () => this.signout()
+      }
+    ];
 
     this.sideMenuItems = [
       {label: 'Dashboard', icon: 'pi pi-home'},
@@ -50,24 +62,14 @@ export class SidenavComponent extends NavigationBase implements OnInit, OnDestro
       },
       {
         label: this.userName,
-        visible: !!this.userName,
+        // visible: this.isMobile,
         items: this.accountMenuItems
-      },
-      {
-        label: 'Account',
-        visible: !this.userName,
-        items: [
-          {
-            label: 'Login',
-            command: () => this.signin()
-          },
-          {
-            label: 'Register',
-            command: () => this.register()
-          }
-        ]
       }
     ];
+  }
+
+  signout() {
+    this.oidcFacade.signoutRedirect();
   }
 
   onSidenavClose() {

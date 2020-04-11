@@ -3,6 +3,7 @@ import {environment} from '@env/environment';
 import {NavigationBase} from '@shell/navigation-base/navigation-base';
 import {OidcFacade} from 'ng-oidc-client';
 import {Store} from '@ngrx/store';
+import {MediaObserver} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,8 @@ export class HeaderComponent extends NavigationBase implements OnInit {
 
   appName: string;
 
-  constructor(protected oidcFacade: OidcFacade, protected store: Store) {
-    super(oidcFacade, store);
+  constructor(oidcFacade: OidcFacade, store: Store, mediaObserver: MediaObserver) {
+    super(oidcFacade, store, mediaObserver);
   }
 
   ngOnInit() {
