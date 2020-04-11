@@ -1,4 +1,7 @@
 @import 'styles-variables';
+@import './assets/fonts/fonts.scss';
+
+@import '~variables.scss';
 
 // TODO: create mixins from primeng themes
 .light-theme {
@@ -7,6 +10,36 @@
 .dark-theme {
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0px;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.f-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  font-family: 'Roboto-Bold';
+  color: $black !important;
+}
+
+a:hover {
+  cursor: pointer;
+  color: $light-grey !important;
+}
+
+a:visited {
+  color: $dark-grey !important;
+}
+
+.background-light {
+  background-color: $white;
+}
