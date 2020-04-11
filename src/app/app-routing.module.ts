@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+
+import {WelcomeAppComponent} from '@shell/welcome-app/welcome-app.component';
+
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
 
@@ -23,6 +26,10 @@ const routes: Routes = [
     path: 'silent-refresh',
     component: AuthCallbackComponent,
     data: {action: AuthCallback.SilentRefresh}
+  },
+  {
+    path: 'home',
+    component: WelcomeAppComponent
   }
 ];
 
