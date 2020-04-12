@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {WelcomeAppComponent} from '@shell/welcome-app/welcome-app.component';
+import {HomeAppComponent} from 'app/views/home-app/home-app.component';
 
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: WelcomeAppComponent
+    component: HomeAppComponent
   },
   {
     path: 'app',

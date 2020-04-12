@@ -1,0 +1,19 @@
+@import '~variables.scss';
+
+.content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  > :not(app-home-features) {
+    margin-left: 7vw;
+    margin-right: 7vw;
+  }
+  margin-top: 15px;
+}
+
+.space-between > :not(:last-child) {
+  margin-bottom: 14vh;
+}
