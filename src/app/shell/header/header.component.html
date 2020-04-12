@@ -1,11 +1,10 @@
-<p-toolbar [style]="{height: '70px'}">
+<p-toolbar [style]="{height: '50px'}">
   <div fxHide.gt-xs class="ui-toolbar-group-left">
     <p-button icon="pi pi-list" (click)="onToggleSidenav()"> </p-button>
   </div>
 
   <div fxHide.xs class="ui-toolbar-group-right">
-    <p-button (click)="accountMenu.toggle($event)">test</p-button>
-    <!-- <p-button *ngIf="userName$ | async as userName" (click)="accountMenu.toggle($event)"> {{ userName }}</p-button> -->
+    <p-button *ngIf="userName$ | async as userName" (click)="accountMenu.toggle($event)" [label]="userName"></p-button>
   </div>
 </p-toolbar>
 

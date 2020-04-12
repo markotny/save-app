@@ -34,19 +34,8 @@ export {AppState, LocalStorageService, AuthGuard, selectTheme};
   imports: [
     // angular
     CommonModule,
-    HttpClientModule,
-    FormsModule,
-    FlexLayoutModule,
-
-    // ngx
-    NgxSpinnerModule,
-
-    // primeng
-    ToolbarModule,
-    MenuModule,
-    ButtonModule,
-    SidebarModule,
     ToastModule,
+    HttpClientModule,
 
     // ngrx
     StoreModule.forRoot(reducers, {metaReducers}),
@@ -80,21 +69,6 @@ export {AppState, LocalStorageService, AuthGuard, selectTheme};
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  exports: [
-    AuthCallbackComponent,
-    CommonModule,
-    FormsModule,
-    FlexLayoutModule,
-
-    // ngx
-    NgxSpinnerModule,
-
-    // primeng
-    ToolbarModule,
-    MenuModule,
-    ButtonModule,
-    SidebarModule,
-    ToastModule
-  ]
+  exports: [AuthCallbackComponent, FlexLayoutModule, HttpClientModule]
 })
 export class CoreModule {}

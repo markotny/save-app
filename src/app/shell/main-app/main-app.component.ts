@@ -1,7 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subscription, Observable} from 'rxjs';
-import {Store, select} from '@ngrx/store';
-import {MediaObserver} from '@angular/flex-layout';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-main-app',
@@ -9,12 +6,8 @@ import {MediaObserver} from '@angular/flex-layout';
   styleUrls: ['./main-app.component.scss']
 })
 export class MainAppComponent implements OnInit {
-  isMobile: boolean;
-
   sidebarVisible: boolean;
 
-  constructor(private store: Store) {}
-  ngOnInit() {
-    this.isMobile = false;
-  }
+  constructor() {}
+  ngOnInit() {}
 }
