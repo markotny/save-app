@@ -6,7 +6,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TokenInterceptor} from './http-interceptors/token.interceptor';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {AuthCallbackComponent} from './auth/auth-callback/auth-callback.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpErrorInterceptor} from './http-interceptors/http-error.interceptor';
@@ -16,18 +15,14 @@ import {EffectsModule} from '@ngrx/effects';
 import {NgOidcClientModule} from 'ng-oidc-client';
 import {AppErrorHandler} from './error-handler/app-error-handler.service';
 import {LocalStorageService} from './local-storage/local-storage.service';
-import {NgxSpinnerModule} from 'ngx-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
-import {ToolbarModule} from 'primeng/toolbar';
-import {MenuModule} from 'primeng/menu';
-import {ButtonModule} from 'primeng/button';
-import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {actionOidcRegister} from './auth/auth.actions';
 
-export {AppState, LocalStorageService, AuthGuard, selectTheme};
+export {AppState, LocalStorageService, AuthGuard, selectTheme, actionOidcRegister};
 
 @NgModule({
   declarations: [AuthCallbackComponent],

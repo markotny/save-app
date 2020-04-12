@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {WelcomeAppComponent} from '@shell/welcome-app/welcome-app.component';
-
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
 import {MainAppComponent} from '@shell/main-app/main-app.component';
@@ -43,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: WelcomeAppComponent
+    loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'app',
