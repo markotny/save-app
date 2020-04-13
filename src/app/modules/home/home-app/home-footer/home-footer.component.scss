@@ -1,16 +1,53 @@
-@import "~variables.scss";
-
-.footer-wrapper {
-  i {
-    background-size: 10px 10px;
-  }
-}
+@import '../home-app.component.scss';
 
 .footer {
   background-color: $dark-grey;
-  height: 100px;
+  margin-top: 0px;
+  a, p {
+    margin: 0px;
+    font-size: 15px;
+    font-family: 'Montserrat-Medium';
+    color: $light-grey;
+  }
+}
+
+.footer-text {
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: $max-width) {
+    justify-content: center !important;
+    flex-direction: column;
+  }
+  > p {
+    padding-bottom: 10px;
+  }
+}
+
+.logo-text--white {
+  width: fit-content;
+  padding-bottom: 20px;
+}
+
+.footer-terms_policy {
+  display: flex;
+  > a:not(:last-child) {
+    padding: 0px 50px 0px 0px;
+  }
+  @media screen and (max-width: $max-width) {
+    flex-direction: column;
+    > a:not(:last-child) {
+      padding: 0px 0px 10px 0px !important;
+    }
+    margin-left: auto;
+    margin-right: auto;
+  }
+  text-align: center;
+}
+
+.container {
+  margin-bottom: 3vh;
 }
 
 #bottom {
-  margin-bottom: -5px;
+  margin-bottom: -8px;
 }

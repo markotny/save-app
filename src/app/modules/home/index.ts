@@ -3,3 +3,4 @@ export {HomeHeaderComponent} from '@modules/home/home-app/home-header/home-heade
 export {HomeMainSentenceComponent} from '@modules/home/home-app/home-main-sentence/home-main-sentence.component';
 export {HomeFeaturesComponent} from '@modules/home/home-app/home-features/home-features.component';
 export {HomeFooterComponent} from '@modules/home/home-app/home-footer/home-footer.component';
+export {HomeGetStartedComponent} from '@modules/home/home-app/home-get-started/home-get-started.component';

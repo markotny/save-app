@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
 import {OidcFacade} from 'ng-oidc-client';
-import {actionOidcRegister} from '@core/auth/auth.actions';
 
 @Component({
   selector: 'app-home-header',
@@ -9,13 +7,14 @@ import {actionOidcRegister} from '@core/auth/auth.actions';
   styleUrls: ['./home-header.component.scss']
 })
 export class HomeHeaderComponent {
-  constructor(private store: Store, private oidcFacade: OidcFacade) {}
+  constructor(private oidcFacade: OidcFacade) {}
 
-  register() {
-    this.store.dispatch(actionOidcRegister());
-  }
-
+  isOpen = false;
   signin() {
     this.oidcFacade.signinRedirect();
+  }
+
+  openOrClose(): void {
+    this.isOpen = !this.isOpen;
   }
 }

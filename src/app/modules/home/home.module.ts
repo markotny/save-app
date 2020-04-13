@@ -9,15 +9,18 @@ import {
   HomeHeaderComponent,
   HomeMainSentenceComponent,
   HomeFeaturesComponent,
-  HomeFooterComponent
+  HomeFooterComponent,
+  HomeGetStartedComponent
 } from './index';
+
 @NgModule({
   declarations: [
     HomeAppComponent,
     HomeHeaderComponent,
     HomeMainSentenceComponent,
     HomeFeaturesComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    HomeGetStartedComponent
   ],
   imports: [SharedModule, HomeRoutingModule]
 })

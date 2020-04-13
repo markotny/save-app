@@ -20,6 +20,7 @@ export class HomeAppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.document.body.classList.add('background-light');
+    this.document.body.classList.add('overflow-x-hidden');
 
     this.oidcFacade.loggedIn$.pipe(first()).subscribe(loggedIn => {
       if (loggedIn) {
@@ -30,5 +31,6 @@ export class HomeAppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.document.body.classList.remove('background-light');
+    this.document.body.classList.remove('overflow-x-hidden');
   }
 }
