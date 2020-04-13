@@ -1,16 +1,10 @@
-<p-toolbar>
+<p-toolbar [style]="{height: '50px'}">
   <div fxHide.gt-xs class="ui-toolbar-group-left">
     <p-button icon="pi pi-list" (click)="onToggleSidenav()"> </p-button>
   </div>
 
   <div fxHide.xs class="ui-toolbar-group-right">
-    <p-button *ngIf="userName$ | async as userName; else signIn" (click)="accountMenu.toggle($event)">
-      {{ userName }}</p-button
-    >
-    <ng-template #signIn>
-      <p-button (click)="register()">Register</p-button>
-      <p-button (click)="signin()">Login</p-button>
-    </ng-template>
+    <p-button *ngIf="userName$ | async as userName" (click)="accountMenu.toggle($event)" [label]="userName"></p-button>
   </div>
 </p-toolbar>
 
