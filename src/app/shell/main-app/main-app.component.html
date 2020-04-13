@@ -1,20 +1,14 @@
 <div
   gdAreas="header header | sidenav content | footer footer"
-  gdColumns.gt-xs="200px auto"
-  gdColumns.xs="0 auto"
-  gdRows="70px auto 50px"
+  gdAreas.xs="header | content | footer"
+  gdColumns.gt-xs="12.5em auto"
+  gdRows="50px auto 50px"
   class="wrapper"
 >
   <app-header gdArea="header" class="toolbar" (sidenavToggle)="sidebarVisible = !sidebarVisible"> </app-header>
 
-  <div gdArea="sidenav">
-    <div fxHide.xs fxFill class="sidenav">
-      <app-sidenav></app-sidenav>
-    </div>
-
-    <p-sidebar fxHide.gt-xs [style]="{top: '70px'}" [(visible)]="sidebarVisible" [showCloseIcon]="false">
-      <app-sidenav></app-sidenav>
-    </p-sidebar>
+  <div gdArea.gt-xs="sidenav" fxHide.xs fxFill class="sidenav">
+    <app-sidenav></app-sidenav>
   </div>
 
   <main gdArea="content" gdGridAlign="stretch stretch" role="main" class="content">
@@ -27,5 +21,14 @@
     </div>
   </div>
 </div>
+
+<p-sidebar
+  fxHide.gt-xs
+  [style]="{top: '50px', width: '12.5em', padding: 0}"
+  [(visible)]="sidebarVisible"
+  [showCloseIcon]="false"
+>
+  <app-sidenav></app-sidenav>
+</p-sidebar>
 
 <p-toast [style]="{marginTop: '80px'}"></p-toast>

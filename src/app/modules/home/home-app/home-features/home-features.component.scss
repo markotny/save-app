@@ -18,8 +18,6 @@
   padding-right: 10%;
   align-items: baseline;
   background-color: $green;
-  margin-top: -10px;
-  margin-bottom: -10px;
 }
 
 .sentence-wrapper {
@@ -41,4 +39,12 @@
     color: $dark-grey;
     min-width: 150px;
   }
+}
+
+#top {
+  margin-bottom: -5px;
+}
+
+#bottom {
+  margin-top: -15px;
 }

@@ -1,14 +1,17 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {HomeAppComponent} from 'app/views/home-app/home-app.component';
+import {MainAppComponent} from '@shell/main-app/main-app.component';
 
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
-import {MainAppComponent} from '@shell/main-app/main-app.component';
-import {AuthGuard} from '@core/core.module';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
   {
     path: 'dashboard',
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -38,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeAppComponent
+    loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'app',

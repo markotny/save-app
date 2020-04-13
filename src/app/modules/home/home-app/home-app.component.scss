@@ -7,7 +7,7 @@
 }
 
 .container {
-  > :not(app-home-features) {
+  > :not(app-home-features):not(app-home-footer) {
     margin-left: 7vw;
     margin-right: 7vw;
   }

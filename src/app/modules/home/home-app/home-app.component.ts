@@ -1,5 +1,9 @@
 import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
+import {Store} from '@ngrx/store';
+import {OidcFacade} from 'ng-oidc-client';
+import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-app',
@@ -7,10 +11,21 @@ import {DOCUMENT} from '@angular/common';
   styleUrls: ['./home-app.component.scss']
 })
 export class HomeAppComponent implements OnInit, OnDestroy {
-  constructor(@Inject(DOCUMENT) private document) {}
+  constructor(
+    @Inject(DOCUMENT) private document,
+    private store: Store,
+    private oidcFacade: OidcFacade,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.document.body.classList.add('background-light');
+
+    this.oidcFacade.loggedIn$.pipe(first()).subscribe(loggedIn => {
+      if (loggedIn) {
+        this.router.navigate(['app']);
+      }
+    });
   }
 
   ngOnDestroy(): void {

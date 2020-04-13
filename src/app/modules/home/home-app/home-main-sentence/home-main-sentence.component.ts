@@ -1,12 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-home-main-sentence',
   templateUrl: './home-main-sentence.component.html',
   styleUrls: ['./home-main-sentence.component.scss']
 })
-export class HomeMainSentenceComponent implements OnInit {
+export class HomeMainSentenceComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

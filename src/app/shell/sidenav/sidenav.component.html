@@ -1,3 +1,9 @@
-<div class="sidebar-menu" fxFlex fxFill>
-  <p-menu [model]="sideMenuItems"></p-menu>
+<div fxLayout="column" fxFill class="sidebar">
+  <p-panelMenu [model]="sideMenuItems"></p-panelMenu>
+  <p-panelMenu
+    fxHide.gt-xs
+    *ngIf="userName$ | async as userName"
+    [model]="[{label: userName, items: accountMenuItems}]"
+    [style]="{'margin-top': '2px'}"
+  ></p-panelMenu>
 </div>
