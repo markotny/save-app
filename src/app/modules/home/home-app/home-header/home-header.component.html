@@ -15,33 +15,20 @@
     </div>
   </div>
   <div class="hamburger">
-    <div class="index">
-      <div id="menuToggle">
-        <!--
-    A fake / hidden checkbox is used as click reciever,
-    so you can use the :checked selector on it.
-    -->
-        <input type="checkbox" (click)="openOrClose()"/>
-
-        <!--
-    Some spans to act as a hamburger.
-
-    They are acting like a real hamburger,
-    not that McDonalds stuff.
-    -->
-        <span></span>
-        <span></span>
-        <span></span>
-
-        <!--
-    Too bad the menu has to be inside of the button
-    but hey, it's pure CSS magic.
-
-    -->
-      </div>
+    <div class="menuToggle">
+      <input type="checkbox" [(ngModel)]="isOpen" name="hamburger" binary="true"/>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <p-sidebar [visible]="isOpen" position="right" [fullScreen]="true" [showCloseIcon]="false" [baseZIndex]="10">
-      Content
+    <p-sidebar [(visible)]="isOpen" position="right">
+      <div class="sidebar-content">
+        <div class="menu-list">
+          <a class="center-h">home</a>
+          <a class="center-h">about</a>
+          <a class="center-h" (click)="signin()">login</a>
+        </div>
+      </div>
     </p-sidebar>
   </div>
 </div>

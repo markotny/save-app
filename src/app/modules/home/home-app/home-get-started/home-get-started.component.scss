@@ -22,7 +22,7 @@ h4 {
   }
 }
 
-::ng-deep .ui-button {
+::ng-deep .get-started-button.ui-button {
   width: 195px;
   height: 50px;
   border-radius: 15px !important;
@@ -30,7 +30,7 @@ h4 {
   border: 1px solid $blue !important;
 }
 
-::ng-deep .ui-button-text {
+::ng-deep .get-started-button .ui-button-text {
   font-family: 'Montserrat-Bold';
   font-size: 20px;
 }
