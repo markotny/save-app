@@ -1,3 +1,5 @@
+@import '~variables.scss';
+
 .theme-wrapper {
   position: absolute;
   display: flex;
@@ -9,3 +11,6 @@
   width: 100%;
 }
 
+.w-100 {
+  width: 100%;
+}

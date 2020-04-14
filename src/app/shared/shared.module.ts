@@ -9,6 +9,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import {ButtonModule} from 'primeng/button';
 import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   imports: [
@@ -22,11 +23,12 @@ import {ToastModule} from 'primeng/toast';
 
     // primeng
     ToolbarModule,
-	MenuModule,
-	PanelMenuModule,
+    MenuModule,
+    PanelMenuModule,
     ButtonModule,
     SidebarModule,
-    ToastModule
+    ToastModule,
+    CheckboxModule
   ],
   exports: [
     // angular
@@ -39,11 +41,12 @@ import {ToastModule} from 'primeng/toast';
 
     // primeng
     ToolbarModule,
-	MenuModule,
-	PanelMenuModule,
+    MenuModule,
+    PanelMenuModule,
     ButtonModule,
     SidebarModule,
-    ToastModule
+    ToastModule,
+    CheckboxModule
   ]
 })
 export class SharedModule {}

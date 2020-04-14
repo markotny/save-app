@@ -1,10 +1,27 @@
 import {NgModule} from '@angular/core';
-import {WelcomeAppComponent} from './welcome-app/welcome-app.component';
-import {HomeRoutingModule} from './home-routing.module';
+
 import {SharedModule} from '@shared/shared.module';
 
+import {HomeRoutingModule} from './home-routing.module';
+
+import {
+  HomeAppComponent,
+  HomeHeaderComponent,
+  HomeMainSentenceComponent,
+  HomeFeaturesComponent,
+  HomeFooterComponent,
+  HomeGetStartedComponent
+} from './index';
+
 @NgModule({
-  declarations: [WelcomeAppComponent],
+  declarations: [
+    HomeAppComponent,
+    HomeHeaderComponent,
+    HomeMainSentenceComponent,
+    HomeFeaturesComponent,
+    HomeFooterComponent,
+    HomeGetStartedComponent
+  ],
   imports: [SharedModule, HomeRoutingModule]
 })
 export class HomeModule {}
