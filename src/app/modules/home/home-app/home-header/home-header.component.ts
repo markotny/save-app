@@ -9,7 +9,7 @@ import {OidcFacade} from 'ng-oidc-client';
 export class HomeHeaderComponent {
   constructor(private oidcFacade: OidcFacade) {}
 
-  isOpen = true;
+  isOpen = false;
 
   signin() {
     this.oidcFacade.signinRedirect();
