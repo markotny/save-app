@@ -5,6 +5,7 @@ import {map, share} from 'rxjs/operators';
 import {Observable, Subscription} from 'rxjs';
 import {MenuItem} from 'primeng/api/menuitem';
 import {MediaObserver, MediaChange} from '@angular/flex-layout';
+import { getHeaderStyle } from '@shell/header-style.model';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
   watcher$: Subscription;
+  headerStyle: unknown;
 
   constructor(private oidcFacade: OidcFacade, private mediaObserver: MediaObserver) {}
 
@@ -33,8 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.watcher$ = this.mediaObserver.media$.subscribe((change: MediaChange) => {
       if (change.mqAlias !== 'xs') {
         this.sidenavToggle.emit(false);
+        this.headerStyle = getHeaderStyle('');
       } else {
-        this.sidenavToggle.emit(true);
+        this.headerStyle = getHeaderStyle('xs');
       }
     });
   }

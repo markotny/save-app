@@ -27,3 +27,15 @@
     margin-bottom: 5px;
   }
 }
+
+span.sep {
+  border-bottom: 1px $dark-grey solid;
+  margin: 0px 20px;
+  border-radius: 10px;
+}
+
+:host ::ng-deep .ui-toolbar {
+  background-color: inherit;
+  border-radius: 0px;
+  border: 0px;
+}

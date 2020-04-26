@@ -30,7 +30,7 @@ export class SidenavComponent implements OnInit {
     },
     {
       label: 'Categories',
-      icon: 'pi pi-list',
+      icon: 'pi categories-icon',
       items: [
         {label: 'Add category', icon: 'pi plus-icon'},
         {label: 'Edit category', icon: 'pi edit-icon'}

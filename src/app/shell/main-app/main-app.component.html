@@ -2,7 +2,7 @@
   gdAreas="sidenav header | sidenav content"
   gdAreas.xs="header | content"
   gdColumns.gt-xs="16.8em auto"
-  gdRows="86px auto"
+  [gdRows]="rowStyle"
   class="wrapper"
 >
   <app-header gdArea="header" class="toolbar" (sidenavToggle)="sidebarVisible = $event"> </app-header>

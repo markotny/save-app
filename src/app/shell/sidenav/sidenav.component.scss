@@ -55,11 +55,16 @@
   height: 23px !important;
 }
 
-.categories-icon {
-  background-image: '';
+:host ::ng-deep .categories-icon {
+  background: url('assets/icons/category.svg') no-repeat;
+  width: 20px !important;
+  height: 19px !important;
 }
 
 // custom css for sidemenu
+:host ::ng-deep .ui-panelmenu-panel:first-child {
+  padding-bottom: 20px;
+}
 :host ::ng-deep .ui-panelmenu {
   padding-left: 20px;
 }
