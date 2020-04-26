@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {accountMenu} from '@shell/account-menu.model';
-import {shareReplay, map, share} from 'rxjs/operators';
+import {map, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidenav',
@@ -20,15 +20,19 @@ export class SidenavComponent implements OnInit {
     },
     {
       label: 'Budgets',
-      icon: 'pi pi-money-bill',
+      icon: 'pi budget-icon',
       items: [
-        {label: 'New', icon: 'pi pi-plus'},
-        {label: 'All', icon: 'pi pi-circle-off'}
+        {label: 'Add budget', icon: 'pi plus-icon'},
+        {label: 'Edit budgets', icon: 'pi edit-icon'}
       ]
     },
     {
       label: 'Categories',
-      icon: 'pi pi-list'
+      icon: 'pi pi-list',
+      items: [
+        {label: 'Add category', icon: 'pi plus-icon'},
+        {label: 'Edit category', icon: 'pi edit-icon'}
+      ]
     },
     {
       label: 'Income',

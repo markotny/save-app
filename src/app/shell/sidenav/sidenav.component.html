@@ -1,5 +1,16 @@
 <div fxLayout="column" fxFill class="sidebar">
-  <p-panelMenu [model]="sideMenuItems"></p-panelMenu>
+  <div class="logo-wrapper">
+    <div class="logo-text">
+      <h2>Wydatex</h2>
+    </div>
+    <div class="small-icon-wrapper">
+      <img src="assets/icons/small-wallet.svg" />
+    </div>
+  </div>
+  <div>
+    <p-panelMenu [model]="sideMenuItems" [multiple]="false"></p-panelMenu>
+  </div>
+
   <p-panelMenu
     fxHide.gt-xs
     *ngIf="userName$ | async as userName"

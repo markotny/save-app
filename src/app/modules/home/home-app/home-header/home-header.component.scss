@@ -65,53 +65,43 @@ button {
   z-index: 6;
   cursor: pointer;
   position: relative;
-}
+  input {
+    margin: 0;
+    position: absolute;
+    width: 33px;
+    height: 26px;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+  }
+  span {
+    display: block;
+    width: 33px;
+    height: 5px;
 
-.menuToggle input {
-  margin: 0;
-  position: absolute;
-  width: 33px;
-  height: 26px;
-  z-index: 1;
-  opacity: 0;
-  cursor: pointer;
-}
+    position: relative;
 
-/*
- * Just a quick hamburger
- */
-.menuToggle span {
-  display: block;
-  width: 33px;
-  height: 5px;
+    background: $black;
+    border-radius: 3px;
 
-  position: relative;
+    transform-origin: 4px 0px;
 
-  background: $black;
-  border-radius: 3px;
-
-  transform-origin: 4px 0px;
-
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-    opacity 0.55s ease;
-}
-
-.menuToggle span:not(:last-child) {
-  margin-bottom: 5px;
-}
-
-.menuToggle input:checked ~ span:nth-child(2) {
-  transform: rotate(45deg) translate(5px, -1px);
-}
-
-.menuToggle input:checked ~ span:nth-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0, 1);
-}
-
-.menuToggle input:checked ~ span:nth-child(4) {
-  opacity: 1;
-  transform: rotate(-45deg);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  }
+  span:not(:last-child) {
+    margin-bottom: 5px;
+  }
+  input:checked ~ span:nth-child(2) {
+    transform: rotate(45deg) translate(5px, -1px);
+  }
+  input:checked ~ span:nth-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0, 1);
+  }
+  input:checked ~ span:nth-child(4) {
+    opacity: 1;
+    transform: rotate(-45deg);
+  }
 }
 
 .menu-list {

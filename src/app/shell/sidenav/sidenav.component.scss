@@ -1,3 +1,124 @@
+@import '~variables.scss';
+
 .sidebar {
-    border-right: 1px solid #c8c8c8;	
+  background-color: $dark-grey;
+}
+
+.small-icon-wrapper {
+  width: fit-content;
+  img {
+    height: 60px;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin: 22px auto 0;
+}
+
+.logo-text {
+  margin: -2% 10px auto 0px;
+  h2 {
+    font-size: 22px;
+    font-family: 'Roboto-Regular';
+    color: $white;
+  }
+}
+
+:host ::ng-deep .plus-icon {
+  background: url('assets/icons/plus.svg') no-repeat;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+:host ::ng-deep .edit-icon {
+  background: url('assets/icons/edit.svg') no-repeat;
+  width: 20px !important;
+  height: 22px !important;
+}
+
+:host ::ng-deep .budget-icon {
+  background: url('assets/icons/budget.svg') no-repeat;
+  width: 20px !important;
+  height: 27px !important;
+}
+
+.income-icon {
+  background-image: '';
+}
+
+.dashboard-icon {
+  background-image: '';
+}
+
+.categories-icon {
+  background-image: '';
+}
+
+// custom css for sidemenu
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-header.ui-state-active > a {
+  border: 0px !important;
+  background-color: $dark-grey !important;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-header {
+  > a:focus {
+    box-shadow: none;
+  }
+  > a {
+    border: 0px;
+    background-color: inherit;
+    > span {
+      color: $white;
+    }
+  }
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-header:not(.ui-state-active) > a:hover {
+  background-color: inherit;
+  border: 0px;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-content {
+  border: 0px;
+  background-color: inherit;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-content .ui-menuitem {
+  .ui-menuitem-link > span {
+    color: $white !important;
+  }
+
+  .ui-menuitem-link:hover {
+    background-color: inherit;
+  }
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-content > .ui-panelmenu-root-submenu > .ui-submenu-list {
+  margin-left: 43px;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-menuitem-icon {
+  margin-right: 0.75rem;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link {
+  padding: 0.714em 0;
+}
+
+:host ::ng-deep .ui-panelmenu-icon {
+  position: absolute;
+  right: 0.5em;
+  top: 32%;
+}
+
+:host ::ng-deep .ui-panelmenu .ui-panelmenu-header {
+  position: relative;
+}
+
+:host ::ng-deep .ui-sidebar-left {
+  top: 0px !important;
+  width: 15.5em !important;
 }
