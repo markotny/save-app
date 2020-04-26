@@ -16,11 +16,13 @@ export class SidenavComponent implements OnInit {
   sideMenuItems: MenuItem[] = [
     {
       label: 'Dashboard',
+      icon: 'pi dashboard-icon',
       routerLink: ['/app/dashboard']
     },
     {
       label: 'Budgets',
       icon: 'pi budget-icon',
+      routerLink: ['/app/budgets'],
       items: [
         {label: 'Add budget', icon: 'pi plus-icon'},
         {label: 'Edit budgets', icon: 'pi edit-icon'}

@@ -49,8 +49,10 @@
   background-image: '';
 }
 
-.dashboard-icon {
-  background-image: '';
+:host ::ng-deep .dashboard-icon {
+  background: url('assets/icons/dashboard.svg') no-repeat;
+  width: 20px !important;
+  height: 23px !important;
 }
 
 .categories-icon {
@@ -58,6 +60,10 @@
 }
 
 // custom css for sidemenu
+:host ::ng-deep .ui-panelmenu {
+  padding-left: 20px;
+}
+
 :host ::ng-deep .ui-panelmenu .ui-panelmenu-header.ui-state-active > a {
   border: 0px !important;
   background-color: $dark-grey !important;
