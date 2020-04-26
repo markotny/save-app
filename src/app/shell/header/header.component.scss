@@ -1,5 +1,9 @@
 @import '~variables.scss';
 
+.container {
+  margin: 0px 20px;
+}
+
 .menuToggle {
   z-index: 6;
   cursor: pointer;
@@ -30,7 +34,6 @@
 
 span.sep {
   border-bottom: 1px $dark-grey solid;
-  margin: 0px 20px;
   border-radius: 10px;
 }
 
@@ -38,4 +41,5 @@ span.sep {
   background-color: inherit;
   border-radius: 0px;
   border: 0px;
+  padding: 0px;
 }

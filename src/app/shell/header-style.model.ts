@@ -6,7 +6,7 @@ export function getHeaderStyle(condition: string): unknown {
       return '86px auto';
     case 'rows-small':
       return '50px auto';
-    default:
-      return {height: '86px'};
+    case '!xs':
+      return {height: '86px', display: 'table-cell', 'vertical-align': 'middle' , width: '100vw'};
   }
 }

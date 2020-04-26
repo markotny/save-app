@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.watcher$ = this.mediaObserver.media$.subscribe((change: MediaChange) => {
       if (change.mqAlias !== 'xs') {
         this.sidenavToggle.emit(false);
-        this.headerStyle = getHeaderStyle('');
+        this.headerStyle = getHeaderStyle('!xs');
       } else {
         this.headerStyle = getHeaderStyle('xs');
       }

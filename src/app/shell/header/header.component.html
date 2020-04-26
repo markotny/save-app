@@ -1,19 +1,19 @@
-<div class="f-vertical">
-<p-toolbar [style]="headerStyle">
-  <div fxHide.gt-xs class="ui-toolbar-group-left">
-    <div class="menuToggle">
-      <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
-      <span></span>
-      <span></span>
-      <span></span>
+<div class="f-vertical container">
+  <p-toolbar [style]="headerStyle">
+    <div fxHide.gt-xs class="ui-toolbar-group-left">
+      <div class="menuToggle">
+        <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
 
-  <div fxHide.xs class="ui-toolbar-group-right">
-    <p-button *ngIf="userName$ | async as userName" (onClick)="accountMenu.toggle($event)" [label]="userName"></p-button>
-  </div>
-</p-toolbar>
-<span fxHide.xs class="sep"></span>
+    <div fxHide.xs class="ui-toolbar-group-right">
+      <p-button *ngIf="userName$ | async as userName" (onClick)="accountMenu.toggle($event)" [label]="userName"></p-button>
+    </div>
+  </p-toolbar>
+  <span fxHide.xs class="sep"></span>
 </div>
 
 <p-menu #accountMenu [popup]="true" [model]="accountMenuItems"> </p-menu>
