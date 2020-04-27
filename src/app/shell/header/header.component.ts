@@ -1,26 +1,23 @@
-import {Component, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
-import {OidcFacade} from 'ng-oidc-client';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {accountMenu} from '@shell/account-menu.model';
-import {map, share} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {MediaObserver, MediaChange} from '@angular/flex-layout';
-import { getHeaderStyle } from '@shell/header-style.model';
+import {Observable} from 'rxjs';
+import {map, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter();
 
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
-  watcher$: Subscription;
   headerStyle: unknown;
 
-  constructor(private oidcFacade: OidcFacade, private mediaObserver: MediaObserver) {}
+  constructor(private oidcFacade: OidcFacade) {}
 
   ngOnInit() {
     this.userName$ = this.oidcFacade.identity$.pipe(
@@ -28,25 +25,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       share()
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
-    this.initWatcher();
-  }
-
-  private initWatcher(): void {
-    this.watcher$ = this.mediaObserver.media$.subscribe((change: MediaChange) => {
-      if (change.mqAlias !== 'xs') {
-        this.sidenavToggle.emit(false);
-        this.headerStyle = getHeaderStyle('!xs');
-      } else {
-        this.headerStyle = getHeaderStyle('xs');
-      }
-    });
   }
 
   onToggleSidenav(): void {
     this.sidenavToggle.emit(true);
-  }
-
-  ngOnDestroy(): void {
-    this.watcher$.unsubscribe();
   }
 }

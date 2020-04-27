@@ -2,10 +2,11 @@
   gdAreas="sidenav header | sidenav content"
   gdAreas.xs="header | content"
   gdColumns.gt-xs="16.8em auto"
-  [gdRows]="rowStyle"
+  gdRows.xs="50px auto"
+  gdRows.gt-xs="86px auto"
   class="wrapper"
 >
-  <app-header gdArea="header" class="toolbar" (sidenavToggle)="sidebarVisible = $event"> </app-header>
+  <app-header gdArea="header" (sidenavToggle)="sidebarVisible = $event"> </app-header>
 
   <div gdArea.gt-xs="sidenav" fxHide.xs fxFill class="sidenav">
     <app-sidenav></app-sidenav>
