@@ -1,11 +1,19 @@
-<p-toolbar [style]="{height: '50px'}">
-  <div fxHide.gt-xs class="ui-toolbar-group-left">
-    <p-button icon="pi pi-list" (click)="onToggleSidenav()"> </p-button>
-  </div>
+<div class="container" fxLayout="column">
+  <p-toolbar fxFill>
+    <div fxHide.gt-xs class="ui-toolbar-group-left">
+      <div class="menuToggle">
+        <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
 
-  <div fxHide.xs class="ui-toolbar-group-right">
-    <p-button *ngIf="userName$ | async as userName" (click)="accountMenu.toggle($event)" [label]="userName"></p-button>
-  </div>
-</p-toolbar>
+    <div fxHide.xs class="ui-toolbar-group-right">
+      <p-button *ngIf="userName$ | async as userName" (onClick)="accountMenu.toggle($event)" [label]="userName"></p-button>
+    </div>
+  </p-toolbar>
+  <span fxHide.xs class="sep"></span>
+</div>
 
 <p-menu #accountMenu [popup]="true" [model]="accountMenuItems"> </p-menu>

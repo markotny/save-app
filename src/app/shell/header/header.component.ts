@@ -1,9 +1,9 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {OidcFacade} from 'ng-oidc-client';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {accountMenu} from '@shell/account-menu.model';
-import {shareReplay, map, share} from 'rxjs/operators';
-import {of, Observable} from 'rxjs';
+import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
+import {Observable} from 'rxjs';
+import {map, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
+  headerStyle: unknown;
 
   constructor(private oidcFacade: OidcFacade) {}
 
@@ -26,7 +27,7 @@ export class HeaderComponent implements OnInit {
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
   }
 
-  onToggleSidenav() {
-    this.sidenavToggle.emit();
+  onToggleSidenav(): void {
+    this.sidenavToggle.emit(true);
   }
 }
