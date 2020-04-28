@@ -6,6 +6,9 @@
   bottom: 0;
 
   .sidenav {
+    position: absolute;
+    width: 250px;
+    height: 100%;
     app-sidenav {
       height: 100%;
     }

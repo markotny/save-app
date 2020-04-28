@@ -1,29 +1,17 @@
-<div
-  gdAreas="sidenav header | sidenav content"
-  gdAreas.xs="header | content"
-  gdColumns.gt-xs="16.8em auto"
-  gdRows.xs="50px auto"
-  gdRows.gt-xs="86px auto"
-  class="wrapper"
->
-  <app-header gdArea="header" (sidenavToggle)="sidebarVisible = $event"> </app-header>
-
-  <div gdArea.gt-xs="sidenav" fxHide.xs fxFill class="sidenav">
+<div fxLayout="row" class="wrapper">
+  <div [@sidenavHideXs]="mediaObserver.isActive('xs')" class="sidenav">
     <app-sidenav></app-sidenav>
   </div>
 
-  <main gdArea="content" gdGridAlign="stretch stretch" role="main" class="content">
-    <router-outlet></router-outlet>
-  </main>
+  <div [@sidenavMargin]="mediaObserver.isActive('xs')" fxFlex="grow" fxLayout="column">
+    <app-header [@headerHeight]="mediaObserver.isActive('xs')" (sidenavToggle)="sidebarVisible = $event"> </app-header>
+
+    <main fxFlex="grow" role="main" class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>
 
-<p-sidebar
-  fxHide.gt-xs
-  [style]="{width: '16em', padding: 0}"
-  [(visible)]="sidebarVisible"
-  [showCloseIcon]="false"
->
+<p-sidebar [style]="{width: '250px', padding: 0}" [(visible)]="sidebarVisible" [showCloseIcon]="false">
   <app-sidenav></app-sidenav>
 </p-sidebar>
-
-<p-toast [style]="{marginTop: '80px'}"></p-toast>

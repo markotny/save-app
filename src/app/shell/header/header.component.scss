@@ -48,3 +48,15 @@ span.sep {
   flex-direction: row;
   align-items: center;
 }
+
+.account-menu {
+  margin-left: auto;
+  font-size: 15px;
+
+  &:hover {
+    cursor: pointer;
+    i {
+      color: $light-grey;
+    }
+  }
+}
