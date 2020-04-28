@@ -16,11 +16,7 @@ export class LocalStorageService {
           .map(key =>
             key
               .split('-')
-              .map((token, index) =>
-                index === 0
-                  ? token
-                  : token.charAt(0).toUpperCase() + token.slice(1)
-              )
+              .map((token, index) => (index === 0 ? token : token.charAt(0).toUpperCase() + token.slice(1)))
               .join('')
           );
         let currentStateRef = state;
@@ -47,6 +43,14 @@ export class LocalStorageService {
 
   removeItem(key: string) {
     localStorage.removeItem(`${APP_PREFIX}${key}`);
+  }
+
+  clearState() {
+    Object.keys(localStorage).forEach(key => {
+      if (key.includes(APP_PREFIX)) {
+        localStorage.removeItem(key);
+      }
+    });
   }
 
   /** Tests that localStorage exists, can be written to, and read from. */

@@ -2,12 +2,7 @@ import {Injectable} from '@angular/core';
 import {OidcFacade} from 'ng-oidc-client';
 import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest
-} from '@angular/common/http';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +10,7 @@ import {
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private oidcFacade: OidcFacade) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.oidcFacade.identity$.pipe(
       switchMap(user => {
         if (user && user.access_token) {
