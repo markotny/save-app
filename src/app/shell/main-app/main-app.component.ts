@@ -2,9 +2,8 @@ import {DOCUMENT} from '@angular/common';
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {mainContentAnimations, sidebarAnimations, SidebarState, fadeAnimation, headerAnimations} from '@shell/shell.animations';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {map, skip} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { logValue } from '@core/core.module';
 
 @Component({
   selector: 'app-main-app',

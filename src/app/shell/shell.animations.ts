@@ -25,7 +25,7 @@ const slideOut = animation(animate(`${slideDuration} ease-in`));
 
 export const sidebarAnimations = trigger('sidebarToggle', [
   state(
-    SidebarState.Docked,
+    `${SidebarState.Docked}, ${SidebarState.Over}`,
     style({
       transform: 'translateX(0)'
     })
@@ -34,12 +34,6 @@ export const sidebarAnimations = trigger('sidebarToggle', [
     SidebarState.Hidden,
     style({
       transform: 'translateX(-100%)'
-    })
-  ),
-  state(
-    SidebarState.Over,
-    style({
-      transform: 'translateX(0)'
     })
   ),
   transition(`* => ${SidebarState.Hidden}`, useAnimation(slideOut)),
@@ -54,13 +48,7 @@ export const mainContentAnimations = trigger('mainContentToggle', [
     })
   ),
   state(
-    SidebarState.Hidden,
-    style({
-      marginLeft: 0
-    })
-  ),
-  state(
-    SidebarState.Over,
+    `${SidebarState.Hidden}, ${SidebarState.Over}`,
     style({
       marginLeft: 0
     })
@@ -102,7 +90,7 @@ export const delayedFadeAnimation = (delay = '0s') =>
       })
     ),
     transition('false => true', sequence([animate(delay, style({display: 'block'})), animate('0.2s ease-in', style({opacity: '1'}))])),
-    transition('true => false', sequence([animate(`0.2s ${delay} ease-out`, style({opacity: 0})), style({display: '*'})]))
+    transition('true => false', sequence([animate(`0.2s ${delay} ease-out`, style({opacity: 0})), style({display: 'none'})]))
   ]);
 
 export const fadeAnimation = delayedFadeAnimation();
