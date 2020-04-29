@@ -84,8 +84,7 @@ export const headerAnimations = trigger('headerToggle', [
 ]);
 
 const defaultFadeParams = {
-  delay: '0s',
-  display: 'block'
+  delay: '0s'
 };
 
 export const fadeAnimation = trigger('fadeToggle', [
@@ -93,11 +92,8 @@ export const fadeAnimation = trigger('fadeToggle', [
     'true',
     style({
       opacity: '1',
-      display: '{{display}}'
-    }),
-    {
-      params: defaultFadeParams
-    }
+      display: 'block'
+    })
   ),
   state(
     'false',
@@ -108,12 +104,12 @@ export const fadeAnimation = trigger('fadeToggle', [
   ),
   transition(
     'false => true',
-    sequence([animate('0s {{delay}}', style({display: '{{display}}'})), animate('0.2s ease-in', style({opacity: '1'}))]),
+    sequence([animate('{{delay}}', style({display: 'block'})), animate('0.2s ease-in', style({opacity: '1'}))]),
     {
       params: defaultFadeParams
     }
   ),
-  transition('true => false', sequence([animate('0.2s {{delay}} ease-out', style({opacity: 0})), style({display: '{{display}}'})]), {
+  transition('true => false', sequence([animate('0.2s {{delay}} ease-out', style({opacity: 0})), style({display: 'block'})]), {
     params: defaultFadeParams
   })
 ]);

@@ -44,17 +44,10 @@ span.sep {
   border: 0px;
   padding: 0px;
   height: 100%;
+  display: flex;
   align-items: center;
 }
 
-.account-menu {
+.account-menu-button {
   margin-left: auto;
-  font-size: 15px;
-
-  &:hover {
-    cursor: pointer;
-    i {
-      color: $light-grey;
-    }
-  }
 }

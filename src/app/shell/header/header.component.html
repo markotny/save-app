@@ -9,22 +9,9 @@
       </div>
     </div>
 
-    <div
-      *ngIf="userName$ | async as userName"
-      [@fadeToggle]="{value: !isSmall(), params: {delay: '0.3s', display: 'flex'}}"
-      fxFlex
-      fxLayout="row"
-      fxLayoutAlign="end center"
-      fxLayoutGap="0.5em"
-      class="ui-toolbar-group-right account-menu"
-      (click)="accountMenu.toggle($event)"
-    >
-      <a>{{ userName }}</a>
-      <i class="pi pi-chevron-right" [@openClose]="accountMenuOpen"></i>
+    <div class="ui-toolbar-group-right account-menu-button" [@fadeToggle]="{value: !isSmall(), params: {delay: '0.3s'}}">
+      <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>
   <span [@fadeToggle]="!isSmall()" class="sep"></span>
 </div>
-
-<p-menu #accountMenu [popup]="true" [model]="accountMenuItems" (onShow)="accountMenuOpen = true" (onHide)="accountMenuOpen = false">
-</p-menu>

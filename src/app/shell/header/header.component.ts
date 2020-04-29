@@ -10,24 +10,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
-  animations: [
-    fadeAnimation,
-    trigger('openClose', [
-      state(
-        'true',
-        style({
-          transform: 'rotate(90deg)'
-        })
-      ),
-      state(
-        'false',
-        style({
-          transform: 'rotate(0deg)'
-        })
-      ),
-      transition('true <=> false', [animate('0.1s ease-in-out')])
-    ])
-  ],
+  animations: [fadeAnimation],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

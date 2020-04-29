@@ -11,9 +11,10 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
 import {CheckboxModule} from 'primeng/checkbox';
 import {VarDirective} from './directives/app-var.directive';
+import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 
 @NgModule({
-  declarations: [VarDirective],
+  declarations: [VarDirective, DropdownMenuComponent],
   imports: [
     // angular
     CommonModule,
@@ -34,6 +35,7 @@ import {VarDirective} from './directives/app-var.directive';
   ],
   exports: [
     VarDirective,
+    DropdownMenuComponent,
     // angular
     CommonModule,
     FormsModule,
