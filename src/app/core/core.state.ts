@@ -1,19 +1,16 @@
-import {
-  MetaReducer,
-  createFeatureSelector,
-  ActionReducerMap
-} from '@ngrx/store';
+import {MetaReducer, createFeatureSelector, ActionReducerMap} from '@ngrx/store';
 import {logout} from './meta-reducers/logout.reducer';
 import {environment} from '@env/environment';
 import {debug} from './meta-reducers/debug.reducer';
 import {SettingsState} from './settings/settings.model';
 import {settingsReducer} from './settings/settings.reducer';
+import {initStateFromLocalStorage} from './meta-reducers/init-state-from-local-storage.reducer';
 
 export const reducers: ActionReducerMap<AppState> = {
   settings: settingsReducer
 };
 
-export const metaReducers: MetaReducer<AppState>[] = [logout];
+export const metaReducers: MetaReducer<AppState>[] = [logout, initStateFromLocalStorage];
 
 if (!environment.production) {
   if (!environment.test) {
@@ -21,10 +18,7 @@ if (!environment.production) {
   }
 }
 
-export const selectSettingsState = createFeatureSelector<
-  AppState,
-  SettingsState
->('settings');
+export const selectSettingsState = createFeatureSelector<AppState, SettingsState>('settings');
 
 export interface AppState {
   settings: SettingsState;
