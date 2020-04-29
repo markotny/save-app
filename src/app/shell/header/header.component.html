@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="ui-toolbar-group-right account-menu-button" [@fadeToggle]="{value: !isSmall(), params: {delay: '0.3s'}}">
+    <div class="ui-toolbar-group-right account-menu-button" [@fadeToggle]="!isSmall()">
       <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>

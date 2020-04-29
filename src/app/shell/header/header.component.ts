@@ -1,10 +1,9 @@
-import {Component, EventEmitter, OnInit, Output, OnDestroy} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {accountMenu} from '@shell/account-menu.model';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {Observable, Subscription} from 'rxjs';
-import {map, share, filter, pairwise} from 'rxjs/operators';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import {Observable} from 'rxjs';
+import {map, share} from 'rxjs/operators';
 import {fadeAnimation} from '@shell/shell.animations';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 

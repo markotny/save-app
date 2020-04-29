@@ -18,8 +18,10 @@ export enum SidebarState {
   Over = 'over'
 }
 
-const slideIn = animation(animate('0.3s ease-out'));
-const slideOut = animation(animate('0.3s ease-in'));
+const slideDuration = '0.3s';
+
+const slideIn = animation(animate(`${slideDuration} ease-out`));
+const slideOut = animation(animate(`${slideDuration} ease-in`));
 
 export const sidebarAnimations = trigger('sidebarToggle', [
   state(
@@ -80,36 +82,28 @@ export const headerAnimations = trigger('headerToggle', [
       height: 'var(--header-height-large)'
     })
   ),
-  transition('* => *', group([query('@fadeToggle', animateChild()), animate('0.1s 0.3s ease')]))
+  transition('* => *', group([query('@fadeToggle', animateChild()), animate(`0.1s ${slideDuration} ease`)]))
 ]);
 
-const defaultFadeParams = {
-  delay: '0s'
-};
+export const delayedFadeAnimation = (delay = '0s') =>
+  trigger('fadeToggle', [
+    state(
+      'true',
+      style({
+        opacity: '1',
+        display: '*'
+      })
+    ),
+    state(
+      'false',
+      style({
+        opacity: 0,
+        display: 'none'
+      })
+    ),
+    transition('false => true', sequence([animate(delay, style({display: 'block'})), animate('0.2s ease-in', style({opacity: '1'}))])),
+    transition('true => false', sequence([animate(`0.2s ${delay} ease-out`, style({opacity: 0})), style({display: '*'})]))
+  ]);
 
-export const fadeAnimation = trigger('fadeToggle', [
-  state(
-    'true',
-    style({
-      opacity: '1',
-      display: 'block'
-    })
-  ),
-  state(
-    'false',
-    style({
-      opacity: 0,
-      display: 'none'
-    })
-  ),
-  transition(
-    'false => true',
-    sequence([animate('{{delay}}', style({display: 'block'})), animate('0.2s ease-in', style({opacity: '1'}))]),
-    {
-      params: defaultFadeParams
-    }
-  ),
-  transition('true => false', sequence([animate('0.2s {{delay}} ease-out', style({opacity: 0})), style({display: 'block'})]), {
-    params: defaultFadeParams
-  })
-]);
+export const fadeAnimation = delayedFadeAnimation();
+export const slideDelayedFadeAnimation = delayedFadeAnimation(slideDuration);
