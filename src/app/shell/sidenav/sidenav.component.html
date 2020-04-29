@@ -12,7 +12,7 @@
   </div>
 
   <p-panelMenu
-    fxHide.gt-xs
+    [@fadeToggle]="isSmall()"
     *ngIf="userName$ | async as userName"
     [model]="[{label: userName, items: accountMenuItems}]"
     [style]="{'margin-top': '10px'}"

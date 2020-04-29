@@ -1,17 +1,15 @@
-<div fxLayout="row" class="wrapper">
-  <div [@sidenavHideXs]="mediaObserver.isActive('xs')" class="sidenav">
+<div fxLayout="row" class="wrapper" *ngIf="sidebarState$ | async as sidebarState">
+  <div class="sidenav" [@sidebarToggle]="sidebarState">
     <app-sidenav></app-sidenav>
   </div>
 
-  <div [@sidenavMargin]="mediaObserver.isActive('xs')" fxFlex="grow" fxLayout="column">
-    <app-header [@headerHeight]="mediaObserver.isActive('xs')" (sidenavToggle)="sidebarVisible = $event"> </app-header>
+  <div fxFlex="grow" fxLayout="column" class="main-content" [@mainContentToggle]="sidebarState">
+    <app-header class="header" [@headerToggle]="isSmall()" (sidenavToggle)="toggleSidebar()"> </app-header>
 
     <main fxFlex="grow" role="main" class="content">
       <router-outlet></router-outlet>
     </main>
   </div>
-</div>
 
-<p-sidebar [style]="{width: '250px', padding: 0}" [(visible)]="sidebarVisible" [showCloseIcon]="false">
-  <app-sidenav></app-sidenav>
-</p-sidebar>
+  <div id="mainOverlay" (click)="toggleSidebar()" [@fadeToggle]="sidebarState === sidebarStateEnum.Over"></div>
+</div>

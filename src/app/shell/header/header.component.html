@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column">
   <p-toolbar fxFill>
-    <div [@headerFade]="mediaObserver.isActive('xs')" class="ui-toolbar-group-left">
+    <div [@fadeToggle]="isSmall()" class="ui-toolbar-group-left">
       <div class="menuToggle">
         <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
         <span></span>
@@ -11,7 +11,8 @@
 
     <div
       *ngIf="userName$ | async as userName"
-      [@headerFade]="mediaObserver.isActive('gt-xs')"
+      [@fadeToggle]="{value: !isSmall(), params: {delay: '0.3s', display: 'flex'}}"
+      fxFlex
       fxLayout="row"
       fxLayoutAlign="end center"
       fxLayoutGap="0.5em"
@@ -22,7 +23,7 @@
       <i class="pi pi-chevron-right" [@openClose]="accountMenuOpen"></i>
     </div>
   </p-toolbar>
-  <span fxHide.xs class="sep"></span>
+  <span [@fadeToggle]="!isSmall()" class="sep"></span>
 </div>
 
 <p-menu #accountMenu [popup]="true" [model]="accountMenuItems" (onShow)="accountMenuOpen = true" (onHide)="accountMenuOpen = false">

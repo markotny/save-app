@@ -5,11 +5,13 @@ import {MenuItem} from 'primeng/api/menuitem';
 import {Observable, Subscription} from 'rxjs';
 import {map, share, filter, pairwise} from 'rxjs/operators';
 import {trigger, state, style, animate, transition} from '@angular/animations';
-import {MediaObserver, MediaChange} from '@angular/flex-layout';
+import {fadeAnimation} from '@shell/shell.animations';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
   animations: [
+    fadeAnimation,
     trigger('openClose', [
       state(
         'true',
@@ -24,36 +26,19 @@ import {MediaObserver, MediaChange} from '@angular/flex-layout';
         })
       ),
       transition('true <=> false', [animate('0.1s ease-in-out')])
-    ]),
-    trigger('headerFade', [
-      state(
-        'true',
-        style({
-          opacity: 1
-        })
-      ),
-      state(
-        'false',
-        style({
-          opacity: 0
-        })
-      ),
-      transition('false => true', [animate('0.1s 0.4s ease-in')]),
-      transition('true => false', [animate('0.1s ease-out')])
     ])
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter();
 
   accountMenuOpen = false;
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
-  watcher$: Subscription;
 
-  constructor(private oidcFacade: OidcFacade, public mediaObserver: MediaObserver) {}
+  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
     this.userName$ = this.oidcFacade.identity$.pipe(
@@ -61,25 +46,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       share()
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
-    this.initWatcher();
   }
 
-  private initWatcher(): void {
-    this.watcher$ = this.mediaObserver
-      .asObservable()
-      .pipe(
-        map((changes: MediaChange[]) => changes[0]),
-        pairwise(),
-        filter(([prev]) => prev.mqAlias === 'xs')
-      )
-      .subscribe(() => this.sidenavToggle.emit(false));
+  isSmall(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.XSmall);
   }
 
   onToggleSidenav(): void {
     this.sidenavToggle.emit(true);
-  }
-
-  ngOnDestroy(): void {
-    this.watcher$.unsubscribe();
   }
 }
