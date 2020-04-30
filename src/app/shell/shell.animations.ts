@@ -70,28 +70,24 @@ export const headerAnimations = trigger('headerToggle', [
       height: 'var(--header-height-large)'
     })
   ),
-  transition('* => *', group([query('@fadeToggle', animateChild()), animate(`0.1s ${slideDuration} ease`)]))
+  transition('* => *', group([query('@fadeToggle', animateChild({delay: slideDuration})), animate(`0.1s ${slideDuration} ease`)]))
 ]);
 
-export const delayedFadeAnimation = (delay = '0s') =>
-  trigger('fadeToggle', [
-    state(
-      'true',
-      style({
-        opacity: '1',
-        display: '*'
-      })
-    ),
-    state(
-      'false',
-      style({
-        opacity: 0,
-        display: 'none'
-      })
-    ),
-    transition('false => true', sequence([animate(delay, style({display: 'block'})), animate('0.2s ease-in', style({opacity: '1'}))])),
-    transition('true => false', sequence([animate(`0.2s ${delay} ease-out`, style({opacity: 0})), style({display: 'none'})]))
-  ]);
-
-export const fadeAnimation = delayedFadeAnimation();
-export const slideDelayedFadeAnimation = delayedFadeAnimation(slideDuration);
+export const fadeAnimation = trigger('fadeToggle', [
+  state(
+    'true',
+    style({
+      opacity: '1',
+      display: '*'
+    })
+  ),
+  state(
+    'false',
+    style({
+      opacity: 0,
+      display: 'none'
+    })
+  ),
+  transition('false => true', sequence([style({display: 'block'}), animate('0.2s ease-in', style({opacity: '1'}))])),
+  transition('true => false', sequence([animate(`0.2s ease-out`, style({opacity: 0})), style({display: 'none'})]))
+]);

@@ -2,7 +2,7 @@ import {DOCUMENT} from '@angular/common';
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {mainContentAnimations, sidebarAnimations, SidebarState, fadeAnimation, headerAnimations} from '@shell/shell.animations';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
@@ -21,7 +21,11 @@ export class MainAppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.injectBackgroundColor();
 
-    this.sidebarState$ = combineLatest([this.breakpointObserver.observe(Breakpoints.XSmall), this.sidebarVisible$]).pipe(
+    const breakpoint$ = this.breakpointObserver
+      .observe(Breakpoints.XSmall)
+      .pipe(tap(breakpoint => (!breakpoint.matches ? this.sidebarVisible$.next(false) : null)));
+
+    this.sidebarState$ = combineLatest([breakpoint$, this.sidebarVisible$]).pipe(
       map(([breakpoint, sidebarVisible]) =>
         breakpoint.matches ? (sidebarVisible ? SidebarState.Over : SidebarState.Hidden) : SidebarState.Docked
       )
