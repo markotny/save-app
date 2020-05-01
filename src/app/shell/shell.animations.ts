@@ -1,4 +1,4 @@
-import {animate, style, transition, trigger, state, animation, useAnimation} from '@angular/animations';
+import {animate, style, transition, trigger, state, animation, useAnimation, group, query, animateChild} from '@angular/animations';
 import {fadeInAnimation, fadeOutAnimation} from '@shared/animations';
 
 export enum SidebarState {
@@ -14,26 +14,35 @@ const slideOut = animation(animate(`${slideDuration} ease-in`));
 
 export const sidebarAnimations = trigger('sidebarToggle', [
   state(
-    `${SidebarState.Docked}, ${SidebarState.Over}`,
+    SidebarState.Docked,
     style({
-      transform: 'translateX(0)'
+      transform: 'translateX(0)',
+      width: 'var(--sidebar-width-large)'
+    })
+  ),
+  state(
+    SidebarState.Over,
+    style({
+      transform: 'translateX(0)',
+      width: 'var(--sidebar-width-small)'
     })
   ),
   state(
     SidebarState.Hidden,
     style({
-      transform: 'translateX(-100%)'
+      transform: 'translateX(-100%)',
+      width: '*'
     })
   ),
   transition(`* => ${SidebarState.Hidden}`, useAnimation(slideOut)),
-  transition(`${SidebarState.Hidden} => *`, useAnimation(slideIn))
+  transition(`* => *`, useAnimation(slideIn))
 ]);
 
 export const mainContentAnimations = trigger('mainContentToggle', [
   state(
     SidebarState.Docked,
     style({
-      marginLeft: 'var(--sidebar-width)'
+      marginLeft: 'var(--sidebar-width-large)'
     })
   ),
   state(
@@ -42,21 +51,21 @@ export const mainContentAnimations = trigger('mainContentToggle', [
       marginLeft: 0
     })
   ),
-  transition(`${SidebarState.Docked} => *`, useAnimation(slideOut)),
-  transition(`* => ${SidebarState.Docked}`, useAnimation(slideIn))
+  transition(`${SidebarState.Docked} => *`, group([query('@headerToggle', animateChild()), useAnimation(slideOut)])),
+  transition(`* => ${SidebarState.Docked}`, group([query('@headerToggle', animateChild()), useAnimation(slideIn)]))
 ]);
 
 export const headerAnimations = trigger('headerToggle', [
   state(
-    'true',
+    SidebarState.Docked,
     style({
-      height: 'var(--header-height-small)'
+      height: 'var(--header-height-large)'
     })
   ),
   state(
-    'false',
+    `${SidebarState.Hidden}, ${SidebarState.Over}`,
     style({
-      height: 'var(--header-height-large)'
+      height: 'var(--header-height-small)'
     })
   ),
   transition('* => *', animate(`0.1s ${slideDuration} ease`))
@@ -64,19 +73,19 @@ export const headerAnimations = trigger('headerToggle', [
 
 export const overlayAnimations = trigger('overlayToggle', [
   state(
-    'true',
+    SidebarState.Over,
     style({
       opacity: '1',
       display: '*'
     })
   ),
   state(
-    'false',
+    `${SidebarState.Hidden}, ${SidebarState.Docked}`,
     style({
       opacity: 0,
       display: 'none'
     })
   ),
-  transition('false => true', useAnimation(fadeInAnimation)),
-  transition('true => false', useAnimation(fadeOutAnimation))
+  transition(`* => ${SidebarState.Over}`, useAnimation(fadeInAnimation)),
+  transition(`${SidebarState.Over} => *`, useAnimation(fadeOutAnimation))
 ]);
