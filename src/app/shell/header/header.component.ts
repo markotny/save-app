@@ -2,10 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {accountMenu} from '@shell/account-menu.model';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {Observable} from 'rxjs';
-import {map, share} from 'rxjs/operators';
-import {fadeAnimation} from '@shell/shell.animations';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {AuthService} from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,15 +14,10 @@ export class HeaderComponent implements OnInit {
 
   accountMenuOpen = false;
   accountMenuItems: MenuItem[];
-  userName$: Observable<string>;
 
-  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
+  constructor(private oidcFacade: OidcFacade, public auth: AuthService) {}
 
   ngOnInit() {
-    this.userName$ = this.oidcFacade.identity$.pipe(
-      map(user => (user && !user.expired ? user.profile.name : '')),
-      share()
-    );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
   }
 

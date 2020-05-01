@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OidcFacade} from 'ng-oidc-client';
+import {AuthService} from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-home-header',
@@ -7,11 +7,11 @@ import {OidcFacade} from 'ng-oidc-client';
   styleUrls: ['./home-header.component.scss']
 })
 export class HomeHeaderComponent {
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private auth: AuthService) {}
 
   isOpen = false;
 
   signin() {
-    this.oidcFacade.signinRedirect();
+    this.auth.login();
   }
 }

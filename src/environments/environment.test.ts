@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   test: true,
+  mockUser: true,
   appName: 'wydatex',
   authServerUri: 'https://localhost:5001',
   thisUri: 'http://localhost:4200'

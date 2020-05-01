@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {Observable} from 'rxjs';
 import {accountMenu} from '@shell/account-menu.model';
-import {map, share} from 'rxjs/operators';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {fadeAnimation} from '@shell/shell.animations';
+import {AuthService} from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,7 +10,6 @@ import {fadeAnimation} from '@shell/shell.animations';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  userName$: Observable<string>;
   accountMenuItems: MenuItem[];
   sideMenuItems: MenuItem[] = [
     {
@@ -44,13 +40,9 @@ export class SidenavComponent implements OnInit {
     }
   ];
 
-  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
+  constructor(private oidcFacade: OidcFacade, public auth: AuthService) {}
 
   ngOnInit(): void {
-    this.userName$ = this.oidcFacade.identity$.pipe(
-      map(user => (user && !user.expired ? user.profile.name : '')),
-      share()
-    );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
   }
 }

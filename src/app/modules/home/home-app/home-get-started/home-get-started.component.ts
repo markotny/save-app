@@ -1,8 +1,5 @@
 import {Component} from '@angular/core';
-
-import {Store} from '@ngrx/store';
-
-import {actionOidcRegister} from '@core/core.module';
+import {AuthService} from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-home-get-started',
@@ -10,9 +7,9 @@ import {actionOidcRegister} from '@core/core.module';
   styleUrls: ['./home-get-started.component.scss']
 })
 export class HomeGetStartedComponent {
-  constructor(private store: Store) {}
+  constructor(private auth: AuthService) {}
 
   register() {
-    this.store.dispatch(actionOidcRegister());
+    this.auth.register();
   }
 }

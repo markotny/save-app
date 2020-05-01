@@ -3,6 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import {Observable, of} from 'rxjs';
 import {OidcFacade} from 'ng-oidc-client';
 import {switchMap, first, tap} from 'rxjs/operators';
+import {environment} from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +15,23 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.oidcFacade.identity$.pipe(
-      first(),
-      switchMap(user => {
-        if (user && !user.expired) {
-          return of(true);
-        } else {
-          this.oidcFacade.signinRedirect({
-            extraQueryParams: {
-              'next-uri': state.url
-            }
-          });
-          return of(false);
-        }
-      })
+    return (
+      environment.mockUser ||
+      this.oidcFacade.identity$.pipe(
+        first(),
+        switchMap(user => {
+          if (user && !user.expired) {
+            return of(true);
+          } else {
+            this.oidcFacade.signinRedirect({
+              extraQueryParams: {
+                'next-uri': state.url
+              }
+            });
+            return of(false);
+          }
+        })
+      )
     );
   }
 }

@@ -13,8 +13,7 @@
 
   <p-panelMenu
     appFade="gt-xs" showDelay="0.3s" hideDuration="0s"
-    *ngIf="userName$ | async as userName"
-    [model]="[{label: userName, items: accountMenuItems}]"
+    [model]="[{label: auth.userName$ | async, items: accountMenuItems}]"
     [style]="{'margin-top': '10px'}"
   ></p-panelMenu>
 </div>
