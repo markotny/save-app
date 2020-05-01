@@ -9,7 +9,6 @@ import {fadeAnimation} from '@shell/shell.animations';
 
 @Component({
   selector: 'app-sidenav',
-  animations: [fadeAnimation],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
@@ -53,9 +52,5 @@ export class SidenavComponent implements OnInit {
       share()
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
-  }
-
-  isSmall(): boolean {
-    return this.breakpointObserver.isMatched(Breakpoints.XSmall);
   }
 }

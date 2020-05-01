@@ -1,16 +1,5 @@
-import {
-  animate,
-  style,
-  transition,
-  trigger,
-  sequence,
-  state,
-  animation,
-  useAnimation,
-  query,
-  animateChild,
-  group
-} from '@angular/animations';
+import {animate, style, transition, trigger, state, animation, useAnimation} from '@angular/animations';
+import {fadeInAnimation, fadeOutAnimation} from '@shared/animations';
 
 export enum SidebarState {
   Docked = 'docked',
@@ -70,10 +59,10 @@ export const headerAnimations = trigger('headerToggle', [
       height: 'var(--header-height-large)'
     })
   ),
-  transition('* => *', group([query('@fadeToggle', animateChild({delay: slideDuration})), animate(`0.1s ${slideDuration} ease`)]))
+  transition('* => *', animate(`0.1s ${slideDuration} ease`))
 ]);
 
-export const fadeAnimation = trigger('fadeToggle', [
+export const overlayAnimations = trigger('overlayToggle', [
   state(
     'true',
     style({
@@ -88,6 +77,6 @@ export const fadeAnimation = trigger('fadeToggle', [
       display: 'none'
     })
   ),
-  transition('false => true', sequence([style({display: 'block'}), animate('0.2s ease-in', style({opacity: '1'}))])),
-  transition('true => false', sequence([animate(`0.2s ease-out`, style({opacity: 0})), style({display: 'none'})]))
+  transition('false => true', useAnimation(fadeInAnimation)),
+  transition('true => false', useAnimation(fadeOutAnimation))
 ]);

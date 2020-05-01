@@ -12,7 +12,7 @@
   </div>
 
   <p-panelMenu
-    [@fadeToggle]="isSmall()"
+    appFade="gt-xs" showDelay="0.3s" hideDuration="0s"
     *ngIf="userName$ | async as userName"
     [model]="[{label: userName, items: accountMenuItems}]"
     [style]="{'margin-top': '10px'}"

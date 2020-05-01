@@ -9,7 +9,6 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
-  animations: [fadeAnimation],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -28,10 +27,6 @@ export class HeaderComponent implements OnInit {
       share()
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
-  }
-
-  isSmall(): boolean {
-    return this.breakpointObserver.isMatched(Breakpoints.XSmall);
   }
 
   onToggleSidenav(): void {
