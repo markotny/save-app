@@ -8,7 +8,7 @@
   .sidenav {
     position: absolute;
     z-index: 20;
-    width: var(--sidebar-width);
+    width: var(--sidebar-width-large);
     height: 100%;
     app-sidenav {
       height: 100%;
@@ -20,7 +20,7 @@
   }
 
   .main-content {
-    margin-left: var(--sidebar-width);
+    margin-left: var(--sidebar-width-large);
   }
 
   .content {

@@ -4,12 +4,12 @@
   </div>
 
   <div fxFlex="grow" fxLayout="column" class="main-content" [@mainContentToggle]="sidebarState">
-    <app-header class="header" [@headerToggle]="isSmall$ | async" (sidenavToggle)="toggleSidebar()"> </app-header>
+    <app-header class="header" [@headerToggle]="sidebarState" (sidenavToggle)="toggleSidebar()"> </app-header>
 
     <main fxFlex="grow" role="main" class="content">
       <router-outlet></router-outlet>
     </main>
   </div>
 
-  <div id="mainOverlay" (click)="toggleSidebar()" [@overlayToggle]="sidebarState === sidebarStateEnum.Over"></div>
+  <div id="mainOverlay" (click)="toggleSidebar()" [@overlayToggle]="sidebarState"></div>
 </div>

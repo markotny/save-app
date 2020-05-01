@@ -12,7 +12,6 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
   styleUrls: ['./main-app.component.scss']
 })
 export class MainAppComponent implements OnInit, OnDestroy {
-  isSmall$: Observable<boolean>;
   sidebarVisible$ = new BehaviorSubject<boolean>(false);
   sidebarState$: Observable<SidebarState>;
 
@@ -23,12 +22,12 @@ export class MainAppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.injectBackgroundColor();
 
-    this.isSmall$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
+    const isSmall$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
       pluck('matches'),
       tap(matches => (matches ? this.sidebarVisible$.next(false) : null))
     );
 
-    this.sidebarState$ = combineLatest([this.isSmall$, this.sidebarVisible$]).pipe(
+    this.sidebarState$ = combineLatest([isSmall$, this.sidebarVisible$]).pipe(
       map(([isSmall, sidebarVisible]) => (isSmall ? (sidebarVisible ? SidebarState.Over : SidebarState.Hidden) : SidebarState.Docked))
     );
   }
