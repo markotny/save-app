@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column">
   <p-toolbar fxFill>
-    <div fxHide.gt-xs class="ui-toolbar-group-left">
+    <div class="ui-toolbar-group-left" appFade="gt-xs" showDelay="0.3s" hideDuration="0.1s">
       <div class="menuToggle">
         <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
         <span></span>
@@ -9,11 +9,9 @@
       </div>
     </div>
 
-    <div fxHide.xs class="ui-toolbar-group-right">
-      <p-button *ngIf="userName$ | async as userName" (onClick)="accountMenu.toggle($event)" [label]="userName"></p-button>
+    <div class="ui-toolbar-group-right account-menu-button" appFade="xs" showDelay="0.3s">
+      <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>
-  <span fxHide.xs class="sep"></span>
+  <span class="sep" appFade="xs" hideDelay="0.2s" hideDuration="0.1s"></span>
 </div>
-
-<p-menu #accountMenu [popup]="true" [model]="accountMenuItems"> </p-menu>

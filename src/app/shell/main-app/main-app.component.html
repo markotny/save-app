@@ -1,29 +1,15 @@
-<div
-  gdAreas="sidenav header | sidenav content"
-  gdAreas.xs="header | content"
-  gdColumns.gt-xs="16.8em auto"
-  gdRows.xs="50px auto"
-  gdRows.gt-xs="86px auto"
-  class="wrapper"
->
-  <app-header gdArea="header" (sidenavToggle)="sidebarVisible = $event"> </app-header>
-
-  <div gdArea.gt-xs="sidenav" fxHide.xs fxFill class="sidenav">
+<div fxLayout="row" class="wrapper" *ngIf="sidebarState$ | async as sidebarState">
+  <div class="sidenav" [@sidebarToggle]="sidebarState">
     <app-sidenav></app-sidenav>
   </div>
 
-  <main gdArea="content" gdGridAlign="stretch stretch" role="main" class="content">
-    <router-outlet></router-outlet>
-  </main>
+  <div fxFlex="grow" fxLayout="column" class="main-content" [@mainContentToggle]="sidebarState">
+    <app-header class="header" [@headerToggle]="isSmall$ | async" (sidenavToggle)="toggleSidebar()"> </app-header>
+
+    <main fxFlex="grow" role="main" class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <div id="mainOverlay" (click)="toggleSidebar()" [@overlayToggle]="sidebarState === sidebarStateEnum.Over"></div>
 </div>
-
-<p-sidebar
-  fxHide.gt-xs
-  [style]="{width: '16em', padding: 0}"
-  [(visible)]="sidebarVisible"
-  [showCloseIcon]="false"
->
-  <app-sidenav></app-sidenav>
-</p-sidebar>
-
-<p-toast [style]="{marginTop: '80px'}"></p-toast>

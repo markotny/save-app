@@ -4,6 +4,8 @@ import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
 import {accountMenu} from '@shell/account-menu.model';
 import {map, share} from 'rxjs/operators';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {fadeAnimation} from '@shell/shell.animations';
 
 @Component({
   selector: 'app-sidenav',
@@ -42,7 +44,7 @@ export class SidenavComponent implements OnInit {
     }
   ];
 
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.userName$ = this.oidcFacade.identity$.pipe(

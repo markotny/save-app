@@ -4,6 +4,8 @@ import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
 import {map, share} from 'rxjs/operators';
+import {fadeAnimation} from '@shell/shell.animations';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +15,11 @@ import {map, share} from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter();
 
+  accountMenuOpen = false;
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
-  headerStyle: unknown;
 
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
     this.userName$ = this.oidcFacade.identity$.pipe(

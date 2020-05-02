@@ -45,6 +45,10 @@ span.sep {
   padding: 0px;
   height: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
+}
+
+.account-menu-button {
+  z-index: 1;
+  margin-left: auto;
 }

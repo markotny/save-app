@@ -1,5 +1,7 @@
 <div [class]="'theme-wrapper ' + (theme$ | async)">
   <div class="w-100">
     <router-outlet></router-outlet>
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>
   </div>
 </div>
+
