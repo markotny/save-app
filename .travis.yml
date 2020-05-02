@@ -10,7 +10,7 @@ before_script:
   - npm install
 script:
   - ng lint
-  - ng build --prod --base-href https://wydatex.github.io --outputPath=$OUTPUT_PATH
+  - ng build --prod --base-href https://wydatex.github.io/ --outputPath=$OUTPUT_PATH
 after_success:
   - git config --global user.email "bartosz.prokopowicz.97@gmail.com"
   - git config --global user.name "bartoszprokopowicz"
