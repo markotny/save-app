@@ -15,6 +15,7 @@ after_success:
   - git config --global user.email "bartosz.prokopowicz.97@gmail.com"
   - git config --global user.name "bartoszprokopowicz"
   - git clone https://Wydatex:${TRAVIS_FRONT_TOKEN}@github.com/Wydatex/wydatex.github.io.git ./site
+  - rm -r ./site
   - cp -r $OUTPUT_PATH/* ./site
   - cd ./site
   - git add .
