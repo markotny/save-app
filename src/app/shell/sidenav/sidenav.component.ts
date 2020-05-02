@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
@@ -11,34 +11,46 @@ import {map, share} from 'rxjs/operators';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  @Output() sidenavToggle = new EventEmitter();
   userName$: Observable<string>;
   accountMenuItems: MenuItem[];
   sideMenuItems: MenuItem[] = [
     {
       label: 'Dashboard',
       icon: 'pi dashboard-icon',
-      routerLink: ['/app/dashboard']
+      routerLink: ['/app/dashboard'],
+      command: this.onClickSidenav.bind(this)
     },
     {
       label: 'Budgets',
       icon: 'pi budget-icon',
-      routerLink: ['/app/budgets'],
       items: [
-        {label: 'Add budget', icon: 'pi plus-icon'},
-        {label: 'Edit budgets', icon: 'pi edit-icon'}
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/budgets'],
+          command: this.onClickSidenav.bind(this)
+        },
+        {label: 'Add budget', icon: 'pi plus-icon', command: this.onClickSidenav.bind(this)}
       ]
     },
     {
       label: 'Categories',
       icon: 'pi categories-icon',
       items: [
-        {label: 'Add category', icon: 'pi plus-icon'},
-        {label: 'Edit category', icon: 'pi edit-icon'}
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/categories'],
+          command: this.onClickSidenav.bind(this)
+        },
+        {label: 'Add category', icon: 'pi plus-icon', command: this.onClickSidenav.bind(this)}
       ]
     },
     {
-      label: 'Income',
-      icon: 'pi pi-cloud-download'
+      label: 'Incomes',
+      icon: 'pi income-icon',
+      command: this.onClickSidenav.bind(this)
     }
   ];
 
@@ -50,5 +62,10 @@ export class SidenavComponent implements OnInit {
       share()
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
+  }
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private onClickSidenav(event: any): void {
+    this.sidenavToggle.emit(false);
   }
 }
