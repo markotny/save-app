@@ -2,8 +2,8 @@ export const environment = {
   production: false,
   test: false,
   appName: 'wydatex',
-  authServerUri: 'https://wydatex-identity-test.azurewebsites.net',
-  apiServerUri: 'https://wydatex-resource-test.azurewebsites.net/api/v1',
+  authServerUri: 'https://wydatex-identity.azurewebsites.net',
+  apiServerUri: 'https://wydatex-resource.azurewebsites.net/api/v1',
   thisUri: 'http://localhost:4200'
 };
 
