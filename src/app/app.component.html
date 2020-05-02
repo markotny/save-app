@@ -1,27 +1,7 @@
-<div [class]="'theme-wrapper mat-typography ' + (theme$ | async)">
-
-	<app-header class="toolbar" [class.mat-elevation-z4] (sidenavToggle)="mainSidenav.toggle()">
-	</app-header>
-
-	<mat-sidenav-container fxFlex fxFlex.xs="noshrink">
-		<mat-sidenav #mainSidenav role="navigation" mode="over" fixedInViewport="true" fixedTopGap="56">
-			<app-sidenav (sidenavClose)="mainSidenav.close()"></app-sidenav>
-		</mat-sidenav>
-
-		<mat-sidenav-content>
-			<main role="main" class="wrapper" fxLayout="column">
-
-				<div class="content" fxFlex="noshrink">
-					<router-outlet></router-outlet>
-				</div>
-
-				<div class="footer" fxFlex="none">
-					<div class="row">
-						cabananan
-					</div>
-				</div>
-
-			</main>
-		</mat-sidenav-content>
-	</mat-sidenav-container>
+<div [class]="'theme-wrapper ' + (theme$ | async)">
+  <div class="w-100">
+    <router-outlet></router-outlet>
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+  </div>
 </div>
+

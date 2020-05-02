@@ -1,0 +1,15 @@
+<div fxLayout="row" class="wrapper" *ngIf="sidebarState$ | async as sidebarState">
+  <div class="sidenav" [@sidebarToggle]="sidebarState">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div fxFlex="grow" fxLayout="column" class="main-content" [@mainContentToggle]="sidebarState">
+    <app-header class="header" [@headerToggle]="sidebarState" (sidenavToggle)="toggleSidebar()"> </app-header>
+
+    <main fxFlex="grow" role="main" class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <div id="mainOverlay" (click)="toggleSidebar()" [@overlayToggle]="sidebarState"></div>
+</div>

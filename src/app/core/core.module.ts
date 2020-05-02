@@ -6,7 +6,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TokenInterceptor} from './http-interceptors/token.interceptor';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {AuthCallbackComponent} from './auth/auth-callback/auth-callback.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpErrorInterceptor} from './http-interceptors/http-error.interceptor';
@@ -15,71 +14,26 @@ import {environment} from '@env/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {NgOidcClientModule} from 'ng-oidc-client';
 import {AppErrorHandler} from './error-handler/app-error-handler.service';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {NotificationService} from './notifications/notification.service';
 import {LocalStorageService} from './local-storage/local-storage.service';
-import {MatInputModule} from '@angular/material/input';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTableModule} from '@angular/material/table';
-import {MatDividerModule} from '@angular/material/divider';
-import {NgxSpinnerModule} from 'ngx-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+import {actionOidcRegister} from './auth/auth.actions';
+import {logValue} from './rxjs/logValue';
 
-export {
-  AppState,
-  LocalStorageService,
-  AuthGuard,
-  NotificationService,
-  selectTheme
-};
+export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcRegister};
 
 @NgModule({
   declarations: [AuthCallbackComponent],
   imports: [
-    //angular
+    // angular
     CommonModule,
+    ToastModule,
     HttpClientModule,
-    FormsModule,
-    FlexLayoutModule,
 
-    //ngx
-    NgxSpinnerModule,
-
-    //material
-    FormsModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatStepperModule,
-    MatGridListModule,
-    MatListModule,
-    MatTableModule,
-    MatCardModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-
-    //ngrx
+    // ngrx
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AuthEffects, SettingsEffects]),
@@ -106,37 +60,11 @@ export {
     })
   ],
   providers: [
+    MessageService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  exports: [
-    AuthCallbackComponent,
-    FormsModule,
-    FlexLayoutModule,
-
-    //ngx
-    NgxSpinnerModule,
-
-    //material
-    FormsModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatStepperModule,
-    MatGridListModule,
-    MatListModule,
-    MatTableModule,
-    MatCardModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSnackBarModule
-  ]
+  exports: [AuthCallbackComponent, FlexLayoutModule, HttpClientModule]
 })
 export class CoreModule {}

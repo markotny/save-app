@@ -1,0 +1,20 @@
+@import '~variables.scss';
+
+.dropdown-menu-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+
+  i {
+    margin-left: 0.5em;
+  }
+
+  &:hover {
+    cursor: pointer;
+    i {
+      color: $light-grey;
+    }
+  }
+}

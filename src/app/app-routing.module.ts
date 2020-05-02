@@ -1,7 +1,25 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {MainAppComponent} from '@shell/main-app/main-app.component';
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
+import {AuthGuard} from '@core/core.module';
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path: 'budgets',
+    loadChildren: () => import('@modules/budget/budget.module').then(m => m.BudgetModule)
+  }
+];
 
 const routes: Routes = [
   {
@@ -23,7 +41,18 @@ const routes: Routes = [
     path: 'silent-refresh',
     component: AuthCallbackComponent,
     data: {action: AuthCallback.SilentRefresh}
-  }
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'app',
+    component: MainAppComponent,
+    canActivate: [AuthGuard],
+    children: appRoutes
+  },
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

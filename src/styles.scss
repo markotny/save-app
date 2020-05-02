@@ -1,25 +1,55 @@
 @import 'styles-variables';
+@import './assets/fonts/fonts.scss';
 
-@import '~@angular/material/theming';
+@import '~variables.scss';
 
-@include mat-core();
-
-@import 'themes/dark-theme';
-@import 'themes/light-theme';
-
-@mixin custom-components-theme($theme) {
-}
-
+// TODO: create mixins from primeng themes
 .light-theme {
-	@include angular-material-theme($light-theme);
-	@include custom-components-theme($light-theme);
 }
 
 .dark-theme {
-	@include angular-material-theme($dark-theme);
-	@include custom-components-theme($dark-theme);
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.f-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  font-family: 'Roboto-Bold';
+  color: $black !important;
+}
+
+a:hover {
+  cursor: pointer;
+  color: $light-grey !important;
+}
+
+a:visited {
+  color: $dark-grey !important;
+}
+
+.background-light {
+  background-color: $white;
+}
+
+.background-app {
+  background-color: $dark-white;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+

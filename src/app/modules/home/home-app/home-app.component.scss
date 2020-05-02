@@ -1,0 +1,35 @@
+@import '~variables.scss';
+
+.content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin-left: 8vw;
+  margin-right: 8vw;
+}
+
+.space-between {
+  margin-bottom: 20vh;
+  &__small {
+    margin-bottom: 10vh;
+  }
+}
+
+.logo-text {
+  cursor: pointer;
+  > h2 {
+    margin: 0px;
+    font-family: 'Roboto-Regular';
+    font-size: 30px;
+    height: fit-content;
+  }
+  &--white {
+    @extend .logo-text;
+    > h2 {
+      color: $white;
+    }
+  }
+}

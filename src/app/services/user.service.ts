@@ -9,12 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
   private apiPath = `${environment.apiServerUri}/User`;
 
-  addNewUser(user: RegisterRequest) {
-    return this.http.post(`${this.apiPath}/register`, user);
+  addNewUser() {
+    return this.http.post(`${this.apiPath}/register`, {});
   }
-}
-
-export interface RegisterRequest {
-  username: string;
-  email: string;
 }
