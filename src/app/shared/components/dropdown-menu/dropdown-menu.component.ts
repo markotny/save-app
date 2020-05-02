@@ -1,10 +1,26 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {trigger, state, style, transition, animate} from '@angular/animations';
 import {MenuItem} from 'primeng/api/menuitem';
-import {menuButtonAnimations} from './dropdown-menu.animations';
 
 @Component({
   selector: 'app-dropdown-menu',
-  animations: [menuButtonAnimations],
+  animations: [
+    trigger('menuToggle', [
+      state(
+        'true',
+        style({
+          transform: 'rotate(90deg)'
+        })
+      ),
+      state(
+        'false',
+        style({
+          transform: 'rotate(0deg)'
+        })
+      ),
+      transition('* => *', animate('0.1s ease-in-out'))
+    ])
+  ],
   template: `
     <div class="dropdown-menu-button" (click)="menu.toggle($event)">
       <a>{{ label }}</a>
@@ -14,16 +30,10 @@ import {menuButtonAnimations} from './dropdown-menu.animations';
   `,
   styleUrls: ['./dropdown-menu.component.scss']
 })
-export class DropdownMenuComponent implements OnInit {
-  @Input()
-  menuItems: MenuItem[];
+export class DropdownMenuComponent {
+  @Input() menuItems: MenuItem[];
 
-  @Input()
-  label: string;
+  @Input() label: string;
 
   menuOpen = false;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
