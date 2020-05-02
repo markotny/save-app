@@ -25,7 +25,9 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/404.html",
+              "src/.nojekyll"
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
