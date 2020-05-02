@@ -19,4 +19,4 @@ after_success:
   - cd ./site
   - git add .
   - git commit -m "Deploying site."
-  - git push
+  - git push -u origin master
