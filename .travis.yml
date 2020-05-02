@@ -14,8 +14,8 @@ script:
 after_success:
   - git config --global user.email "bartosz.prokopowicz.97@gmail.com"
   - git config --global user.name "bartoszprokopowicz"
-  - git clone https://bartoszprokopowicz:${TRAVIS_FRONT_TOKEN}@github.com/wydatex.github.io.git ./site
-  - cp $OUTPUT_PATH ./site
+  - git clone https://wydatex:${TRAVIS_FRONT_TOKEN}@github.com/wydatex.github.io.git ./site
+  - cp -r $OUTPUT_PATH ./site
   - cd ./site
   - git add .
   - git commit -m "Deploying site."
