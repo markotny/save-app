@@ -1,11 +1,12 @@
 @import '~variables.scss';
 
 .sidebar {
-  background-color: $dark-grey;
+  background-color: $main-green;
 }
 
-.panel-background {
-  background-color: $dark-grey;
+.main-panel {
+  background-color: inherit;
+  padding-bottom: 10px;
 }
 
 .small-icon-wrapper {
@@ -37,6 +38,12 @@
   height: 20px !important;
 }
 
+:host ::ng-deep .overview-icon {
+  background: url('assets/icons/overview.svg') no-repeat;
+  width: 19px !important;
+  height: 25px !important;
+}
+
 :host ::ng-deep .edit-icon {
   background: url('assets/icons/edit.svg') no-repeat;
   width: 20px !important;
@@ -45,37 +52,40 @@
 
 :host ::ng-deep .budget-icon {
   background: url('assets/icons/budget.svg') no-repeat;
-  width: 20px !important;
-  height: 27px !important;
+  width: 33px !important;
+  height: 38px !important;
 }
 
-.income-icon {
-  background-image: '';
+:host ::ng-deep .income-icon {
+  background: url('assets/icons/income.svg') no-repeat;
+  width: 35px !important;
+  height: 38px !important;
 }
 
 :host ::ng-deep .dashboard-icon {
   background: url('assets/icons/dashboard.svg') no-repeat;
-  width: 20px !important;
-  height: 23px !important;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 :host ::ng-deep .categories-icon {
   background: url('assets/icons/category.svg') no-repeat;
-  width: 20px !important;
-  height: 19px !important;
+  width: 34px !important;
+  height: 27px !important;
 }
 
 // custom css for sidemenu
+:host ::ng-deep .ui-panelmenu-panel {
+  background-color: $main-green;
+}
+
 :host ::ng-deep .ui-panelmenu-panel:first-child {
   padding-bottom: 20px;
-}
-:host ::ng-deep .ui-panelmenu {
-  padding-left: 20px;
 }
 
 :host ::ng-deep .ui-panelmenu .ui-panelmenu-header.ui-state-active > a {
   border: 0px !important;
-  background-color: $dark-grey !important;
+  background-color: $main-green !important;
 }
 
 :host ::ng-deep .ui-panelmenu .ui-panelmenu-header {
@@ -85,6 +95,9 @@
   > a {
     border: 0px;
     background-color: inherit;
+    font-family: 'Montserrat-Regular';
+    font-size: 20px;
+    font-weight: initial;
     > span {
       color: $white;
     }
@@ -112,7 +125,7 @@
 }
 
 :host ::ng-deep .ui-panelmenu .ui-panelmenu-content > .ui-panelmenu-root-submenu > .ui-submenu-list {
-  margin-left: 43px;
+  margin-left: 64px;
 }
 
 :host ::ng-deep .ui-panelmenu .ui-menuitem-icon {
@@ -121,6 +134,9 @@
 
 :host ::ng-deep .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link {
   padding: 0.714em 0;
+  font-size: 16px;
+  font-family: 'Montserrat-Regular';
+  font-weight: 0;
 }
 
 :host ::ng-deep .ui-panelmenu-icon {

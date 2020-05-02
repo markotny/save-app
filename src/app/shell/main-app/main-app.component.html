@@ -1,6 +1,6 @@
 <div fxLayout="row" class="wrapper" *ngIf="sidebarState$ | async as sidebarState">
   <div class="sidenav" [@sidebarToggle]="sidebarState">
-    <app-sidenav></app-sidenav>
+    <app-sidenav (sidenavToggle)="toggleSidebar()"></app-sidenav>
   </div>
 
   <div fxFlex="grow" fxLayout="column" class="main-content" [@mainContentToggle]="sidebarState">
