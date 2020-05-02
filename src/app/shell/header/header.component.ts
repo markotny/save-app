@@ -4,8 +4,6 @@ import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
 import {map, share} from 'rxjs/operators';
-import {fadeAnimation} from '@shell/shell.animations';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +17,7 @@ export class HeaderComponent implements OnInit {
   accountMenuItems: MenuItem[];
   userName$: Observable<string>;
 
-  constructor(private oidcFacade: OidcFacade, public breakpointObserver: BreakpointObserver) {}
+  constructor(private oidcFacade: OidcFacade) {}
 
   ngOnInit() {
     this.userName$ = this.oidcFacade.identity$.pipe(
