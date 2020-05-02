@@ -1,29 +1,33 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {environment} from '@env/environment';
-import {NavigationBase} from '@shell/navigation-base/navigation-base';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {accountMenu} from '@shell/account-menu.model';
 import {OidcFacade} from 'ng-oidc-client';
-import { Store } from '@ngrx/store';
+import {MenuItem} from 'primeng/api/menuitem';
+import {Observable} from 'rxjs';
+import {map, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent extends NavigationBase implements OnInit {
+export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter();
 
-  appName: string;
+  accountMenuOpen = false;
+  accountMenuItems: MenuItem[];
+  userName$: Observable<string>;
 
-  constructor(protected oidcFacade: OidcFacade, protected store: Store) {
-    super(oidcFacade, store);
-  }
+  constructor(private oidcFacade: OidcFacade) {}
 
   ngOnInit() {
-    super.ngOnInit();
-    this.appName = environment.appName;
+    this.userName$ = this.oidcFacade.identity$.pipe(
+      map(user => (user && !user.expired ? user.profile.name : '')),
+      share()
+    );
+    this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
   }
 
-  onToggleSidenav() {
-    this.sidenavToggle.emit();
+  onToggleSidenav(): void {
+    this.sidenavToggle.emit(true);
   }
 }

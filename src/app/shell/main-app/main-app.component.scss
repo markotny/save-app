@@ -1,0 +1,44 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .sidenav {
+    position: absolute;
+    z-index: 20;
+    width: var(--sidebar-width-large);
+    height: 100%;
+    app-sidenav {
+      height: 100%;
+    }
+  }
+
+  .header {
+    height: var(--header-height-large);
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width-large);
+  }
+
+  .content {
+    overflow: hidden;
+    margin: 0px 20px;
+  }
+
+  #mainOverlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+}

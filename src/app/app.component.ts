@@ -10,7 +10,6 @@ import {selectTheme} from '@core/core.module';
 })
 export class AppComponent implements OnInit {
   theme$: Observable<string>;
-
   constructor(private store: Store) {}
 
   ngOnInit(): void {

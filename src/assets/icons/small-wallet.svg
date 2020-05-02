@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 121 104.043">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #85bb65;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-4, .cls-5 {
+        stroke: #171717;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #326699;
+      }
+
+      .cls-4 {
+        stroke-width: 3px;
+      }
+
+      .cls-5, .cls-7 {
+        fill: #171717;
+      }
+
+      .cls-6, .cls-7 {
+        stroke: none;
+      }
+
+      .cls-8 {
+        fill: none;
+      }
+
+      .cls-9 {
+        filter: url(#Rectangle_15);
+      }
+
+      .cls-10 {
+        filter: url(#Path_39);
+      }
+
+      .cls-11 {
+        filter: url(#Ellipse_12);
+      }
+
+      .cls-12 {
+        filter: url(#Ellipse_11);
+      }
+
+      .cls-13 {
+        filter: url(#Path_20);
+      }
+
+      .cls-14 {
+        filter: url(#Path_19);
+      }
+    </style>
+    <filter id="Path_19" x="12.585" y="0.899" width="57.993" height="57.466" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_20" x="36.933" y="0" width="60.384" height="59.744" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_11" x="26" y="14.043" width="28" height="28" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_12" x="50" y="14.043" width="29" height="29" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_39" x="0" y="19.043" width="108" height="85" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_15" x="67" y="36.043" width="54" height="48" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_22" data-name="Group 22" transform="translate(-319 -31.957)">
+    <g class="cls-14" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Path_19-2" data-name="Path 19" class="cls-1" transform="translate(35.28 39.36) rotate(-140)">
+        <path class="cls-6" d="M 29.1290340423584 24.85197639465332 L 1.353430390357971 24.85194778442383 L 29.12900733947754 1.085873484611511 L 29.1290340423584 24.85197639465332 Z"/>
+        <path class="cls-7" d="M 28.62900733947754 2.171751022338867 L 2.706846237182617 24.35194969177246 L 28.62902450561523 24.35197448730469 L 28.62900733947754 2.171751022338867 M 29.62900543212891 -3.814697265625e-06 L 29.62902450561523 25.35197639465332 L -5.7220458984375e-06 25.3519458770752 L 29.62900543212891 -3.814697265625e-06 Z"/>
+      </g>
+    </g>
+    <g class="cls-13" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Path_20-2" data-name="Path 20" class="cls-1" transform="translate(61.25 40.74) rotate(-140)">
+        <path class="cls-6" d="M 31.24314308166504 26.05181694030762 L 1.377065181732178 26.05178833007813 L 31.24312400817871 1.07008171081543 L 31.24314308166504 26.05181694030762 Z"/>
+        <path class="cls-7" d="M 30.74312591552734 2.140165328979492 L 2.754127502441406 25.55179023742676 L 30.74314308166504 25.55181694030762 L 30.74312591552734 2.140165328979492 M 31.74312400817871 -1.9073486328125e-06 L 31.74314308166504 26.55181694030762 L 3.814697265625e-06 26.55178833007813 L 31.74312400817871 -1.9073486328125e-06 Z"/>
+      </g>
+    </g>
+    <g class="cls-12" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Ellipse_11-2" data-name="Ellipse 11" class="cls-2" transform="translate(26 14.04)">
+        <circle class="cls-6" cx="4.5" cy="4.5" r="4.5"/>
+        <circle class="cls-8" cx="4.5" cy="4.5" r="4"/>
+      </g>
+    </g>
+    <g class="cls-11" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Ellipse_12-2" data-name="Ellipse 12" class="cls-2" transform="translate(50 14.04)">
+        <circle class="cls-6" cx="5" cy="5" r="5"/>
+        <circle class="cls-8" cx="5" cy="5" r="4.5"/>
+      </g>
+    </g>
+    <g class="cls-10" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Path_39-2" data-name="Path 39" class="cls-3" transform="translate(0 19.04)">
+        <path class="cls-6" d="M 78 64.5 L 11 64.5 C 5.761687278747559 64.5 1.5 60.23831176757813 1.5 55 L 1.5 11 C 1.5 5.761687278747559 5.761687278747559 1.5 11 1.5 L 78 1.5 C 83.23831176757813 1.5 87.5 5.761687278747559 87.5 11 L 87.5 55 C 87.5 60.23831176757813 83.23831176757813 64.5 78 64.5 Z"/>
+        <path class="cls-7" d="M 11 3 C 6.588783264160156 3 3 6.588787078857422 3 11 L 3 55 C 3 59.41121292114258 6.588783264160156 63 11 63 L 78 63 C 82.41121673583984 63 86 59.41121292114258 86 55 L 86 11 C 86 6.588787078857422 82.41121673583984 3 78 3 L 11 3 M 11 0 L 78 0 C 84.07512664794922 0 89 4.924869537353516 89 11 L 89 55 C 89 61.07512664794922 84.07512664794922 66 78 66 L 11 66 C 4.924858093261719 66 0 61.07512664794922 0 55 L 0 11 C 0 4.924869537353516 4.924858093261719 0 11 0 Z"/>
+      </g>
+    </g>
+    <g class="cls-9" transform="matrix(1, 0, 0, 1, 319, 31.96)">
+      <g id="Rectangle_15-2" data-name="Rectangle 15" class="cls-4" transform="translate(67 36.04)">
+        <rect class="cls-6" width="35" height="29" rx="6"/>
+        <rect class="cls-8" x="1.5" y="1.5" width="32" height="26" rx="4.5"/>
+      </g>
+    </g>
+    <g id="Ellipse_10" data-name="Ellipse 10" class="cls-5" transform="translate(398 80)">
+      <circle class="cls-6" cx="3" cy="3" r="3"/>
+      <circle class="cls-8" cx="3" cy="3" r="2.5"/>
+    </g>
+  </g>
+</svg>

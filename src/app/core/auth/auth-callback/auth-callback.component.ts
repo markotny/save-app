@@ -11,12 +11,7 @@ import {Store} from '@ngrx/store';
   styles: []
 })
 export class AuthCallbackComponent implements OnInit {
-  constructor(
-    private oidcFacade: OidcFacade,
-    private store: Store,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private oidcFacade: OidcFacade, private store: Store, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(async data => {
@@ -25,7 +20,7 @@ export class AuthCallbackComponent implements OnInit {
           this.oidcFacade
             .getUserManager()
             .signinRedirectCallback()
-            .then(() => this.router.navigate(['/']));
+            .then(() => this.router.navigate(['app']));
           break;
         case AuthCallback.Register:
           this.store.dispatch(actionOidcRegisterSuccess());

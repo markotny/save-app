@@ -1,0 +1,34 @@
+<div class="header">
+  <div class="logo-wrapper">
+    <div class="logo-text">
+      <h2>Wydatex</h2>
+    </div>
+    <div class="small-icon-wrapper">
+      <img src="assets/icons/small-wallet.svg" />
+    </div>
+  </div>
+  <div class="controls-wrapper">
+    <div class="o-list">
+      <a>home</a>
+      <a>about</a>
+      <a (click)="signin()">login</a>
+    </div>
+  </div>
+  <div class="hamburger">
+    <div class="menuToggle">
+      <input type="checkbox" [(ngModel)]="isOpen" name="hamburger" binary="true"/>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p-sidebar [(visible)]="isOpen" position="right">
+      <div class="sidebar-content">
+        <div class="menu-list">
+          <a class="center-h">home</a>
+          <a class="center-h">about</a>
+          <a class="center-h" (click)="signin()">login</a>
+        </div>
+      </div>
+    </p-sidebar>
+  </div>
+</div>

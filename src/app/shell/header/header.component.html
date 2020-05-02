@@ -1,39 +1,17 @@
-<mat-toolbar color="primary">
-	<div fxHide.gt-xs>
-		<button mat-icon-button (click)="onToggleSidenav()">
-			<mat-icon>menu</mat-icon>
-		</button>
-	</div>
+<div class="container" fxLayout="column">
+  <p-toolbar fxFill>
+    <div class="ui-toolbar-group-left" appFade="gt-xs" showDelay="0.3s" hideDuration="0.1s">
+      <div class="menuToggle">
+        <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
 
-	<h1>{{appName}}</h1>
-
-	<div fxFlex fxLayout="row" fxLayoutGap="10px" fxHide.xs>
-
-		<!-- przykładowe -->
-		<button mat-button [matMenuTriggerFor]="exampleMenu">Menu</button>
-
-		<button mat-button routerLink="/" routerLinkActive="active">Button</button>
-
-		<span fxFlex="grow"></span>
-
-		<div fxFlexAlign="end">
-			<button *ngIf="userName$ | async as userName; else signIn" mat-button [matMenuTriggerFor]="accountMenu">
-				{{userName}}</button>
-			<ng-template #signIn>
-				<button mat-button (click)="register()">Register</button>
-				<button mat-button (click)="signin()">Login</button>
-			</ng-template>
-		</div>
-	</div>
-</mat-toolbar>
-
-<mat-menu class="toolbar-menu" #exampleMenu="matMenu">
-	<button mat-menu-item *ngFor="let link of exampleMenuLinks" [routerLink]="link.route" routerLinkActive="active">
-		{{link.name}}</button>
-</mat-menu>
-
-<mat-menu class="toolbar-menu" #accountMenu="matMenu" xPosition="before">
-	<button mat-menu-item *ngFor="let link of accountLinks" [routerLink]="link.route" routerLinkActive="active">
-		{{link.name}}</button>
-	<button mat-menu-item (click)="signout()">Sign out</button>
-</mat-menu>
+    <div class="ui-toolbar-group-right account-menu-button" appFade="xs" showDelay="0.3s">
+      <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
+    </div>
+  </p-toolbar>
+  <span class="sep" appFade="xs" hideDelay="0.2s" hideDuration="0.1s"></span>
+</div>
