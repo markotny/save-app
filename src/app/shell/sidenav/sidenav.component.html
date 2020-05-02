@@ -11,10 +11,5 @@
     <p-panelMenu [model]="sideMenuItems" [multiple]="false"></p-panelMenu>
   </div>
 
-  <p-panelMenu
-    fxShow.xs
-    fxHide
-    *ngIf="userName$ | async as userName"
-    [model]="[{label: userName, items: accountMenuItems}]"
-  ></p-panelMenu>
+  <p-panelMenu fxHide.gt-xs *ngIf="userName$ | async as userName" [model]="[{label: userName, items: accountMenuItems}]"></p-panelMenu>
 </div>
