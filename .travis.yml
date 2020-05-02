@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - '12'
+dist: trusty
+sudo: required
+branches:
+  only:
+    - prod
+before_script:
+  - npm install
+script:
+  - ng lint
+  - ng build --prod --base-href https://wydatex.github.io/ --outputPath=$OUTPUT_PATH
+after_success:
+  - git config --global user.email "bartosz.prokopowicz.97@gmail.com"
+  - git config --global user.name "bartoszprokopowicz"
+  - git clone https://Wydatex:${TRAVIS_FRONT_TOKEN}@github.com/Wydatex/wydatex.github.io.git ./site
+  - rm -r -f ./site/*
+  - cp -r $OUTPUT_PATH/* ./site
+  - cd ./site
+  - git add .
+  - git commit -m "Deploying site."
+  - git push -u origin master
