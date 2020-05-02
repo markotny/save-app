@@ -19,7 +19,7 @@ export class SidenavComponent implements OnInit {
       label: 'Dashboard',
       icon: 'pi dashboard-icon',
       routerLink: ['/app/dashboard'],
-      command: this.onClickSidenav.bind(this)
+      command: () => this.onClickSidenav()
     },
     {
       label: 'Budgets',
@@ -29,9 +29,13 @@ export class SidenavComponent implements OnInit {
           label: 'Overview',
           icon: 'pi overview-icon',
           routerLink: ['/app/budgets'],
-          command: this.onClickSidenav.bind(this)
+          command: () => this.onClickSidenav()
         },
-        {label: 'Add budget', icon: 'pi plus-icon', command: this.onClickSidenav.bind(this)}
+        {
+          label: 'Add budget',
+          icon: 'pi plus-icon',
+          command: () => this.onClickSidenav()
+        }
       ]
     },
     {
@@ -42,15 +46,19 @@ export class SidenavComponent implements OnInit {
           label: 'Overview',
           icon: 'pi overview-icon',
           routerLink: ['/app/categories'],
-          command: this.onClickSidenav.bind(this)
+          command: () => this.onClickSidenav()
         },
-        {label: 'Add category', icon: 'pi plus-icon', command: this.onClickSidenav.bind(this)}
+        {
+          label: 'Add category',
+          icon: 'pi plus-icon',
+          command: () => this.onClickSidenav()
+        }
       ]
     },
     {
       label: 'Incomes',
       icon: 'pi income-icon',
-      command: this.onClickSidenav.bind(this)
+      command: () => this.onClickSidenav()
     }
   ];
 
@@ -63,9 +71,8 @@ export class SidenavComponent implements OnInit {
     );
     this.accountMenuItems = accountMenu(() => this.oidcFacade.signoutRedirect());
   }
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private onClickSidenav(event: any): void {
-    this.sidenavToggle.emit(false);
+
+  private onClickSidenav(): void {
+    this.sidenavToggle.emit();
   }
 }
