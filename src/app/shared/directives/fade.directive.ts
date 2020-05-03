@@ -1,5 +1,5 @@
-import {Directive, Input, ElementRef, OnDestroy, OnChanges} from '@angular/core';
-import {AnimationPlayer, AnimationBuilder, AnimationMetadata} from '@angular/animations';
+import {Directive, Input, ElementRef, OnDestroy, OnChanges, OnInit} from '@angular/core';
+import {AnimationBuilder, AnimationMetadata, AnimationPlayer} from '@angular/animations';
 import {FadeAnimationParams, fadeInAnimationFn, fadeOutAnimationFn} from '@shared/animations';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {BreakPointRegistry} from '@angular/flex-layout';
@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
 @Directive({
   selector: '[appFade]'
 })
-export class FadeDirective implements OnChanges, OnDestroy {
+export class FadeDirective implements OnChanges, OnInit, OnDestroy {
   @Input('appFade') mqAlias = 'xs';
   @Input() delay = '0s';
   @Input() duration = '0.3s';
@@ -18,6 +18,7 @@ export class FadeDirective implements OnChanges, OnDestroy {
   @Input() hideDuration = this.duration;
 
   private watcher: Subscription;
+  private displayStyle: string;
   private player: AnimationPlayer;
 
   constructor(
@@ -36,18 +37,28 @@ export class FadeDirective implements OnChanges, OnDestroy {
       if (this.player) {
         this.player.destroy();
       }
-      breakpoint.matches ? this.animate(this.hideAnimation) : this.animate(this.showAnimation);
+      breakpoint.matches ? this.animate(this.hideAnimation, 'none', 0) : this.animate(this.showAnimation, this.displayStyle, 1);
     });
+  }
+
+  ngOnInit(): void {
+    this.displayStyle = this.el.nativeElement.style.display;
   }
 
   ngOnDestroy(): void {
     this.watcher.unsubscribe();
   }
 
-  private animate(animationMetadata: AnimationMetadata) {
-    const factory = this.builder.build(animationMetadata);
-    const player = factory.create(this.el.nativeElement);
-    player.play();
+  private animate(animation: AnimationMetadata, display: string, opacity: number) {
+    const factory = this.builder.build(animation);
+    this.player = factory.create(this.el.nativeElement);
+    this.player.onDone(() => this.updateStyle(display, opacity));
+    this.player.play();
+  }
+
+  private updateStyle(display: string, opacity: number) {
+    this.el.nativeElement.style.display = display;
+    this.el.nativeElement.style.opacity = opacity;
   }
 
   private get showAnimation(): AnimationMetadata {
