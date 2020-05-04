@@ -21,7 +21,8 @@
 			"@shell/*": ["app/shell/*"],
 			"@shared/*": ["app/shared/*"],
 			"@modules/*": ["app/modules/*"],
-			"@services/*": ["app/services/*"]
+			"@services/*": ["app/services/*"],
+			"@wydatex/*": ["app/wydatex-package/*"] // temp until automatic package is created
 		}
   },
   "angularCompilerOptions": {
