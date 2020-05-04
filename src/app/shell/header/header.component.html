@@ -9,11 +9,11 @@
       </div>
     </div>
 
+    <div class="ui-toolbar-group-right account-menu-button" appFade="gt-xs" showDelay="0.3s" hideDuration="0s">
+      <h2>Wydatex</h2>
+    </div>
     <div class="ui-toolbar-group-right account-menu-button" appFade="xs" showDelay="0.3s">
       <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
-    </div>
-    <div class="ui-toolbar-group-right account-menu-button" appFade="gt-xs" showDelay="0.3s" hideDuration="0.1s">
-      <h2>Wydatex</h2>
     </div>
   </p-toolbar>
   <span class="sep" appFade="xs" hideDelay="0.2s" hideDuration="0.1s"></span>
