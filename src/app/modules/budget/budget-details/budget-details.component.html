@@ -1,2 +1,10 @@
 <p>budget-details works!</p>
-<div *ngIf="selectedBudget$ | async as selectedBudget">Selected: {{ selectedBudget | json }}</div>
+<div *ngIf="selectedBudget$ | async as selectedBudget">
+  Selected: {{ selectedBudget | json }}
+
+  <button (click)="remove(selectedBudget)">Remove</button>
+  <div>
+    <button (click)="edit(selectedBudget)">Update</button>
+    <input type="number" [(ngModel)]="totalBudgeted">
+  </div>
+</div>

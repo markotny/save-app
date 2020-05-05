@@ -4,6 +4,7 @@ import {Budget} from '@wydatex/models';
 import {select, Store} from '@ngrx/store';
 import {selectSelectedBudget} from '../budget.selectors';
 import {BudgetState} from '../budget.state';
+import * as BudgetActions from '../budget.actions';
 
 @Component({
   selector: 'app-budget-details',
@@ -13,7 +14,17 @@ import {BudgetState} from '../budget.state';
 export class BudgetDetailsComponent implements OnInit {
   selectedBudget$: Observable<Budget> = this.store.pipe(select(selectSelectedBudget));
 
+  totalBudgeted = 1;
+
   constructor(private store: Store<BudgetState>) {}
 
   ngOnInit(): void {}
+
+  remove(b: Budget) {
+    this.store.dispatch(BudgetActions.remove(b.id));
+  }
+
+  edit(b: Budget) {
+    this.store.dispatch(BudgetActions.edit({id: b.id, totalBudgeted: this.totalBudgeted}));
+  }
 }

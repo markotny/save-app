@@ -5,6 +5,7 @@ import {Store, select} from '@ngrx/store';
 import {selectAllBudgets, selectSelectedBudget} from '../budget.selectors';
 import {Observable} from 'rxjs';
 import {Router, ActivatedRoute} from '@angular/router';
+import * as BudgetActions from '../budget.actions';
 
 @Component({
   selector: 'app-budget',
@@ -21,5 +22,19 @@ export class BudgetComponent implements OnInit {
 
   select(budget: Budget) {
     this.router.navigate([budget.id], {relativeTo: this.route});
+  }
+
+  add() {
+    this.store.dispatch(
+      BudgetActions.add({
+        startDate: new Date(2010, 1, 20),
+        endDate: new Date(),
+        name: 'test',
+        totalBudgeted: 3000,
+        disposableIncome: 2000,
+        currencySymbol: 'PL',
+        budgetCategories: []
+      } as Budget)
+    );
   }
 }
