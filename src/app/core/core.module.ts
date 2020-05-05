@@ -21,7 +21,7 @@ import {AuthEffects} from './auth/auth.effects';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {actionOidcRegister} from './auth/auth.actions';
-import {logValue} from './rxjs/logValue';
+import {logValue} from './rxjs/log-value';
 import {CustomSerializer} from './router/custom-serializer';
 
 export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcRegister};
