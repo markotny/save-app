@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '@env/environment';
 import {Observable} from 'rxjs';
 import {Budget} from '@wydatex/models';
+import { BudgetAdd } from './budget.reducer';
 
 @Injectable()
 export class BudgetService {
@@ -14,7 +15,7 @@ export class BudgetService {
     return this.http.get<Budget[]>(this.apiPath);
   }
 
-  add(budget: Budget) {
+  add(budget: BudgetAdd) {
     return this.http.post<Budget>(this.apiPath, budget);
   }
 
