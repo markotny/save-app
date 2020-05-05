@@ -1,1 +1,9 @@
 <p>budget works!</p>
+
+<div *ngIf="selectedBudget$ | async as selectedBudget">Selected: {{ selectedBudget.id }}</div>
+
+<div *ngFor="let b of budgets$ | async">
+  <div (click)="select(b)">{{ b | json }}</div>
+</div>
+
+<router-outlet></router-outlet>

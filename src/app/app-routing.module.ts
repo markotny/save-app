@@ -16,7 +16,7 @@ const appRoutes: Routes = [
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'budgets',
+    path: 'budget',
     loadChildren: () => import('@modules/budget/budget.module').then(m => m.BudgetModule)
   }
 ];

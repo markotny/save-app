@@ -14,6 +14,7 @@
 	"rules": {
 		"prettier/prettier": "warn",
 		"@typescript-eslint/explicit-function-return-type": "off",
-		"@typescript-eslint/no-empty-function": ["warn", { "allow": ["constructors"] }]
+		"@typescript-eslint/no-empty-function": ["warn", { "allow": ["constructors"] }],
+		"@typescript-eslint/no-empty-interface": "off"
 	}
 }

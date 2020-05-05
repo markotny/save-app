@@ -22,6 +22,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {actionOidcRegister} from './auth/auth.actions';
 import {logValue} from './rxjs/logValue';
+import {CustomSerializer} from './router/custom-serializer';
 
 export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcRegister};
 
@@ -35,7 +36,9 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
 
     // ngrx
     StoreModule.forRoot(reducers, {metaReducers}),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    }),
     EffectsModule.forRoot([AuthEffects, SettingsEffects]),
     environment.production
       ? []
