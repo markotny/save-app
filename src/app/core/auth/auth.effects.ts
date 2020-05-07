@@ -137,6 +137,22 @@ export class AuthEffects {
     {dispatch: false}
   );
 
+  displayRedirectInfo$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.login, AuthActions.register),
+        tap(() =>
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Redirection',
+            detail: 'You are about to be redirected.',
+            life: 10000
+          })
+        )
+      ),
+    {dispatch: false}
+  );
+
   displayOidcError$ = createEffect(
     () =>
       this.actions$.pipe(
