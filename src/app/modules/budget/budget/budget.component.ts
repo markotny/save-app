@@ -4,8 +4,9 @@ import {BudgetState} from '../budget.state';
 import {Store, select} from '@ngrx/store';
 import {selectAllBudgets, selectSelectedBudget} from '../budget.selectors';
 import {Observable} from 'rxjs';
-import {Router, ActivatedRoute} from '@angular/router';
 import * as BudgetActions from '../budget.actions';
+import {MenuItem} from 'primeng/api/menuitem';
+import {map, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-budget',
@@ -13,18 +14,18 @@ import * as BudgetActions from '../budget.actions';
   styleUrls: ['./budget.component.scss']
 })
 export class BudgetComponent implements OnInit {
-  budgets$: Observable<Budget[]> = this.store.pipe(select(selectAllBudgets));
-  selectedBudget$: Observable<Budget> = this.store.pipe(select(selectSelectedBudget));
+  selectedBudget$: Observable<Budget> = this.store.pipe(select(selectSelectedBudget), share());
 
-  constructor(private store: Store<BudgetState>, private router: Router, private route: ActivatedRoute) {}
+  budgetSelectMenuItems$: Observable<MenuItem[]> = this.store.pipe(
+    select(selectAllBudgets),
+    map(x => x.map(b => ({label: b.name, routerLink: [b.id]})))
+  );
+
+  constructor(private store: Store<BudgetState>) {}
 
   ngOnInit(): void {}
 
-  select(budget: Budget) {
-    this.router.navigate([budget.id], {relativeTo: this.route});
-  }
-
-  add() {
+  add(budget: Budget) {
     this.store.dispatch(
       BudgetActions.add({
         startDate: new Date(2010, 1, 20),
@@ -36,5 +37,11 @@ export class BudgetComponent implements OnInit {
         budgetCategories: []
       } as Budget)
     );
+  }
+
+  edit(budget: Budget) {}
+
+  remove(budget: Budget) {
+    this.store.dispatch(BudgetActions.remove({id: budget.id}));
   }
 }

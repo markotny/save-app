@@ -1,0 +1,40 @@
+@import '~variables.scss';
+
+@mixin info-card($color) {
+  &.ui-card {
+    height: 50px;
+    background-color: $color;
+
+    .ui-card-body {
+      display: flex;
+    }
+  }
+}
+
+::ng-deep .info-card {
+  height: 50px;
+  &-green {
+    @include info-card($green);
+  }
+  &-blue {
+    @include info-card($blue);
+  }
+  &-red {
+    @include info-card($red);
+  }
+}
+
+.chart {
+  scroll-snap-align: start;
+  height: 100%;
+}
+
+::ng-deep .chart-card {
+  &.ui-card {
+    height: 100%;
+  }
+}
+
+.list {
+  overflow-y: auto;
+}

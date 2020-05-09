@@ -20,10 +20,6 @@ export class BudgetDetailsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  remove(b: Budget) {
-    this.store.dispatch(BudgetActions.remove({id: b.id}));
-  }
-
   edit(b: Budget) {
     this.store.dispatch(BudgetActions.edit({budget: {id: b.id, totalBudgeted: this.totalBudgeted}}));
   }

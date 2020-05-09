@@ -1,11 +1,16 @@
-<p>budget works!</p>
+<div fxFill fxLayout="column" class="wrapper">
+  <div fxLayout="row" class="select-budget-wrapper">
+    <app-dropdown-menu
+      [menuItems]="budgetSelectMenuItems$ | async"
+      [label]="(selectedBudget$ | async)?.name || 'Select budget'"
+    ></app-dropdown-menu>
+    <ng-container *ngIf="selectedBudget$ | async as selectedBudget">
+      <a class="pi pi-pencil" (click)="edit(selectedBudget)"></a>
+      <a class="pi pi-trash" (click)="remove(selectedBudget)"></a>
+    </ng-container>
+  </div>
 
-<div *ngIf="selectedBudget$ | async as selectedBudget">Selected: {{ selectedBudget.id }}</div>
-
-<div (click)="add()">Add</div>
-
-<div *ngFor="let b of budgets$ | async">
-  <div (click)="select(b)">{{ b | json }}</div>
+  <div class="budget-details" fxFlex="noshrink" fxFlex.gt-md="nogrow">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-<router-outlet></router-outlet>
