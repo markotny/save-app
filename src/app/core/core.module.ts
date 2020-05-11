@@ -19,12 +19,13 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
 import {ToastModule} from 'primeng/toast';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageService} from 'primeng/api';
-import {actionOidcRegister} from './auth/auth.actions';
 import {logValue} from './rxjs/log-value';
 import {CustomSerializer} from './router/custom-serializer';
+import {login as actionOidcLogin, register as actionOidcRegister} from './auth/auth.actions';
 
-export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcRegister};
+export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcLogin, actionOidcRegister};
 
 @NgModule({
   declarations: [AuthCallbackComponent],
@@ -32,6 +33,7 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
     // angular
     CommonModule,
     ToastModule,
+    ProgressSpinnerModule,
     HttpClientModule,
 
     // ngrx

@@ -13,7 +13,16 @@ export class AppErrorHandler extends ErrorHandler {
   }
 
   handleError(error: Error | HttpErrorResponse) {
-    this.messageService.add({severity: 'error', summary: 'An error occured.', detail: 'See console for details.'});
+    let summary = 'An error occured.';
+    let detail = 'See console for details.';
+
+    if (error instanceof HttpErrorResponse) {
+      summary = 'Network error occured.';
+      detail = `${error.status}: ${error.message}`;
+    } else if (error && error.message) {
+      detail = error.message;
+    }
+    this.messageService.add({severity: 'error', summary, detail});
 
     super.handleError(error);
   }
