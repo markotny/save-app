@@ -18,6 +18,7 @@ import {LocalStorageService} from './local-storage/local-storage.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
+import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageService} from 'primeng/api';
@@ -34,6 +35,7 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
     ToastModule,
     ProgressSpinnerModule,
     HttpClientModule,
+    TableModule,
 
     // ngrx
     StoreModule.forRoot(reducers, {metaReducers}),

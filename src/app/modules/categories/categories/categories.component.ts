@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-categories',
@@ -7,7 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() { }
+  cars: Array<any> = [{'vin': 'dsad231ff', 'year': 2012, 'brand': 'VW', 'color': 'Orange'}, {
+    'vin': 'gwregre345',
+    'year': 2011,
+    'brand': 'Audi',
+    'color': 'Black'
+  }];
+  cols: any[];
+
+  constructor() {
+    this.cols = [
+      {field: 'vin', header: 'Vin'},
+      {field: 'year', header: 'Year'},
+      {field: 'brand', header: 'Brand'},
+      {field: 'color', header: 'Color'}
+    ];
+  }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,26 @@
+@import '~variables.scss';
+
+:host .categories-table {
+  ::ng-deep .ui-table {
+    .table {
+      border-collapse: separate;
+      border-spacing: 100px;
+    }
+
+    .ui-table-thead > tr > th {
+      background-color: $main-green;
+      border-left: none;
+      border-right: none;
+    }
+
+    .ui-table-tbody > tr > td {
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+}
+.table-container{
+  border: 2px solid red;
+  border-radius: 20px;
+}
