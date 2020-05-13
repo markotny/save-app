@@ -1,6 +1,6 @@
 import {createReducer, on, Action} from '@ngrx/store';
 import {EntityAdapter, createEntityAdapter} from '@ngrx/entity';
-import {BudgetActions} from '@state/budgets';
+import {BudgetActions} from '@state/budgets/budgets.actions';
 import {Expense, ExpenseState} from './expenses.model';
 import {crudReducers, ApiModule} from '@shared/state';
 

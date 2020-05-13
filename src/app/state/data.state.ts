@@ -1,8 +1,12 @@
 import {createFeatureSelector, ActionReducerMap} from '@ngrx/store';
-import {BudgetState, budgetReducer} from './budgets';
-import {CategoryState, categoryReducer} from './categories';
-import {ExpenseState, expenseReducer} from './expenses';
-import {IncomeState, incomeReducer} from './incomes';
+import {BudgetState} from './budgets/budgets.model';
+import {CategoryState} from './categories/categories.model';
+import {ExpenseState} from './expenses/expenses.model';
+import {IncomeState} from './incomes/incomes.model';
+import {budgetReducer} from './budgets/budgets.reducer';
+import {categoryReducer} from './categories/categories.reducer';
+import {expenseReducer} from './expenses/expenses.reducer';
+import {incomeReducer} from './incomes/incomes.reducer';
 
 export const selectBudgetState = createFeatureSelector<DataState, BudgetState>('budgets');
 export const selectCategoryState = createFeatureSelector<DataState, CategoryState>('categories');
