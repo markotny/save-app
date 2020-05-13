@@ -1,7 +1,7 @@
 import {adapter} from './expenses.reducer';
 import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
-import {selectExpenseState} from '@state/app.state';
+import {selectExpenseState} from '@state/data.state';
 import {Expense} from './expenses.model';
 
 const {selectAll, selectEntities} = adapter.getSelectors();

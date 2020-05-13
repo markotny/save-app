@@ -1,7 +1,7 @@
 import {adapter} from './incomes.reducer';
 import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
-import {selectIncomeState} from '@state/app.state';
+import {selectIncomeState} from '@state/data.state';
 import {Income} from './incomes.model';
 
 const {selectAll, selectEntities} = adapter.getSelectors();

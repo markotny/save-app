@@ -2,10 +2,8 @@
 import {createReducer, on, Action} from '@ngrx/store';
 import {EntityAdapter, createEntityAdapter} from '@ngrx/entity';
 import {Budget, BudgetState} from './budgets.model';
-import {extractIds} from '@shared/types';
 import {BudgetActions} from './budgets.actions';
 import {crudReducers, ApiModule} from '@shared/state';
-import {BudgetVM} from '@wydatex/models';
 
 export const adapter: EntityAdapter<Budget> = createEntityAdapter<Budget>({
   sortComparer: (a, b) => a.name.localeCompare(b.name)
@@ -16,7 +14,7 @@ const reducer = createReducer(
   initialState,
   on(BudgetActions.setActive, (state, {id}) => ({...state, activeBudgetId: id})),
 
-  ...crudReducers<BudgetVM>(ApiModule.Budget, adapter).filter(r =>
+  ...crudReducers<BudgetState>(ApiModule.Budget, adapter).filter(r =>
     r.types.every(t => ![BudgetActions.getDetailsSuccess.type, BudgetActions.addSuccess.type, BudgetActions.editSuccess.type].includes(t))
   ),
   on(BudgetActions.getDetailsSuccess, (state, {item: {incomes, expenses, ...details}}) => adapter.setOne(details, state)),

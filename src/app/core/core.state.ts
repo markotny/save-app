@@ -5,8 +5,10 @@ import {debug} from './meta-reducers/debug.reducer';
 import {SettingsState} from './settings/settings.model';
 import {settingsReducer} from './settings/settings.reducer';
 import {initStateFromLocalStorage} from './meta-reducers/init-state-from-local-storage.reducer';
+import {dataReducers, DataState} from '@state/data.state';
 
 export const reducers: ActionReducerMap<AppState> = {
+  ...dataReducers,
   settings: settingsReducer
 };
 
@@ -20,6 +22,6 @@ if (!environment.production) {
 
 export const selectSettingsState = createFeatureSelector<AppState, SettingsState>('settings');
 
-export interface AppState {
+export interface AppState extends DataState {
   settings: SettingsState;
 }

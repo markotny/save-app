@@ -4,4 +4,4 @@ import {ExpenseVM} from '@wydatex/models';
 
 export type Expense = ExpenseVM & Unsaved;
 
-export interface ExpenseState extends EntityState<Expense> {}
+export type ExpenseState = EntityState<Expense>;

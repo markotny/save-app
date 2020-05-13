@@ -2,7 +2,7 @@ import {adapter} from './budgets.reducer';
 import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
 import {Budget} from './budgets.model';
-import {selectBudgetState} from '@state/app.state';
+import {selectBudgetState} from '@state/data.state';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 

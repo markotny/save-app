@@ -5,22 +5,20 @@ import {EntityAdapter, EntityState} from '@ngrx/entity';
 import {on} from '@ngrx/store';
 import {Unsaved} from '@shared/types';
 
-export const crudReducers = <VM extends ModelBase>(module: ApiModule, adapter: EntityAdapter<ModelBase & Unsaved>) => {
-  const crud = crudActions<VM, VM>(module);
-  type Entity = VM & Unsaved;
+type Entity<T> = T extends EntityState<infer E> ? E : never;
+
+export const crudReducers = <State extends EntityState<ModelBase & Unsaved>>(
+  module: ApiModule,
+  adapter: EntityAdapter<ModelBase & Unsaved>
+) => {
+  const crud = crudActions<Entity<State>, Entity<State>>(module);
   return [
-    on<typeof crud.loadSuccess, EntityState<Entity>>(crud.loadSuccess, (state, {items}) => adapter.setAll(items, state)),
-    on<typeof crud.add, EntityState<Entity>>(crud.add, (state, {tempId, item}) =>
-      adapter.addOne({id: tempId, unsaved: 'add', ...item}, state)
-    ),
-    on<typeof crud.addSuccess, EntityState<Entity>>(crud.addSuccess, (state, {tempId, item}) =>
-      adapter.updateOne({id: tempId, changes: {unsaved: undefined, ...item}}, state)
-    ),
-    on<typeof crud.edit, EntityState<Entity>>(crud.edit, (state, {id, item}) =>
-      adapter.updateOne({id, changes: {unsaved: 'edit', ...item}}, state)
-    ),
-    on<typeof crud.editSuccess, EntityState<Entity>>(crud.editSuccess, (state, {item}) => adapter.setOne(item, state)),
-    on<typeof crud.remove, EntityState<Entity>>(crud.remove, (state, {id}) => adapter.updateOne({id, changes: {unsaved: 'remove'}}, state)),
-    on<typeof crud.removeSuccess, EntityState<Entity>>(crud.removeSuccess, (state, {id}) => adapter.removeOne(id, state))
+    on(crud.loadSuccess, (state: State, {items}) => adapter.setAll(items, state)),
+    on(crud.add, (state: State, {tempId, item}) => adapter.addOne({id: tempId, unsaved: 'add', ...item}, state)),
+    on(crud.addSuccess, (state: State, {tempId, item}) => adapter.updateOne({id: tempId, changes: {unsaved: undefined, ...item}}, state)),
+    on(crud.edit, (state: State, {id, item}) => adapter.updateOne({id, changes: {unsaved: 'edit', ...item}}, state)),
+    on(crud.editSuccess, (state: State, {item}) => adapter.setOne(item, state)),
+    on(crud.remove, (state: State, {id}) => adapter.updateOne({id, changes: {unsaved: 'remove'}}, state)),
+    on(crud.removeSuccess, (state: State, {id}) => adapter.removeOne(id, state))
   ];
 };

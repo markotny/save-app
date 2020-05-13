@@ -4,4 +4,4 @@ import {EntityState} from '@ngrx/entity';
 
 export type Category = CategoryVM & Unsaved;
 
-export interface CategoryState extends EntityState<Category> {}
+export type CategoryState = EntityState<Category>;

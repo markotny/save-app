@@ -4,6 +4,6 @@ import {EntityState} from '@ngrx/entity';
 
 export type Budget = BudgetVM & Partial<Omit<BudgetDetailsVM, 'expenses' | 'incomes'>> & Unsaved;
 
-export interface BudgetState extends EntityState<Budget> {
+export type BudgetState = EntityState<Budget> & {
   activeBudgetId: Id<Budget> | null;
-}
+};
