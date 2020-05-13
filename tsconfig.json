@@ -18,6 +18,7 @@
 		"paths": {
 			"@env/*": ["environments/*"],
 			"@core/*": ["app/core/*"],
+			"@state/*": ["app/state/*"],
 			"@shell/*": ["app/shell/*"],
 			"@shared/*": ["app/shared/*"],
 			"@modules/*": ["app/modules/*"],
