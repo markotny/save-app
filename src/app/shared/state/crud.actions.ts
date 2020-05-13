@@ -3,10 +3,9 @@ import {ModelBase} from '@wydatex/models';
 import {randomId, Id, Unsaved} from '@shared/types';
 import {ApiModule} from './api-module.enum';
 
-export const crudActions = <Entity extends VM, DTO extends Partial<VM>, VM extends ModelBase, VMExtended extends VM = VM>(
-  module: ApiModule
-) => {
+export const crudActions = <DTO extends Partial<VM>, VM extends ModelBase, VMExtended extends VM = VM>(module: ApiModule) => {
   const name = ApiModule[module];
+  type Entity = VM & Unsaved;
   return {
     load: createAction(`[${name}] Load`),
     getDetails: createAction(`[${name}] Get details`, props<{id: Id<Entity>}>()),

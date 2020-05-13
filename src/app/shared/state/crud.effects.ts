@@ -6,12 +6,11 @@ import {of} from 'rxjs';
 import {crudActions} from './crud.actions';
 
 export abstract class CrudEffects<
-  Entity extends VM,
   DTO extends Partial<VM>,
   VM extends ModelBase,
   Service extends CrudService<DTO, VM> = CrudService<DTO, VM>
 > {
-  private crud = crudActions<Entity, DTO, VM>(this.service.module);
+  private crud = crudActions<DTO, VM>(this.service.module);
 
   constructor(protected actions$: Actions, protected service: Service) {}
 

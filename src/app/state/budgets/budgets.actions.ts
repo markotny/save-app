@@ -5,7 +5,7 @@ import {Id} from '@shared/types';
 import {crudActions, ApiModule} from '@shared/state';
 
 export const BudgetActions = {
-  ...crudActions<Budget, BudgetDto, BudgetVM, BudgetDetailsVM>(ApiModule.Budget),
+  ...crudActions<BudgetDto, BudgetVM, BudgetDetailsVM>(ApiModule.Budget),
 
   setActive: createAction('[Budget] Set active', props<{id: Id<Budget>}>())
 };
