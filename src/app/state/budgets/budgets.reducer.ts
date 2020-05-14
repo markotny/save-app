@@ -17,11 +17,12 @@ const reducer = createReducer(
   ...crudReducers<BudgetState>(ApiModule.Budget, adapter).filter(r =>
     r.types.every(t => ![BudgetActions.getDetailsSuccess.type, BudgetActions.addSuccess.type, BudgetActions.editSuccess.type].includes(t))
   ),
-  on(BudgetActions.getDetailsSuccess, (state, {item: {incomes, expenses, ...details}}) => adapter.setOne(details, state)),
+  on(BudgetActions.getDetailsSuccess, BudgetActions.editSuccess, (state, {item: {incomes, expenses, ...details}}) =>
+    adapter.setOne(details, state)
+  ),
   on(BudgetActions.addSuccess, (state, {tempId, item: {incomes, expenses, ...details}}) =>
     adapter.updateOne({id: tempId, changes: {unsaved: undefined, ...details}}, state)
-  ),
-  on(BudgetActions.editSuccess, (state, {item: {incomes, expenses, ...details}}) => adapter.setOne(details, state))
+  )
   // TODO: handle failures
 );
 
