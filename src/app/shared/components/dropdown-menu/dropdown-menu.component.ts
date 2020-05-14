@@ -24,7 +24,7 @@ import {MenuItem} from 'primeng/api/menuitem';
   template: `
     <div class="dropdown-menu-button" (click)="menu.toggle($event)">
       <a>{{ label }}</a>
-      <i class="pi pi-chevron-right" [@menuToggle]="menuOpen"></i>
+      <a class="pi pi-chevron-right" [@menuToggle]="menuOpen"></a>
     </div>
     <p-menu #menu [popup]="true" [model]="menuItems" (onShow)="menuOpen = true" (onHide)="menuOpen = false"> </p-menu>
   `,
