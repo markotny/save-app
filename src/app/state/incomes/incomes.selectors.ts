@@ -6,7 +6,7 @@ import {Income} from './incomes.model';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 
-export const selectAllIncomes = createSelector(selectIncomeState, selectAll);
-export const selectIncomeEntities = createSelector(selectIncomeState, selectEntities);
+export const all = createSelector(selectIncomeState, selectAll);
+export const entities = createSelector(selectIncomeState, selectEntities);
 
-export const selectIncomes = (ids: Id<Income>[]) => createSelector(selectAllIncomes, incomes => incomes.filter(e => ids.includes(e.id)));
+export const byIds = (ids: Id<Income>[]) => createSelector(all, incomes => incomes.filter(e => ids.includes(e.id)));

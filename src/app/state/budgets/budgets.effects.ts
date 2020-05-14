@@ -12,6 +12,14 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
     super(actions$, service);
   }
 
+  findActive$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BudgetActions.loadSuccess),
+      map(({items}) => items.find(b => b.isActive)),
+      map(b => b && BudgetActions.setActive(b))
+    )
+  );
+
   loadDetails$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.setActive),

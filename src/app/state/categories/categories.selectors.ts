@@ -6,8 +6,7 @@ import {Category} from './categories.model';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 
-export const selectAllCategories = createSelector(selectCategoryState, selectAll);
-export const selectCategoryEntities = createSelector(selectCategoryState, selectEntities);
+export const all = createSelector(selectCategoryState, selectAll);
+export const entities = createSelector(selectCategoryState, selectEntities);
 
-export const selectCategories = (ids: Id<Category>[]) =>
-  createSelector(selectAllCategories, categories => categories.filter(c => ids.includes(c.id)));
+export const byIds = (ids: Id<Category>[]) => createSelector(all, categories => categories.filter(c => ids.includes(c.id)));

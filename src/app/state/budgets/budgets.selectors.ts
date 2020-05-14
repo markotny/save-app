@@ -3,19 +3,19 @@ import {createSelector, MemoizedSelector} from '@ngrx/store';
 import {Extend} from '@shared/types';
 import {Budget} from './budgets.model';
 import {selectBudgetState, DataState} from '@state/data.state';
-import {selectCategoryEntities} from '@state/categories';
+import {CategorySelectors} from '@state/categories';
 import {BudgetCategoryVM, CategoryVM} from '@wydatex/models';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 
-export const selectAllBudgets = createSelector(selectBudgetState, selectAll);
-export const selectBudgetEntities = createSelector(selectBudgetState, selectEntities);
-export const selectActiveBudgetId = createSelector(selectBudgetState, state => state.activeBudgetId);
+export const all = createSelector(selectBudgetState, selectAll);
+export const entities = createSelector(selectBudgetState, selectEntities);
+export const activeId = createSelector(selectBudgetState, state => state.activeBudgetId);
 
-export const selectActiveBudget: MemoizedSelector<DataState, BudgetWithCategoryNames> = createSelector(
-  selectActiveBudgetId,
-  selectBudgetEntities,
-  selectCategoryEntities,
+export const active: MemoizedSelector<DataState, BudgetWithCategoryNames> = createSelector(
+  activeId,
+  entities,
+  CategorySelectors.entities,
   (id, budgets, categories) =>
     id &&
     budgets[id] && {

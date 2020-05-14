@@ -6,8 +6,7 @@ import {Expense} from './expenses.model';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 
-export const selectAllExpenses = createSelector(selectExpenseState, selectAll);
-export const selectExpenseEntities = createSelector(selectExpenseState, selectEntities);
+export const all = createSelector(selectExpenseState, selectAll);
+export const entities = createSelector(selectExpenseState, selectEntities);
 
-export const selectExpenses = (ids: Id<Expense>[]) =>
-  createSelector(selectAllExpenses, expenses => expenses.filter(e => ids.includes(e.id)));
+export const byIds = (ids: Id<Expense>[]) => createSelector(all, expenses => expenses.filter(e => ids.includes(e.id)));

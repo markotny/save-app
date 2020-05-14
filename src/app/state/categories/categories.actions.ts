@@ -1,4 +1,9 @@
 import {CategoryVM, CategoryDto} from '@wydatex/models';
-import {crudActions, ApiModule} from '@shared/state';
+import {crudActionsPublic, ApiModule, crudActionsInternal} from '@shared/state';
 
-export const CategoryActions = crudActions<CategoryDto, CategoryVM>(ApiModule.Category);
+export const CategoryActionsPublic = crudActionsPublic<CategoryDto, CategoryVM>(ApiModule.Category);
+
+export const CategoryActions = {
+  ...CategoryActionsPublic,
+  ...crudActionsInternal<CategoryVM>(ApiModule.Category)
+};
