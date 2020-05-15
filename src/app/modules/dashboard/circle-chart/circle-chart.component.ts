@@ -36,7 +36,10 @@ export class CircleChartComponent implements OnInit {
     this.calcHeight = String(Number(temp1[0]) - this.subtractHeight) + 'vw';
     this.chartOptions = {
       legend: {display: false},
-      events: []
+      events: [],
+      animation: {
+        duration: 0
+      }
     };
   }
 }
