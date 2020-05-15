@@ -1,0 +1,72 @@
+@import '../dashboard/dashboard.component.scss';
+
+.header {
+  background-color: $main-green;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  span.visibility {
+    visibility: hidden;
+  }
+  span {
+    padding: 10px;
+    font-size: 1.2vw;
+    font-family: 'Roboto-Medium';
+  }
+  &__left {
+    @extend .header;
+    border-top-left-radius: 10px;
+  }
+  &__right {
+    @extend .header;
+    border-top-right-radius: 10px;
+  }
+}
+
+.value {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: $white;
+  span {
+    font-family: 'Roboto-Medium';
+    font-size: 3vw;
+    margin: auto;
+  }
+  &__left {
+    @extend .value;
+    border-bottom-left-radius: 10px
+  }
+  &__right {
+    @extend .value;
+    border-bottom-right-radius: 10px
+  }
+}
+
+.round {
+  border-radius: 10px;
+}
+
+.item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2vw;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+}
+
+.content {
+  background-color: $white;
+}
+
+.item-center {
+  align-items: center;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.chart-place {
+  width: 20vw;
+}
