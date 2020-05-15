@@ -13,7 +13,6 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
-import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [VarDirective, FadeDirective, DropdownMenuComponent],
@@ -55,8 +54,7 @@ import {ChartModule} from 'primeng/chart';
     ButtonModule,
     SidebarModule,
     ToastModule,
-    CheckboxModule,
-    ChartModule
+    CheckboxModule
   ]
 })
 export class SharedModule {}

@@ -35,10 +35,7 @@
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js",
-              "node_modules/quill/dist/quill.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -75,7 +72,7 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.local.ts"
                 }
-              ]
+              ],
             }
           }
         },
@@ -114,10 +111,7 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js",
-              "node_modules/quill/dist/quill.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
