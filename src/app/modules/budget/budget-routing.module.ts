@@ -1,18 +1,16 @@
-import {BudgetComponent} from './budget/budget.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {BudgetDetailsComponent} from './budget-details/budget-details.component';
+import {BudgetOverviewComponent} from './budget-overview/budget-overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BudgetComponent,
-    children: [
-      {
-        path: ':id',
-        component: BudgetDetailsComponent
-      }
-    ]
+    redirectTo: 'overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'overview',
+    component: BudgetOverviewComponent
   }
 ];
 
