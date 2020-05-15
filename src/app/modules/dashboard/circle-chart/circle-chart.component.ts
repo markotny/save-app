@@ -12,7 +12,10 @@ export class CircleChartComponent implements OnInit {
   calcWidth: string;
   calcHeight: string;
 
-  smallerBox = 6.5;
+  subtractWidth = 7.5;
+  subtractHeight = 6.5;
+
+  chartOptions: unknown;
 
   constructor() {}
 
@@ -29,7 +32,11 @@ export class CircleChartComponent implements OnInit {
   ngOnInit(): void {
     const temp = this.width.split('vw');
     const temp1 = this.height.split('vw');
-    this.calcWidth = String(Number(temp[0]) - this.smallerBox) + 'vw';
-    this.calcHeight = String(Number(temp1[0]) - this.smallerBox) + 'vw';
+    this.calcWidth = String(Number(temp[0]) - this.subtractWidth) + 'vw';
+    this.calcHeight = String(Number(temp1[0]) - this.subtractHeight) + 'vw';
+    this.chartOptions = {
+      legend: {display: false},
+      events: []
+    };
   }
 }

@@ -1,4 +1,12 @@
-<div class="chart-wrapper" [ngStyle]="{'width': calcWidth, 'height': calcHeight}">
+<div class="chart-wrapper" [ngStyle]="{width: calcWidth, height: calcHeight}">
   <div class="position-relative">XD</div>
-  <p-chart class="position-relative" type="doughnut" [data]="data" [width]="width" [height]="height" responsive="true"></p-chart>
+  <p-chart
+    class="position-relative"
+    type="doughnut"
+    [data]="data"
+    [width]="width"
+    [height]="height"
+    responsive="false"
+    [options]="chartOptions"
+  ></p-chart>
 </div>
