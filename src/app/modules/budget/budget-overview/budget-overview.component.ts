@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Budget, BudgetSelectors} from '@state/budgets';
-import {select, Store} from '@ngrx/store';
+import {BudgetSelectors} from '@state/budgets';
+import {Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
 import {BudgetActions} from '@state/budgets/budgets.actions';
+import {ExpenseSelectors} from '@state/expenses';
+import {BudgetDto} from '@wydatex/models';
+import {CategorySelectors} from '@state/categories';
+import {activeBudgetSummary} from '@state/selectors';
 
 @Component({
   selector: 'app-budget-overview',
@@ -11,7 +14,10 @@ import {BudgetActions} from '@state/budgets/budgets.actions';
   styleUrls: ['./budget-overview.component.scss']
 })
 export class BudgetOverviewComponent implements OnInit {
-  selectedBudget$: Observable<Budget> = this.store.pipe(select(BudgetSelectors.active));
+  activeBudget$ = this.store.select(BudgetSelectors.active);
+  summary$ = this.store.select(activeBudgetSummary);
+  expenses$ = this.store.select(ExpenseSelectors.activeBudget);
+  categories$ = this.store.select(CategorySelectors.activeBudget);
 
   currencySymbol = 'PLN';
 
@@ -19,9 +25,7 @@ export class BudgetOverviewComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  edit(b: Budget) {
-    this.store.dispatch(
-      BudgetActions.edit({id: b.id, item: {...b, budgetCategories: b.budgetCategories || [], currencySymbol: this.currencySymbol}})
-    );
+  edit(id: number, b: BudgetDto) {
+    this.store.dispatch(BudgetActions.edit({id, item: {...b, currencySymbol: this.currencySymbol}}));
   }
 }

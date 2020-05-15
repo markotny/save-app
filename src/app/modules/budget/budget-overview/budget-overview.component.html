@@ -1,6 +1,6 @@
 <div fxFill fxLayout="column" class="wrapper">
   <div
-    *ngIf="selectedBudget$ | async as selectedBudget"
+    *ngIf="activeBudget$ | async as activeBudget"
     class="budget-details"
     fxFlex="noshrink"
     fxFlex.gt-md="nogrow"
@@ -11,25 +11,31 @@
     gdRows.gt-md="auto 1fr"
     gdGap="10px"
   >
-    <p-card gdArea="income" header="Disposable Income:" class="info-card scroll-anchor" styleClass="info-card-green">
-      200 $
-    </p-card>
-    <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
-      100 $
-    </p-card>
-    <p-card gdArea="expense" header="Expenses:" class="info-card" styleClass="info-card-red">
-      500 $
-    </p-card>
+    <ng-container *ngIf="summary$ | async as summary">
+      <p-card gdArea="income" header="Disposable Income:" class="info-card" styleClass="info-card-green">
+        {{ summary.incomeSum }} {{ activeBudget.currencySymbol }}
+      </p-card>
+      <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
+        {{ summary.balance }} {{ activeBudget.currencySymbol }}
+      </p-card>
+      <p-card gdArea="expense" header="Expenses:" class="info-card" styleClass="info-card-red">
+        {{ summary.expenseSum }} {{ activeBudget.currencySymbol }}
+      </p-card>
+    </ng-container>
 
     <p-card
       gdArea="chart"
-      class="chart-card scroll-anchor"
+      class="chart-card"
       styleClass="chart-card-style"
       header="Wydatków w ciągu dnia/miesiąca"
       [ngStyle.xs]="{height: '60vw'}"
       [ngStyle.lt-lg]="{height: '40vw'}"
     >
-      <div style="background-color: red; width: 100%; height: 100%;">test</div>
+      <div style="width: 100%; height: 100%;">
+        <div *ngFor="let expense of expenses$ | async" style="height: 100px;">
+          {{ expense | json }}
+        </div>
+      </div>
     </p-card>
     <p-card
       gdArea="list"
@@ -38,7 +44,9 @@
       [ngStyle.xs]="{'max-height': 'calc(100vh - 60vw - 80px)'}"
       [ngStyle.lt-lg]="{'max-height': 'calc(100vh - 40vw - 116px)'}"
     >
-      <div *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]" style="background-color: red; height: 100px;">test</div>
+      <div *ngFor="let category of categories$ | async" style="height: 100px;">
+        {{ category | json }}
+      </div>
     </p-card>
   </div>
 </div>
