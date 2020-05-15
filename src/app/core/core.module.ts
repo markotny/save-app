@@ -24,6 +24,7 @@ import {MessageService} from 'primeng/api';
 import {logValue} from './rxjs/log-value';
 import {CustomSerializer} from './router/custom-serializer';
 import {login as actionOidcLogin, register as actionOidcRegister} from './auth/auth.actions';
+import {BudgetEffects, CategoryEffects, ExpenseEffects, IncomeEffects} from '@state/data.state';
 
 export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcLogin, actionOidcRegister};
 
@@ -41,7 +42,7 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer
     }),
-    EffectsModule.forRoot([AuthEffects, SettingsEffects]),
+    EffectsModule.forRoot([AuthEffects, SettingsEffects, BudgetEffects, CategoryEffects, ExpenseEffects, IncomeEffects]),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({

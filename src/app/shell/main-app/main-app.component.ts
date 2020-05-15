@@ -4,6 +4,10 @@ import {mainContentAnimations, sidebarAnimations, SidebarState, headerAnimations
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import {map, tap, pluck} from 'rxjs/operators';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Store} from '@ngrx/store';
+import {AppState} from '@core/core.state';
+import {BudgetActions} from '@state/budgets';
+import {CategoryActions} from '@state/categories';
 
 @Component({
   selector: 'app-main-app',
@@ -17,10 +21,13 @@ export class MainAppComponent implements OnInit, OnDestroy {
 
   sidebarStateEnum = SidebarState;
 
-  constructor(@Inject(DOCUMENT) private document, public breakpointObserver: BreakpointObserver) {}
+  constructor(@Inject(DOCUMENT) private document, public breakpointObserver: BreakpointObserver, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.injectBackgroundColor();
+
+    this.store.dispatch(BudgetActions.load());
+    this.store.dispatch(CategoryActions.load());
 
     const isSmall$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
       pluck('matches'),

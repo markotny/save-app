@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Budget} from '@wydatex/models';
 import {select, Store} from '@ngrx/store';
-import {selectSelectedBudget} from '../budget.selectors';
-import {BudgetState} from '../budget.state';
-import * as BudgetActions from '../budget.actions';
+import {Budget, BudgetSelectors, BudgetActions} from '@state/budgets';
+import {AppState} from '@core/core.module';
 
 @Component({
   selector: 'app-budget-details',
@@ -12,15 +10,17 @@ import * as BudgetActions from '../budget.actions';
   styleUrls: ['./budget-details.component.scss']
 })
 export class BudgetDetailsComponent implements OnInit {
-  selectedBudget$: Observable<Budget> = this.store.pipe(select(selectSelectedBudget));
+  selectedBudget$: Observable<Budget> = this.store.pipe(select(BudgetSelectors.active));
 
-  totalBudgeted = 1;
+  currencySymbol = 'PLN';
 
-  constructor(private store: Store<BudgetState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
   edit(b: Budget) {
-    this.store.dispatch(BudgetActions.edit({budget: {id: b.id, totalBudgeted: this.totalBudgeted}}));
+    this.store.dispatch(
+      BudgetActions.edit({id: b.id, item: {...b, budgetCategories: b.budgetCategories || [], currencySymbol: this.currencySymbol}})
+    );
   }
 }

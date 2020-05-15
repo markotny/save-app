@@ -1,15 +1,4 @@
 <div fxFill fxLayout="column" class="wrapper">
-  <div fxLayout="row" class="select-budget-wrapper">
-    <app-dropdown-menu
-      [menuItems]="budgetSelectMenuItems$ | async"
-      [label]="(selectedBudget$ | async)?.name || 'Select budget'"
-    ></app-dropdown-menu>
-    <ng-container *ngIf="selectedBudget$ | async as selectedBudget">
-      <a class="pi pi-pencil" (click)="edit(selectedBudget)"></a>
-      <a class="pi pi-trash" (click)="remove(selectedBudget)"></a>
-    </ng-container>
-  </div>
-
   <div class="budget-details" fxFlex="noshrink" fxFlex.gt-md="nogrow">
     <router-outlet></router-outlet>
   </div>

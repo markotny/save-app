@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Budget} from '@wydatex/models';
-import {BudgetState} from '../budget.state';
-import {Store, select} from '@ngrx/store';
-import {selectAllBudgets, selectSelectedBudget} from '../budget.selectors';
-import {Observable} from 'rxjs';
-import * as BudgetActions from '../budget.actions';
-import {MenuItem} from 'primeng/api/menuitem';
-import {map, share} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {AppState} from '@core/core.state';
+import {BudgetDto} from '@wydatex/models';
+import {BudgetActions, Budget} from '@state/budgets';
 
 @Component({
   selector: 'app-budget',
@@ -14,34 +10,28 @@ import {map, share} from 'rxjs/operators';
   styleUrls: ['./budget.component.scss']
 })
 export class BudgetComponent implements OnInit {
-  selectedBudget$: Observable<Budget> = this.store.pipe(select(selectSelectedBudget), share());
-
-  budgetSelectMenuItems$: Observable<MenuItem[]> = this.store.pipe(
-    select(selectAllBudgets),
-    map(x => x.map(b => ({label: b.name, routerLink: [b.id]})))
-  );
-
-  constructor(private store: Store<BudgetState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
-  add(budget: Budget) {
+  add() {
     this.store.dispatch(
       BudgetActions.add({
         startDate: new Date(2010, 1, 20),
         endDate: new Date(),
         name: 'test',
+        isActive: false,
         totalBudgeted: 3000,
         disposableIncome: 2000,
         currencySymbol: 'PL',
         budgetCategories: []
-      } as Budget)
+      } as BudgetDto)
     );
   }
 
-  edit(budget: Budget) {}
+  edit() {}
 
   remove(budget: Budget) {
-    this.store.dispatch(BudgetActions.remove({id: budget.id}));
+    this.store.dispatch(BudgetActions.remove(budget));
   }
 }
