@@ -1,0 +1,9 @@
+@import '~variables.scss';
+
+h1.dashboard-title {
+  font-family: 'Montserrat-Bold';
+  margin: 0;
+  color: $dark-grey;
+  position: relative;
+  top: 10px;
+}
