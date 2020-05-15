@@ -25,7 +25,7 @@ export class MainAppComponent implements OnInit, OnDestroy {
 
     const isSmall$ = this.breakpointObserver.observe(this.registry.findByAlias('mob').mediaQuery).pipe(
       pluck('matches'),
-      tap(matches => (matches ? this.sidebarVisible$.next(false) : null))
+      tap(matches => matches && this.sidebarVisible$.next(false))
     );
 
     this.sidebarState$ = combineLatest([isSmall$, this.sidebarVisible$]).pipe(
