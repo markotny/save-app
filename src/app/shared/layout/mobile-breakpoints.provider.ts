@@ -4,13 +4,13 @@ const MOBILE_BREAKPOINTS: BreakPoint[] = [
   {
     alias: 'mob',
     suffix: 'Mob',
-    mediaQuery: 'screen and (max-width: 849px)',
+    mediaQuery: 'screen and (max-width: 1024px)',
     overlapping: false
   },
   {
     alias: 'gt-mob',
     suffix: 'GtMob',
-    mediaQuery: 'screen and (min-width: 850px)',
+    mediaQuery: 'screen and (min-width: 1025px)',
     overlapping: false
   }
 ];
