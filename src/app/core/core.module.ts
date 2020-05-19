@@ -15,7 +15,6 @@ import {EffectsModule} from '@ngrx/effects';
 import {NgOidcClientModule} from 'ng-oidc-client';
 import {AppErrorHandler} from './error-handler/app-error-handler.service';
 import {LocalStorageService} from './local-storage/local-storage.service';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
 import {ToastModule} from 'primeng/toast';
@@ -67,6 +66,6 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  exports: [AuthCallbackComponent, FlexLayoutModule, HttpClientModule]
+  exports: [AuthCallbackComponent, HttpClientModule]
 })
 export class CoreModule {}
