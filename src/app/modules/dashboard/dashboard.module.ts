@@ -7,6 +7,7 @@ import {CircleChartComponent} from './circle-chart/circle-chart.component';
 import {MobileSumsHeaderComponent} from './mobile-sums-header/mobile-sums-header.component';
 import {PopularCategoriesComponent} from './popular-categories/popular-categories.component';
 import {RecentTransactionsComponent} from './recent-transactions/recent-transactions.component';
+import { DashboardTableContentComponent } from './dashboard-table-content/dashboard-table-content.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {RecentTransactionsComponent} from './recent-transactions/recent-transact
     CircleChartComponent,
     MobileSumsHeaderComponent,
     PopularCategoriesComponent,
-    RecentTransactionsComponent
+    RecentTransactionsComponent,
+    DashboardTableContentComponent
   ],
   imports: [SharedModule, DashboardRoutingModule]
 })

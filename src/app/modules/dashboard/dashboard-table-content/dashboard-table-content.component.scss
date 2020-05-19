@@ -1,0 +1,20 @@
+@import '~variables.scss';
+
+.label {
+  > span {
+    color: $black;
+    font-family: 'Roboto-Regular';
+  }
+}
+
+.amount {
+  > span {
+    color: $black;
+    font-family: 'Roboto-Regular';
+  }
+}
+
+.content-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

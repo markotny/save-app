@@ -12,10 +12,12 @@ export class CircleChartComponent implements OnInit {
   calcWidth: string;
   calcHeight: string;
 
-  subtractWidth = 7.5;
-  subtractHeight = 6.5;
+  subtractWidth = 4.4;
+  subtractHeight = 4.5;
 
   chartOptions: unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  chartOptionsMobile: any;
 
   constructor() {}
 
@@ -23,8 +25,7 @@ export class CircleChartComponent implements OnInit {
     datasets: [
       {
         data: [300, 50],
-        backgroundColor: ['#FF6384', '#FFCE56'],
-        hoverBackgroundColor: ['#FF6384', '#FFCE56']
+        backgroundColor: ['#CF4343', '#5C9D36']
       }
     ]
   };
@@ -39,7 +40,16 @@ export class CircleChartComponent implements OnInit {
       events: [],
       animation: {
         duration: 0
+      },
+      cutoutPercentage: 70,
+      elements: {
+        arc: {
+          borderWidth: 1,
+          borderColor: '#707070'
+        }
       }
     };
+    this.chartOptionsMobile = Object.assign({}, this.chartOptions);
+    this.chartOptionsMobile.cutoutPercentage = 80;
   }
 }

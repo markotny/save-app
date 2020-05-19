@@ -1,12 +1,30 @@
-<div class="chart-wrapper" [ngStyle]="{width: calcWidth, height: calcHeight}">
-  <div class="position-relative">XD</div>
-  <p-chart
-    class="position-relative"
-    type="doughnut"
-    [data]="data"
-    [width]="width"
-    [height]="height"
-    responsive="false"
-    [options]="chartOptions"
-  ></p-chart>
+<div fxHide.mob>
+  <div class="chart-wrapper" [ngStyle]="{width: calcWidth, height: calcHeight}">
+    <div class="position-absolute">
+      <div class="f-vertical center">
+        <span class="budget-spent">Budget Spent</span>
+        <span class="budget-percent">88.3%</span>
+      </div>
+    </div>
+    <p-chart
+      class="position-absolute"
+      type="doughnut"
+      [data]="data"
+      [width]="width"
+      [height]="height"
+      responsive="false"
+      [options]="chartOptions"
+    ></p-chart>
+  </div>
+</div>
+<div fxHide [fxHide.mob]="false">
+  <div class="chart-wrapper-mobile">
+    <div class="position-absolute">
+      <div class="f-vertical center">
+        <span class="budget-spent-mobile">Budget Spent</span>
+        <span class="budget-percent-mobile">88.3%</span>
+      </div>
+    </div>
+    <p-chart type="doughnut" [data]="data" width="100%" height="100%" responsive="true" [options]="chartOptionsMobile"></p-chart>
+  </div>
 </div>

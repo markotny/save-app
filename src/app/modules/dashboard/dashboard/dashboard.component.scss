@@ -7,3 +7,38 @@ h1.dashboard-title {
   position: relative;
   top: 10px;
 }
+
+.table {
+  min-width: 34vw;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+  margin-bottom: 2vw;
+  height: 50vh;
+  &-header {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    background-color: $main-green;
+    > span {
+      font-family: 'Roboto-Medium';
+      font-size: 2vh;
+      color: $white;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &-content {
+    border-radius: 0px 0px 10px 10px;
+    color: $white;
+    span {
+      color: $dark-grey;
+    }
+    > .content {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    overflow-y: auto;
+  }
+}

@@ -1,4 +1,23 @@
-<div class="f-vertical">
+<div class="f-vertical h-100">
   <h1 class="dashboard-title">Dashboard</h1>
-  <app-desktop-sums-header class="w-100"></app-desktop-sums-header>
+  <!--desktop version-->
+  <div class="h-100" fxHide.mob>
+    <div class="f-vertical space-between h-100">
+      <app-desktop-sums-header class="w-100"></app-desktop-sums-header>
+      <div class="f-horizontal space-between">
+        <app-popular-categories></app-popular-categories>
+        <app-recent-transactions></app-recent-transactions>
+      </div>
+    </div>
+  </div>
+
+  <!--mobile version-->
+  <div fxHide [fxHide.mob]="false">
+    <div class="f-vertical">
+      <app-circle-chart [height]="'15vw'" [width]="'15vw'"></app-circle-chart>
+      <app-mobile-sums-header></app-mobile-sums-header>
+      <app-popular-categories></app-popular-categories>
+      <app-recent-transactions></app-recent-transactions>
+    </div>
+  </div>
 </div>

@@ -12,6 +12,7 @@
     padding: 10px;
     font-size: 1.2vw;
     font-family: 'Roboto-Medium';
+    color: $white;
   }
   &__left {
     @extend .header;
@@ -33,6 +34,7 @@
     font-family: 'Roboto-Medium';
     font-size: 3vw;
     margin: auto;
+    color: $dark-grey;
   }
   &__left {
     @extend .value;
@@ -49,9 +51,10 @@
 }
 
 .item-wrapper {
+  height: 10vw;
   display: flex;
   justify-content: space-between;
-  margin-top: 2vw;
+  margin-top: 50px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
 }
 

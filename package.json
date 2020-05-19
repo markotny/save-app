@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@Wydatex/models": "latest",
     "@angular/animations": "~9.0.6",
     "@angular/cdk": "^9.2.0",
     "@angular/common": "~9.0.6",
@@ -26,6 +27,7 @@
     "@ngrx/router-store": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
+    "@wydatex/models": "^1.0.1",
     "chart.js": "^2.9.3",
     "ng-oidc-client": "^2.0.3",
     "ngx-spinner": "^9.0.1",
