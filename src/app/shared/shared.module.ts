@@ -13,9 +13,22 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
+import {MobShowHideDirective, MobStyleDirective, MobClassDirective} from './layout/directives/mob.directives';
+import {GtMobShowHideDirective, GtMobClassDirective, GtMobStyleDirective} from './layout/directives/gt-mob.directives';
+import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
 
 @NgModule({
-  declarations: [VarDirective, FadeDirective, DropdownMenuComponent],
+  declarations: [
+    DropdownMenuComponent,
+    VarDirective,
+    FadeDirective,
+    MobShowHideDirective,
+    MobClassDirective,
+    MobStyleDirective,
+    GtMobShowHideDirective,
+    GtMobClassDirective,
+    GtMobStyleDirective
+  ],
   imports: [
     // angular
     CommonModule,
@@ -35,9 +48,15 @@ import {FadeDirective} from './directives/fade.directive';
     CheckboxModule
   ],
   exports: [
+    DropdownMenuComponent,
     VarDirective,
     FadeDirective,
-    DropdownMenuComponent,
+    MobShowHideDirective,
+    MobClassDirective,
+    MobStyleDirective,
+    GtMobShowHideDirective,
+    GtMobClassDirective,
+    GtMobStyleDirective,
 
     // angular
     CommonModule,
@@ -55,6 +74,7 @@ import {FadeDirective} from './directives/fade.directive';
     SidebarModule,
     ToastModule,
     CheckboxModule
-  ]
+  ],
+  providers: [MobileBreakPointsProvider]
 })
 export class SharedModule {}
