@@ -16,6 +16,5 @@ export class RecentTransactionsComponent implements OnInit {
     for (let i = 0; i < 50; i = i + 1) {
       this.models.push({category: mockCategory, categoryExpenses: i, budgetCurrency: 'zl'});
     }
-    console.log(this.models);
   }
 }

@@ -3,7 +3,11 @@
   <!--desktop version-->
   <div class="h-100" fxHide.mob>
     <div class="f-vertical space-between h-100">
-      <app-desktop-sums-header class="w-100 m-b-25"></app-desktop-sums-header>
+      <app-desktop-sums-header
+        class="w-100 m-b-25"
+        [sums]="sums"
+        [currencyLabel]="currencyLabel"
+      ></app-desktop-sums-header>
       <div class="f-horizontal space-between">
         <app-popular-categories></app-popular-categories>
         <app-recent-transactions></app-recent-transactions>

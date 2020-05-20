@@ -17,5 +17,6 @@ export const activeBudget = createSelector(
   entities,
   BudgetSelectors.active,
   ExpenseSelectors.activeBudgetGroupedSums,
-  (categories, budget, expenses) => budget.budgetCategories?.map(bc => ({...bc, name: categories[bc.id].name, spent: expenses[bc.id]}))
+  (categories, budget, expenses) =>
+    budget?.budgetCategories?.map(bc => ({...bc, name: categories[bc.id].name, spent: expenses[bc.id]})) ?? []
 );
