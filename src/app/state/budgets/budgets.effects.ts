@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {BudgetService} from './budgets.service';
 import {BudgetDto, BudgetVM} from '@wydatex/models';
 import {CrudEffects} from '@shared/state';
-import {BudgetActions} from './budgets.actions';
+import {BudgetActionsAll as BudgetActions} from './budgets.actions';
 import {map} from 'rxjs/operators';
 
 @Injectable()
