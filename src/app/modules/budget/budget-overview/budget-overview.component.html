@@ -27,26 +27,21 @@
       gdArea="chart"
       class="chart-card"
       styleClass="chart-card-style"
-      header="Wydatków w ciągu dnia/miesiąca"
+      header="Expenses"
       [ngStyle.xs]="{height: '60vw'}"
       [ngStyle.lt-lg]="{height: '40vw'}"
     >
-      <div style="width: 100%; height: 100%;">
-        <div *ngFor="let expense of expenses$ | async" style="height: 100px;">
-          {{ expense | json }}
-        </div>
-      </div>
+      <app-budget-chart></app-budget-chart>
     </p-card>
     <p-card
       gdArea="list"
       class="list-card"
+      styleClass="list-card-style"
       header="Categories"
       [ngStyle.xs]="{'max-height': 'calc(100vh - 60vw - 80px)'}"
       [ngStyle.lt-lg]="{'max-height': 'calc(100vh - 40vw - 116px)'}"
     >
-      <div *ngFor="let category of categories$ | async" style="height: 100px;">
-        {{ category | json }}
-      </div>
+      <app-budget-categories></app-budget-categories>
     </p-card>
   </div>
 </div>

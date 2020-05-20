@@ -11,6 +11,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CardModule} from 'primeng/card';
+import {ProgressBarModule} from 'primeng/progressbar';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -34,7 +35,8 @@ import {FadeDirective} from './directives/fade.directive';
     SidebarModule,
     ToastModule,
     CheckboxModule,
-    CardModule
+    CardModule,
+    ProgressBarModule
   ],
   exports: [
     VarDirective,
@@ -57,7 +59,8 @@ import {FadeDirective} from './directives/fade.directive';
     SidebarModule,
     ToastModule,
     CheckboxModule,
-    CardModule
+    CardModule,
+    ProgressBarModule
   ]
 })
 export class SharedModule {}

@@ -6,9 +6,18 @@ import {BudgetOverviewComponent} from './budget-overview/budget-overview.compone
 import {BudgetAddComponent} from './budget-add/budget-add.component';
 import {BudgetEditComponent} from './budget-edit/budget-edit.component';
 import {BudgetRemoveComponent} from './budget-remove/budget-remove.component';
+import {BudgetChartComponent} from './budget-chart/budget-chart.component';
+import {BudgetCategoriesComponent} from './budget-categories/budget-categories.component';
 
 @NgModule({
-  declarations: [BudgetOverviewComponent, BudgetAddComponent, BudgetEditComponent, BudgetRemoveComponent],
+  declarations: [
+    BudgetOverviewComponent,
+    BudgetAddComponent,
+    BudgetEditComponent,
+    BudgetRemoveComponent,
+    BudgetChartComponent,
+    BudgetCategoriesComponent
+  ],
   imports: [CommonModule, SharedModule, BudgetRoutingModule]
 })
 export class BudgetModule {}
