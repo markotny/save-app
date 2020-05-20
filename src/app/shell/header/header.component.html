@@ -9,10 +9,15 @@
       </div>
     </div>
 
-    <div class="ui-toolbar-group-right account-menu-button" appFade="gt-mob" showDelay="0.3s" hideDuration="0s">
-      <h2>Wydatex</h2>
+    <div class="budget-select" ngStyle.xs="margin-left: auto">
+      <span fxHide.xs>Budget:</span>
+      <app-dropdown-menu
+        [menuItems]="activeBudgetMenuItems$ | async"
+        [label]="(activeBudget$ | async)?.name || 'select'"
+      ></app-dropdown-menu>
     </div>
-    <div class="ui-toolbar-group-right account-menu-button" appFade="mob" showDelay="0.3s">
+
+    <div class="ui-toolbar-group-right account-menu-button" fxHide.xs>
       <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>
