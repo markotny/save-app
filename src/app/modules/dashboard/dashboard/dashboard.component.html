@@ -3,7 +3,7 @@
   <!--desktop version-->
   <div class="h-100" fxHide.mob>
     <div class="f-vertical space-between h-100">
-      <app-desktop-sums-header class="w-100"></app-desktop-sums-header>
+      <app-desktop-sums-header class="w-100 m-b-25"></app-desktop-sums-header>
       <div class="f-horizontal space-between">
         <app-popular-categories></app-popular-categories>
         <app-recent-transactions></app-recent-transactions>
@@ -12,11 +12,11 @@
   </div>
 
   <!--mobile version-->
-  <div fxHide [fxHide.mob]="false">
+  <div fxHide.gt-mob>
     <div class="f-vertical">
       <app-circle-chart [height]="'15vw'" [width]="'15vw'"></app-circle-chart>
-      <app-mobile-sums-header></app-mobile-sums-header>
-      <app-popular-categories></app-popular-categories>
+      <app-mobile-sums-header class="m-b-25"></app-mobile-sums-header>
+      <app-popular-categories class="m-b-25"></app-popular-categories>
       <app-recent-transactions></app-recent-transactions>
     </div>
   </div>
