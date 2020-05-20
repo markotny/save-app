@@ -10,7 +10,7 @@
     </div>
 
     <div class="budget-select" ngStyle.xs="margin-left: auto">
-      <span fxHide.xs>Budget:</span>
+      <span fxHide.mob>Budget:</span>
       <app-dropdown-menu
         [menuItems]="activeBudgetMenuItems$ | async"
         [label]="(activeBudget$ | async)?.name || 'select'"
