@@ -28,10 +28,7 @@
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
     "@wydatex/models": "^1.0.1",
-<<<<<<< HEAD
     "chart.js": "^2.9.3",
-=======
->>>>>>> origin/dev
     "ng-oidc-client": "^2.0.3",
     "ngx-spinner": "^9.0.1",
     "oidc-client": "^1.10.1",
