@@ -17,6 +17,25 @@ body {
   margin: 0px;
 }
 
+::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: $dark-grey;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    border-radius: 10px;
+    background-color: $dark-grey;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: $main-green;
+}
+
 .f-vertical {
   display: flex;
   flex-direction: column;

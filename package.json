@@ -11,7 +11,6 @@
   },
   "private": true,
   "dependencies": {
-    "@Wydatex/models": "latest",
     "@angular/animations": "~9.0.6",
     "@angular/cdk": "^9.2.0",
     "@angular/common": "~9.0.6",
