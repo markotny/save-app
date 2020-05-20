@@ -4,13 +4,13 @@ import {BudgetVM, BudgetDetailsVM, BudgetDto} from '@wydatex/models';
 import {Id} from '@shared/types';
 import {crudActionsPublic, ApiModule, crudActionsInternal} from '@shared/state';
 
-export const BudgetActionsPublic = {
+export const BudgetActions = {
   ...crudActionsPublic<BudgetDto, BudgetVM>(ApiModule.Budget),
 
   setActive: createAction('[Budget] Set active', props<{id: Id<Budget>}>())
 };
 
-export const BudgetActions = {
-  ...BudgetActionsPublic,
+export const BudgetActionsAll = {
+  ...BudgetActions,
   ...crudActionsInternal<BudgetVM, BudgetDetailsVM>(ApiModule.Budget)
 };

@@ -2,7 +2,7 @@
 import {createReducer, on, Action} from '@ngrx/store';
 import {EntityAdapter, createEntityAdapter} from '@ngrx/entity';
 import {Budget, BudgetState} from './budgets.model';
-import {BudgetActions} from './budgets.actions';
+import {BudgetActionsAll as BudgetActions} from './budgets.actions';
 import {crudReducers, ApiModule} from '@shared/state';
 
 export const adapter: EntityAdapter<Budget> = createEntityAdapter<Budget>({
