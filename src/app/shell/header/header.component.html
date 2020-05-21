@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column">
   <p-toolbar fxFill>
-    <div class="ui-toolbar-group-left" appFade="gt-xs" showDelay="0.3s" hideDuration="0.1s">
+    <div class="ui-toolbar-group-left" appFade="gt-mob" showDelay="0.3s" hideDuration="0.1s">
       <div class="menuToggle">
         <input type="checkbox" (click)="onToggleSidenav()" binary="true" />
         <span></span>
@@ -9,17 +9,17 @@
       </div>
     </div>
 
-    <div class="budget-select" ngStyle.xs="margin-left: auto">
-      <span fxHide.xs>Budget:</span>
+    <div class="budget-select" ngStyle.mob="margin-left: auto">
+      <span fxHide.mob>Budget:</span>
       <app-dropdown-menu
         [menuItems]="activeBudgetMenuItems$ | async"
         [label]="(activeBudget$ | async)?.name || 'select'"
       ></app-dropdown-menu>
     </div>
 
-    <div class="ui-toolbar-group-right account-menu-button" fxHide.xs>
+    <div class="ui-toolbar-group-right account-menu-button" fxHide.mob>
       <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>
-  <span class="sep" appFade="xs" hideDelay="0.2s" hideDuration="0.1s"></span>
+  <span class="sep" appFade="mob" hideDelay="0.2s" hideDuration="0.1s"></span>
 </div>
