@@ -11,7 +11,6 @@ import {Store} from '@ngrx/store';
 import {DialogService} from 'primeng/dynamicdialog';
 import {BudgetEditComponent} from '@modules/budget';
 import {logValue} from '@core/index';
-import { of } from 'rxjs';
 
 @Injectable()
 export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
@@ -50,13 +49,11 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
           data: {id, item},
           header: 'Edit budget'
         });
-        return of({});
-        // return ref.onClose.pipe(
-        //   logValue('eff'),
-        //   map(res => BudgetActions.edit(res))
-        // );
+        return ref.onClose.pipe(
+          logValue('eff'),
+          map(res => BudgetActions.edit(res))
+        );
       })
-    ),
-    {dispatch: false}
+    )
   );
 }
