@@ -3,7 +3,12 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {mainContentAnimations, sidebarAnimations, SidebarState, headerAnimations, overlayAnimations} from '@shell/shell.animations';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import {map, tap, pluck} from 'rxjs/operators';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {BreakPointRegistry} from '@angular/flex-layout';
+import {Store} from '@ngrx/store';
+import {AppState} from '@core/core.state';
+import {BudgetActions} from '@state/budgets';
+import {CategoryActions} from '@state/categories';
 
 @Component({
   selector: 'app-main-app',
@@ -17,14 +22,17 @@ export class MainAppComponent implements OnInit, OnDestroy {
 
   sidebarStateEnum = SidebarState;
 
-  constructor(@Inject(DOCUMENT) private document, public breakpointObserver: BreakpointObserver) {}
+  constructor(@Inject(DOCUMENT) private document, public breakpointObserver: BreakpointObserver, private registry: BreakPointRegistry, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.injectBackgroundColor();
 
-    const isSmall$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
+    this.store.dispatch(BudgetActions.load());
+    this.store.dispatch(CategoryActions.load());
+
+    const isSmall$ = this.breakpointObserver.observe(this.registry.findByAlias('mob').mediaQuery).pipe(
       pluck('matches'),
-      tap(matches => (matches ? this.sidebarVisible$.next(false) : null))
+      tap(matches => matches && this.sidebarVisible$.next(false))
     );
 
     this.sidebarState$ = combineLatest([isSmall$, this.sidebarVisible$]).pipe(
