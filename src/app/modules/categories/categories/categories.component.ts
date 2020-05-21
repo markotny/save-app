@@ -1,21 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {CategorySelectors} from '@state/categories';
+import {AppState} from '@core/core.state';
+import {Subscription} from 'rxjs';
+import {BudgetSelectors} from '@state/budgets';
+
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
-  cars: Array<any> = [{'vin': 'dsad231ff', 'year': 2012, 'brand': 'VW', 'color': 'Orange'}, {
-    'vin': 'gwregre345',
-    'year': 2011,
-    'brand': 'Audi',
-    'color': 'Black'
-  }];
   cols: any[];
+  subscriptions: Subscription[] = [];
+  allCategories$ = this.store.select(CategorySelectors.all);
+  allCategories = {};
 
-  constructor() {
+
+  constructor(private store: Store<AppState>) {
     this.cols = [
       {field: 'vin', header: 'Vin'},
       {field: 'year', header: 'Year'},
@@ -25,6 +29,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscriptions.push(
+      this.allCategories$.subscribe(o => this.allCategories = o),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
 }

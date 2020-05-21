@@ -1,20 +1,42 @@
-<div class="table-container">
-<p-table [value]="cars" class="categories-table" [scrollable]="true">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Vin</th>
-      <th>Year</th>
-      <th>Brand</th>
-      <th>Color</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-car>
-    <tr>
-      <td>{{car.vin}}</td>
-      <td>{{car.year}}</td>
-      <td>{{car.brand}}</td>
-      <td>{{car.color}}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<h1>Categories</h1>
+<div fxFill fxLayout="row">
+  <div class="table-wrapper" [ngStyle]="{width: '60vw'}">
+    <p-table class="categories-table" [scrollable]="true" scrollHeight="60vh">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name of category</th>
+          <th>Money budgeted</th>
+          <th>Money spent</th>
+          <th [ngStyle]="{width: '10%'}">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-categories>
+        <tr>
+          <td>{{categories.name}}</td>
+          <td>546</td>
+          <td>456456</td>
+          <td [ngStyle]="{width: '10%'}">
+            <i class="pi pi-pencil"></i>
+            <i class="pi pi-trash"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="table-wrapper" [ngStyle]="{width: '22vw'}">
+    <p-table [value]="allCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>List of all categories</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-categories>
+        <tr>
+          <td>{{categories.name}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
 </div>
