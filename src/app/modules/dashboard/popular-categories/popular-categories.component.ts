@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryVM} from '@Wydatex/models';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {CategorySelectors} from '@state/categories';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-popular-categories',
@@ -7,14 +10,12 @@ import {CategoryVM} from '@Wydatex/models';
   styleUrls: ['./popular-categories.component.scss']
 })
 export class PopularCategoriesComponent implements OnInit {
-  models: {category: CategoryVM; categoryExpenses: number; budgetCurrency: string}[] = [];
+  popularCategoryList$ = this.store.select(CategorySelectors.activeBudget).pipe(
+    map(cl => cl.filter(c => c.spent > 0)),
+    map(cl => cl.sort((a, b) => b.spent - a.spent)),
+    map(cl => cl.slice(0, 10))
+  );
+  constructor(private store: Store<AppState>) {}
 
-  constructor() {}
-
-  ngOnInit(): void {
-    const mockCategory: CategoryVM = {name: 'randomname', id: 10};
-    for (let i = 0; i < 50; i = i + 1) {
-      this.models.push({category: mockCategory, categoryExpenses: i, budgetCurrency: 'zl'});
-    }
-  }
+  ngOnInit(): void {}
 }

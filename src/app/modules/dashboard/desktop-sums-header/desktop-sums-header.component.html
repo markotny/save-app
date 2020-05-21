@@ -1,31 +1,39 @@
-<div class="f-vertical">
-  <div class="f-horizontal item-wrapper round">
+<div class="f-vertical" *ngIf="sumsHeader$ | async as sums">
+  <div class="f-horizontal item-wrapper round" *ngIf="currencyLabel$ | async as currencyLabel">
     <div class="total-income f-vertical item-center w-100">
       <div class="header__left"><span>Total Income</span></div>
       <div class="value__left">
-        <span>{{ sums.incomeSum }} {{ currencyLabel }}</span>
+        <span>
+          {{ sums.incomeSum | currency: currencyLabel }}
+        </span>
       </div>
     </div>
     <div class="total-expenses f-vertical item-center w-100">
       <div class="header"><span>Total Expenses</span></div>
       <div class="value">
-        <span>{{ sums.expenseSum }} {{ currencyLabel }}</span>
+        <span>
+          {{ sums.expenseSum | currency: currencyLabel }}
+        </span>
       </div>
     </div>
     <div class="f-vertical item-center w-100">
       <div class="header"><span class="visibility">XD</span></div>
-      <app-circle-chart [height]="'15vw'" [width]="'15vw'" [incomeSum]="sums.incomeSum" [expenseSum]="sums.expenseSum"></app-circle-chart>
+      <app-circle-chart [height]="'15vw'" [width]="'15vw'"></app-circle-chart>
     </div>
     <div class="balance f-vertical item-center w-100">
       <div class="header"><span>Balance</span></div>
       <div class="value">
-        <span>{{ sums.incomeSum - sums.expenseSum }} {{ currencyLabel }}</span>
+        <span>
+          {{ sums.incomeSum - sums.expenseSum | currency: currencyLabel }}
+        </span>
       </div>
     </div>
     <div class="rest-budget f-vertical item-center w-100">
       <div class="header__right"><span>% Remaining Budget</span></div>
       <div class="value__right">
-        <span>{{ (sums.incomeSum / sums.expenseSum) * 100 }} %</span>
+        <span>
+          {{ calculateBudgetPercent(sums) | percent: '1.1-2' }}
+        </span>
       </div>
     </div>
   </div>

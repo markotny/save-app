@@ -1,4 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {activeBudgetSummary} from '@state/selectors';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {BudgetSelectors} from '@state/budgets';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-desktop-sums-header',
@@ -6,9 +11,14 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./desktop-sums-header.component.scss']
 })
 export class DesktopSumsHeaderComponent implements OnInit {
-  @Input() sums: {incomeSum: number; expenseSum: number; balance: number} = {incomeSum: 0, expenseSum: 0, balance: 0};
-  @Input() currencyLabel: string;
-  constructor() {}
+  sumsHeader$ = this.store.select(activeBudgetSummary);
+  currencyLabel$ = this.store.select(BudgetSelectors.active).pipe(map(b => b?.currencySymbol));
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
+
+  calculateBudgetPercent(sums: {incomeSum: number; expenseSum: number; balance: number}): number {
+    const result = Math.round(sums.incomeSum / sums.expenseSum);
+    return isNaN(result) ? 0.0 : result;
+  }
 }

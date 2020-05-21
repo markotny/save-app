@@ -1,4 +1,9 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
+import {AppState} from '@core/core.state';
+import {Store, select} from '@ngrx/store';
+import {activeBudgetSummary} from '@state/selectors';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-circle-chart',
@@ -8,8 +13,31 @@ import {Component, OnInit, Input} from '@angular/core';
 export class CircleChartComponent implements OnInit {
   @Input() width: string;
   @Input() height: string;
-  @Input() incomeSum: number;
-  @Input() expenseSum: number;
+
+  sums$ = this.store.select(activeBudgetSummary);
+
+  data$ = this.store.pipe(
+    select(activeBudgetSummary),
+    map(summary => {
+      return summary.incomeSum !== 0
+        ? {
+            datasets: [
+              {
+                data: [summary.expenseSum, summary.incomeSum],
+                backgroundColor: ['#CF4343', '#5C9D36']
+              }
+            ]
+          }
+        : {
+            datasets: [
+              {
+                data: [summary.expenseSum, 1],
+                backgroundColor: ['#CF4343', '#5C9D36']
+              }
+            ]
+          };
+    })
+  );
 
   calcWidth: string;
   calcHeight: string;
@@ -21,16 +49,7 @@ export class CircleChartComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   chartOptionsMobile: any;
 
-  constructor() {}
-
-  data = {
-    datasets: [
-      {
-        data: [300, 500],
-        backgroundColor: ['#CF4343', '#5C9D36']
-      }
-    ]
-  };
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     const temp = this.width.split('vw');
@@ -53,5 +72,10 @@ export class CircleChartComponent implements OnInit {
     };
     this.chartOptionsMobile = Object.assign({}, this.chartOptions);
     this.chartOptionsMobile.cutoutPercentage = 80;
+  }
+
+  calculateBudgetSpent(sums: {incomeSum: number; expenseSum: number; balance: number}): number {
+    const result = Math.round(sums.incomeSum / sums.expenseSum);
+    return isNaN(result) ? 1.0 : result;
   }
 }

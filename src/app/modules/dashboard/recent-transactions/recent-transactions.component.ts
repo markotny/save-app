@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryVM} from '@Wydatex/models';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {ExpenseSelectors} from '@state/expenses';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recent-transactions',
@@ -7,14 +10,11 @@ import {CategoryVM} from '@Wydatex/models';
   styleUrls: ['./recent-transactions.component.scss']
 })
 export class RecentTransactionsComponent implements OnInit {
-  models: {category: CategoryVM; categoryExpenses: number; budgetCurrency: string}[] = [];
+  recentExpensesList$ = this.store.select(ExpenseSelectors.activeBudget).pipe(
+    map(el => el.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())),
+    map(el => el.slice(0, 10))
+  );
+  constructor(private store: Store<AppState>) {}
 
-  constructor() {}
-
-  ngOnInit(): void {
-    const mockCategory: CategoryVM = {name: 'randomname', id: 10};
-    for (let i = 0; i < 50; i = i + 1) {
-      this.models.push({category: mockCategory, categoryExpenses: i, budgetCurrency: 'zl'});
-    }
-  }
+  ngOnInit(): void {}
 }

@@ -1,5 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {CategoryVM} from '@Wydatex/models';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {BudgetSelectors} from '@state/budgets';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-table-content',
@@ -7,9 +10,10 @@ import {CategoryVM} from '@Wydatex/models';
   styleUrls: ['./dashboard-table-content.component.scss']
 })
 export class DashboardTableContentComponent implements OnInit {
-  @Input() model: {category: CategoryVM; categoryExpenses: number; budgetCurrency: string};
-
-  constructor() {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() model: any;
+  currencyLabel$ = this.store.select(BudgetSelectors.active).pipe(map(b => b?.currencySymbol));
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 }
