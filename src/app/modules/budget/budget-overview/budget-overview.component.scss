@@ -1,0 +1,97 @@
+@import '~variables.scss';
+
+.wrapper {
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scroll-padding: 10px;
+}
+
+.budget-details {
+  min-height: 0;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+::ng-deep .ui-corner-all {
+  border-radius: 5px !important;
+}
+
+@mixin info-card($color) {
+  &.ui-card {
+    height: 50px;
+    background-color: $color;
+
+    .ui-card-title {
+      font: normal 17px 'Montserrat-Regular';
+      color: $white;
+    }
+
+    .ui-card-body {
+      display: flex;
+    }
+  }
+}
+
+::ng-deep .info-card {
+  height: 50px;
+
+  &:first-child {
+    scroll-snap-align: start;
+  }
+
+  &-green {
+    @include info-card($green);
+  }
+  &-blue {
+    @include info-card($blue);
+  }
+  &-red {
+    @include info-card($red);
+  }
+}
+
+@mixin card-header() {
+  &.ui-card {
+    .ui-card-title {
+      background-color: $main-green;
+      margin: -14px -14px 0;
+      padding-left: 14px;
+      border-radius: 5px 5px 0 0;
+      height: 53px;
+
+      font: normal 25px/53px 'Montserrat-Regular';
+      color: $white;
+    }
+  }
+}
+
+::ng-deep .chart-card {
+  height: 100%;
+  scroll-snap-align: start;
+
+  &-style {
+    @include card-header();
+  }
+}
+
+::ng-deep .list-card {
+  min-height: 250px;
+  scroll-snap-align: end;
+
+  &-style {
+    height: 100%;
+    @include card-header();
+    &.ui-card {
+      .ui-card-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .ui-card-content {
+          flex: 0 1 100%;
+          min-height: 0;
+        }
+      }
+    }
+  }
+}

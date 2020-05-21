@@ -1,0 +1,57 @@
+@import '~variables.scss';
+
+.wrapper {
+  height: 100%;
+  padding-top: 10px;
+  overflow-y: auto;
+}
+
+.category {
+  padding-bottom: 5px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    border-bottom-width: 1px;
+    border-bottom-style: groove;
+  }
+}
+
+.category-controls {
+  font-family: 'Roboto-Medium';
+  font-size: 25px;
+  margin-bottom: 5px;
+
+  .edit-btn {
+    margin-left: auto;
+  }
+}
+
+.expenses {
+  font-family: 'Roboto-Regular';
+  font-size: 15px;
+
+  span {
+    width: 100px;
+  }
+}
+
+::ng-deep .budget-progress {
+  .ui-corner-all {
+    border-radius: 5px;
+  }
+  .ui-progressbar {
+    height: 10px;
+    background-color: $dark-grey;
+
+    .ui-progressbar-value {
+      background-color: $green;
+    }
+  }
+}
+
+::ng-deep .budget-exceeded {
+  .ui-progressbar {
+    .ui-progressbar-value {
+      background-color: $red;
+    }
+  }
+}
