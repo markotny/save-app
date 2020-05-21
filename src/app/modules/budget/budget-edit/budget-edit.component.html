@@ -1,1 +1,12 @@
-<p>budget-edit works!</p>
+<app-modal-wrapper>
+  <form [formGroup]="budgetForm">
+    <div class="ui-float-label">
+      <input id="name-input" type="text" pInputText formControlName="name" required autofocus />
+      <label for="name-input">Name</label>
+    </div>
+
+    <button (click)="save()">
+      Save
+    </button>
+  </form>
+</app-modal-wrapper>

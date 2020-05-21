@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {actionOidcLogin} from '@core/core.module';
+import {actionOidcLogin} from '@core/index';
 
 @Component({
   selector: 'app-home-header',

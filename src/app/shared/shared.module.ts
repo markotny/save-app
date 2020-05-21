@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -12,13 +12,16 @@ import {ToastModule} from 'primeng/toast';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CardModule} from 'primeng/card';
 import {ChartModule} from 'primeng/chart';
+import {DialogModule} from 'primeng/dialog';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
 import {MobShowHideDirective, MobStyleDirective, MobClassDirective} from './layout/directives/mob.directives';
 import {GtMobShowHideDirective, GtMobClassDirective, GtMobStyleDirective} from './layout/directives/gt-mob.directives';
 import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
+import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     MobStyleDirective,
     GtMobShowHideDirective,
     GtMobClassDirective,
-    GtMobStyleDirective
+    GtMobStyleDirective,
+    ModalWrapperComponent
   ],
   imports: [
     // angular
@@ -51,10 +55,13 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     CheckboxModule,
     CardModule,
     ProgressBarModule,
-    ChartModule
+    ChartModule,
+    DialogModule,
+    DynamicDialogModule
   ],
   exports: [
     DropdownMenuComponent,
+    ModalWrapperComponent,
     VarDirective,
     FadeDirective,
     MobShowHideDirective,
@@ -67,6 +74,7 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     // angular
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     // ngx
@@ -82,7 +90,9 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     CheckboxModule,
     CardModule,
     ProgressBarModule,
-    ChartModule
+    ChartModule,
+    DialogModule,
+    DynamicDialogModule
   ],
   providers: [MobileBreakPointsProvider]
 })

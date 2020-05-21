@@ -14,18 +14,18 @@ import {environment} from '@env/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {NgOidcClientModule} from 'ng-oidc-client';
 import {AppErrorHandler} from './error-handler/app-error-handler.service';
-import {LocalStorageService} from './local-storage/local-storage.service';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageService} from 'primeng/api';
-import {logValue} from './rxjs/log-value';
 import {CustomSerializer} from './router/custom-serializer';
-import {login as actionOidcLogin, register as actionOidcRegister} from './auth/auth.actions';
-import {BudgetEffects, CategoryEffects, ExpenseEffects, IncomeEffects} from '@state/data.state';
+import {BudgetEffects} from '@state/budgets';
+import {CategoryEffects} from '@state/categories';
+import {ExpenseEffects} from '@state/expenses';
+import {IncomeEffects} from '@state/incomes';
+import {DialogService} from 'primeng/dynamicdialog';
 
-export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcLogin, actionOidcRegister};
 
 @NgModule({
   declarations: [AuthCallbackComponent],
@@ -66,6 +66,7 @@ export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionO
   ],
   providers: [
     MessageService,
+    DialogService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: ErrorHandler, useClass: AppErrorHandler}

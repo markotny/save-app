@@ -4,6 +4,9 @@ import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
 import {accountMenu} from '@shell/account-menu.model';
 import {map, share} from 'rxjs/operators';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {BudgetActions} from '@state/budgets';
 
 @Component({
   selector: 'app-sidenav',
@@ -35,6 +38,19 @@ export class SidenavComponent implements OnInit {
           label: 'Add budget',
           icon: 'pi plus-icon',
           command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Edit current',
+          icon: 'pi plus-pencil-icon',
+          command: () => {
+            this.store.dispatch(BudgetActions.editActiveDialog());
+            this.onClickSidenav();
+          }
+        },
+        {
+          label: 'Remove current',
+          icon: 'pi plus-trash-icon',
+          command: () => this.onClickSidenav()
         }
       ]
     },
@@ -62,7 +78,7 @@ export class SidenavComponent implements OnInit {
     }
   ];
 
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private oidcFacade: OidcFacade, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.userName$ = this.oidcFacade.identity$.pipe(

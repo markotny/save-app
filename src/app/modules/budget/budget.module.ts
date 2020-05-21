@@ -3,21 +3,12 @@ import {CommonModule} from '@angular/common';
 import {BudgetRoutingModule} from './budget-routing.module';
 import {SharedModule} from '@shared/shared.module';
 import {BudgetOverviewComponent} from './budget-overview/budget-overview.component';
-import {BudgetAddComponent} from './budget-add/budget-add.component';
-import {BudgetEditComponent} from './budget-edit/budget-edit.component';
-import {BudgetRemoveComponent} from './budget-remove/budget-remove.component';
 import {BudgetChartComponent} from './budget-chart/budget-chart.component';
 import {BudgetCategoriesComponent} from './budget-categories/budget-categories.component';
+import {BudgetEditComponent} from './budget-edit/budget-edit.component';
 
 @NgModule({
-  declarations: [
-    BudgetOverviewComponent,
-    BudgetAddComponent,
-    BudgetEditComponent,
-    BudgetRemoveComponent,
-    BudgetChartComponent,
-    BudgetCategoriesComponent
-  ],
+  declarations: [BudgetOverviewComponent, BudgetChartComponent, BudgetCategoriesComponent, BudgetEditComponent],
   imports: [CommonModule, SharedModule, BudgetRoutingModule]
 })
 export class BudgetModule {}

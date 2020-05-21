@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Store, select} from '@ngrx/store';
-import {selectTheme} from '@core/core.module';
+import {selectTheme} from '@core/index';
 
 @Component({
   selector: 'app-root',

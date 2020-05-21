@@ -74,10 +74,12 @@
 
 ::ng-deep .chart-card {
   height: 100%;
+  width: 100%;
   scroll-snap-align: start;
 
   &-style {
     height: 100%;
+    width: 100%;
     @include card-header();
     &.ui-card {
       .ui-card-body {
