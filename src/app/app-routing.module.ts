@@ -18,6 +18,10 @@ const appRoutes: Routes = [
   {
     path: 'budget',
     loadChildren: () => import('@modules/budget/budget.module').then(m => m.BudgetModule)
+  },
+  {
+    path: 'expense',
+    loadChildren: () => import('@modules/expense/expense.module').then(m => m.ExpenseModule)
   }
 ];
 

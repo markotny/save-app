@@ -59,6 +59,23 @@ export class SidenavComponent implements OnInit {
       label: 'Incomes',
       icon: 'pi income-icon',
       command: () => this.onClickSidenav()
+    },
+    {
+      label: 'Expenses',
+      icon: 'pi expenses-icon',
+      items: [
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/expense'],
+          command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Add expense',
+          icon: 'pi plus-icon',
+          command: () => this.onClickSidenav()
+        }
+      ]
     }
   ];
 

@@ -84,7 +84,7 @@ a:visited {
   justify-content: space-between;
 }
 
-@for $i from 1 to 30 {
+@for $i from 1 to 70 {
   .m-b-#{$i} {
     margin-bottom: #{$i}px !important;
   }

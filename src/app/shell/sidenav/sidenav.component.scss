@@ -74,6 +74,12 @@
   height: 27px !important;
 }
 
+:host ::ng-deep .expenses-icon {
+  background: url('assets/icons/expense.svg') no-repeat;
+  width: 36px !important;
+  height: 37px !important;
+}
+
 // custom css for sidemenu
 :host ::ng-deep .ui-panelmenu-panel {
   background-color: $main-green;
