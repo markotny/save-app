@@ -21,13 +21,20 @@
     height: 50px;
     background-color: $color;
 
-    .ui-card-title {
-      font: normal 17px 'Montserrat-Regular';
-      color: $white;
-    }
-
     .ui-card-body {
       display: flex;
+
+      .ui-card-title {
+        font: normal 17px 'Montserrat-Regular';
+        color: $white;
+        margin: 0;
+      }
+
+      .ui-card-content {
+        font: normal 17px 'Roboto-Regular';
+        color: $white;
+        margin: auto;
+      }
     }
   }
 }
@@ -70,12 +77,25 @@
   scroll-snap-align: start;
 
   &-style {
+    height: 100%;
     @include card-header();
+    &.ui-card {
+      .ui-card-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .ui-card-content {
+          flex: 0 1 100%;
+          min-height: 0;
+        }
+      }
+    }
   }
 }
 
 ::ng-deep .list-card {
-  min-height: 250px;
+  min-height: 400px;
   scroll-snap-align: end;
 
   &-style {

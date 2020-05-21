@@ -11,6 +11,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
@@ -49,7 +50,8 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     ToastModule,
     CheckboxModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChartModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -79,7 +81,8 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     ToastModule,
     CheckboxModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChartModule
   ],
   providers: [MobileBreakPointsProvider]
 })
