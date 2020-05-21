@@ -8,6 +8,8 @@ import {Component, OnInit, Input} from '@angular/core';
 export class CircleChartComponent implements OnInit {
   @Input() width: string;
   @Input() height: string;
+  @Input() incomeSum: number;
+  @Input() expenseSum: number;
 
   calcWidth: string;
   calcHeight: string;
@@ -24,7 +26,7 @@ export class CircleChartComponent implements OnInit {
   data = {
     datasets: [
       {
-        data: [300, 50],
+        data: [300, 500],
         backgroundColor: ['#CF4343', '#5C9D36']
       }
     ]

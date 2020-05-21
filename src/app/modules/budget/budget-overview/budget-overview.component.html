@@ -5,14 +5,14 @@
     fxFlex="noshrink"
     fxFlex.gt-md="nogrow"
     gdAreas.gt-md="income balance expense | chart chart list"
-    gdAreas.md="income balance expense | chart chart chart | list list list"
-    gdAreas.lt-md="income | balance | expense | chart | list"
-    gdColumns.gt-sm="1fr 1fr 1fr"
+    gdAreas.gt-xs="income balance expense | chart chart chart | list list list"
+    gdAreas.xs="income | balance | expense | chart | list"
+    gdColumns.gt-xs="1fr 1fr 1fr"
     gdRows.gt-md="auto 1fr"
     gdGap="10px"
   >
     <ng-container *ngIf="summary$ | async as summary">
-      <p-card gdArea="income" header="Disposable Income:" class="info-card" styleClass="info-card-green">
+      <p-card gdArea="income" header="Income:" class="info-card" styleClass="info-card-green">
         {{ summary.incomeSum }} {{ activeBudget.currencySymbol }}
       </p-card>
       <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
@@ -27,26 +27,21 @@
       gdArea="chart"
       class="chart-card"
       styleClass="chart-card-style"
-      header="Wydatków w ciągu dnia/miesiąca"
-      [ngStyle.xs]="{height: '60vw'}"
-      [ngStyle.lt-lg]="{height: '40vw'}"
+      header="Expenses"
+      [ngStyle.mob]="{height: '60vw'}"
+      [ngStyle.md]="{height: '60vw'}"
     >
-      <div style="width: 100%; height: 100%;">
-        <div *ngFor="let expense of expenses$ | async" style="height: 100px;">
-          {{ expense | json }}
-        </div>
-      </div>
+      <app-budget-chart></app-budget-chart>
     </p-card>
     <p-card
       gdArea="list"
       class="list-card"
+      styleClass="list-card-style"
       header="Categories"
-      [ngStyle.xs]="{'max-height': 'calc(100vh - 60vw - 80px)'}"
-      [ngStyle.lt-lg]="{'max-height': 'calc(100vh - 40vw - 116px)'}"
+      [ngStyle.mob]="{'max-height': 'calc(100vh - 60vw - 80px)'}"
+      [ngStyle.md]="{'max-height': 'calc(100vh - 60vw - 116px)'}"
     >
-      <div *ngFor="let category of categories$ | async" style="height: 100px;">
-        {{ category | json }}
-      </div>
+      <app-budget-categories></app-budget-categories>
     </p-card>
   </div>
 </div>

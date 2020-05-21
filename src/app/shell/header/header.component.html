@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="budget-select" ngStyle.xs="margin-left: auto">
+    <div class="budget-select" ngStyle.mob="margin-left: auto">
       <span fxHide.mob>Budget:</span>
       <app-dropdown-menu
         [menuItems]="activeBudgetMenuItems$ | async"
@@ -17,7 +17,7 @@
       ></app-dropdown-menu>
     </div>
 
-    <div class="ui-toolbar-group-right account-menu-button" fxHide.xs>
+    <div class="ui-toolbar-group-right account-menu-button" fxHide.mob>
       <app-dropdown-menu [menuItems]="accountMenuItems" [label]="userName$ | async"></app-dropdown-menu>
     </div>
   </p-toolbar>

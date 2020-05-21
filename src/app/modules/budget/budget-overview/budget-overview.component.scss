@@ -5,10 +5,15 @@
   scroll-snap-type: y proximity;
   scroll-padding: 10px;
 }
+
 .budget-details {
   min-height: 0;
   padding-bottom: 10px;
   margin-top: 10px;
+}
+
+::ng-deep .ui-corner-all {
+  border-radius: 5px !important;
 }
 
 @mixin info-card($color) {
@@ -18,6 +23,18 @@
 
     .ui-card-body {
       display: flex;
+
+      .ui-card-title {
+        font: normal 17px 'Montserrat-Regular';
+        color: $white;
+        margin: 0;
+      }
+
+      .ui-card-content {
+        font: normal 17px 'Roboto-Regular';
+        color: $white;
+        margin: auto;
+      }
     }
   }
 }
@@ -40,17 +57,61 @@
   }
 }
 
-.chart-card {
-  height: 100%;
-  scroll-snap-align: start;
+@mixin card-header() {
+  &.ui-card {
+    .ui-card-title {
+      background-color: $main-green;
+      margin: -14px -14px 0;
+      padding-left: 14px;
+      border-radius: 5px 5px 0 0;
+      height: 53px;
 
-  &-style {
-    &.ui-card {
-      height: 100%;
+      font: normal 25px/53px 'Montserrat-Regular';
+      color: $white;
     }
   }
 }
 
-.list-card {
-  overflow-y: auto;
+::ng-deep .chart-card {
+  height: 100%;
+  scroll-snap-align: start;
+
+  &-style {
+    height: 100%;
+    @include card-header();
+    &.ui-card {
+      .ui-card-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .ui-card-content {
+          flex: 0 1 100%;
+          min-height: 0;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .list-card {
+  min-height: 400px;
+  scroll-snap-align: end;
+
+  &-style {
+    height: 100%;
+    @include card-header();
+    &.ui-card {
+      .ui-card-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .ui-card-content {
+          flex: 0 1 100%;
+          min-height: 0;
+        }
+      }
+    }
+  }
 }
