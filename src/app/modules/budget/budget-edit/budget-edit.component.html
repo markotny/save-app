@@ -1,20 +1,22 @@
-<app-modal-wrapper #wrapper type="edit" [form]="budgetForm">
-  <form id="edit-form" [formGroup]="budgetForm" (ngSubmit)="wrapper.save()">
-    <div class="form-input">
-      <label for="name-input">Name</label>
-      <input id="name-input" type="text" pInputText formControlName="name" required autofocus />
-    </div>
-    <div class="form-input">
-      <label for="start-date-input">Start date</label>
-      <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" formControlName="startDate" required></p-calendar>
-    </div>
-    <div class="form-input">
-      <label for="end-date-input">End date</label>
-      <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" formControlName="endDate" required></p-calendar>
-    </div>
-    <div class="form-input">
-      <label for="budgeted">Amount of budgeted money</label>
-      <input id="budgeted" type="text" pInputText />
-    </div>
-  </form>
+<app-modal-wrapper type="edit">
+  <div class="form-input">
+    <label for="name-input">Name</label>
+    <input id="name-input" type="text" pInputText name="name" ngModel required autofocus />
+  </div>
+  <div class="form-input">
+    <label for="start-date-input">Start date</label>
+    <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" name="startDate" ngModel required></p-calendar>
+  </div>
+  <div class="form-input">
+    <label for="end-date-input">End date</label>
+    <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" name="endDate" ngModel required></p-calendar>
+  </div>
+  <div class="form-input">
+    <label for="budgeted">Amount of budgeted money</label>
+    <input id="budgeted" type="text" pInputText name="budgetCategories" ngModel required />
+  </div>
+  <div class="form-input">
+    <label for="budgeted">Amount of budgeted money</label>
+    <input id="budgeted" type="text" pInputText name="currencySymbol" ngModel required />
+  </div>
 </app-modal-wrapper>
