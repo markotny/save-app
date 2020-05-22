@@ -18,6 +18,9 @@ import {BudgetCategoriesComponent} from './budget-categories/budget-categories.c
     BudgetChartComponent,
     BudgetCategoriesComponent
   ],
+  exports: [
+    BudgetCategoriesComponent
+  ],
   imports: [CommonModule, SharedModule, BudgetRoutingModule]
 })
 export class BudgetModule {}

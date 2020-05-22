@@ -1,11 +1,10 @@
 @import '~variables.scss';
 
 
-
 :host .categories-table {
   ::ng-deep .ui-table {
 
-    .ui-table-scrollable-header{
+    .ui-table-scrollable-header {
       width: 100%;
     }
 
@@ -30,8 +29,49 @@
   }
 
 }
-.table-wrapper{
+
+.table-wrapper {
   margin: 10px;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.mobile-row-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  margin: 10px;
+}
+
+.name-col {
+  font-family: Roboto-Medium, serif;
+  font-size: 20px;
+  text-align: left;
+  vertical-align: top;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.difference-col {
+  font-family: Roboto, serif;
+  font-size: 15px;
+  text-align: right;
+
+  width: 20%;
+}
+
+.buttons-col {
+  width: 30%;
+}
+
+.controls {
+  font-family: 'Roboto-Medium';
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.title-header {
+  font-family: Montserrat, serif;
 }

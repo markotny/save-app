@@ -1,42 +1,42 @@
-<h1>Categories</h1>
-<div fxFill fxLayout="row">
-  <div class="table-wrapper" [ngStyle]="{width: '60vw'}">
-    <p-table class="categories-table" [scrollable]="true" scrollHeight="60vh">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Name of category</th>
-          <th>Money budgeted</th>
-          <th>Money spent</th>
-          <th [ngStyle]="{width: '10%'}">Action</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-categories>
-        <tr>
-          <td>{{categories.name}}</td>
-          <td>546</td>
-          <td>456456</td>
-          <td [ngStyle]="{width: '10%'}">
-            <i class="pi pi-pencil"></i>
-            <i class="pi pi-trash"></i>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <div class="table-wrapper" [ngStyle]="{width: '22vw'}">
+<h1 class="title-header">Categories</h1>
+<div fxFill fxLayout="row" fxLayout.xs="column">
+  <div class="table-wrapper" [ngStyle]="{width: '30%'}" [ngStyle.xs]="{width: '98%'}">
     <p-table [value]="allCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh">
       <ng-template pTemplate="header">
         <tr>
           <th>List of all categories</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-categories>
+      <ng-template pTemplate="body" let-category>
         <tr>
-          <td>{{categories.name}}</td>
+          <td>{{category.name}}</td>
         </tr>
       </ng-template>
     </p-table>
   </div>
-
-
+  <div class="table-wrapper" [ngStyle]="{width: '70%'}" [ngStyle.xs]="{width: '98%'}">
+    <p-table [value]="activeCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+             fxShow.xs="false">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name of category</th>
+          <th>Money budgeted</th>
+          <th>Money spent</th>
+          <th [ngStyle]="{width: '20%'}">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{category.name}}</td>
+          <td>{{category.moneyBudgeted}}</td>
+          <td>{{category.spent}}</td>
+          <td [ngStyle]="{width: '20%'}" class="controls">
+            <a class="pi pi-pencil"></a>
+            <a class="pi pi-trash"></a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <app-budget-categories fxShow.xs="true" fxShow="false"></app-budget-categories>
+  </div>
 </div>

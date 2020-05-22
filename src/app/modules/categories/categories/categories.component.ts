@@ -4,6 +4,10 @@ import {CategorySelectors} from '@state/categories';
 import {AppState} from '@core/core.state';
 import {Subscription} from 'rxjs';
 import {BudgetSelectors} from '@state/budgets';
+import {map} from 'rxjs/operators';
+import {BudgetCategoryVM, CategoryVM} from '@wydatex/models';
+import {logValue} from '@core/core.module';
+import {BudgetVM} from '@wydatex/models/index';
 
 
 @Component({
@@ -13,29 +17,30 @@ import {BudgetSelectors} from '@state/budgets';
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
 
-  cols: any[];
   subscriptions: Subscription[] = [];
   allCategories$ = this.store.select(CategorySelectors.all);
-  allCategories = {};
-
+  allCategories: (CategoryVM)[];
+  activeCategories$ = this.store.select(CategorySelectors.activeBudget);
+  activeCategories = {};
+  activeBudget$ = this.store.select(BudgetSelectors.active);
+  activeBudget: (BudgetVM);
 
   constructor(private store: Store<AppState>) {
-    this.cols = [
-      {field: 'vin', header: 'Vin'},
-      {field: 'year', header: 'Year'},
-      {field: 'brand', header: 'Brand'},
-      {field: 'color', header: 'Color'}
-    ];
   }
+
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.allCategories$.subscribe(o => this.allCategories = o),
+      this.activeCategories$.subscribe(o => this.activeCategories = o),
+      this.activeBudget$.subscribe(o => this.activeBudget = o)
     );
+
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
+
 
 }
