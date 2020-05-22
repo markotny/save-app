@@ -22,7 +22,12 @@ export class MainAppComponent implements OnInit, OnDestroy {
 
   sidebarStateEnum = SidebarState;
 
-  constructor(@Inject(DOCUMENT) private document, public breakpointObserver: BreakpointObserver, private registry: BreakPointRegistry, private store: Store<AppState>) {}
+  constructor(
+    @Inject(DOCUMENT) private document,
+    public breakpointObserver: BreakpointObserver,
+    private registry: BreakPointRegistry,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit() {
     this.injectBackgroundColor();

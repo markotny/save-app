@@ -8,7 +8,8 @@ export const crudActionsDialog = <Model extends ModelBase>(module: ApiModule) =>
   return {
     addDialog: createAction(`[${name}] Add dialog`),
     editDialog: createAction(`[${name}] Edit dialog`, props<{item: Model}>()),
-    removeDialog: createAction(`[${name}] Remove dialog`, props<{id: Id<Model>}>())
+    removeDialog: createAction(`[${name}] Remove dialog`, props<{id: Id<Model>}>()),
+    dialogCancel: createAction(`[${name}] Dialog cancel`)
   };
 };
 

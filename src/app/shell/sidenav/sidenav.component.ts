@@ -37,11 +37,14 @@ export class SidenavComponent implements OnInit {
         {
           label: 'Add budget',
           icon: 'pi plus-icon',
-          command: () => this.onClickSidenav()
+          command: () => {
+            this.store.dispatch(BudgetActions.addDialog());
+            this.onClickSidenav();
+          }
         },
         {
           label: 'Edit current',
-          icon: 'pi plus-pencil-icon',
+          icon: 'pi edit-icon',
           command: () => {
             this.store.dispatch(BudgetActions.editActiveDialog());
             this.onClickSidenav();
@@ -49,8 +52,11 @@ export class SidenavComponent implements OnInit {
         },
         {
           label: 'Remove current',
-          icon: 'pi plus-trash-icon',
-          command: () => this.onClickSidenav()
+          icon: 'pi pi-trash',
+          command: () => {
+            this.store.dispatch(BudgetActions.removeActiveDialog());
+            this.onClickSidenav();
+          }
         }
       ]
     },

@@ -15,6 +15,8 @@ import {ChartModule} from 'primeng/chart';
 import {DialogModule} from 'primeng/dialog';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -22,6 +24,7 @@ import {MobShowHideDirective, MobStyleDirective, MobClassDirective} from './layo
 import {GtMobShowHideDirective, GtMobClassDirective, GtMobStyleDirective} from './layout/directives/gt-mob.directives';
 import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
 import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.component';
+import {ModalRemoveComponent} from './components/modal-remove/modal-remove.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,14 @@ import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.co
     GtMobShowHideDirective,
     GtMobClassDirective,
     GtMobStyleDirective,
-    ModalWrapperComponent
+    ModalWrapperComponent,
+    ModalRemoveComponent
   ],
   imports: [
     // angular
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     // ngx
@@ -57,7 +62,9 @@ import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.co
     ProgressBarModule,
     ChartModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    InputTextModule,
+    CalendarModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -92,7 +99,9 @@ import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.co
     ProgressBarModule,
     ChartModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    InputTextModule,
+    CalendarModule
   ],
   providers: [MobileBreakPointsProvider]
 })

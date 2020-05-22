@@ -1,5 +1,9 @@
-<div class="wrapper">
-	<div>przed</div>
-	<ng-content></ng-content>
-	<button>buton</button>
-</div>
+<ng-container>
+  <ng-content></ng-content>
+
+  <div class="footer">
+    <button pButton type="button" (click)="close()" label="Cancel" class="ui-button-secondary"></button>
+    <button *ngIf="type !== 'remove'" pButton type="submit" form="edit-form" label="Save" class="ui-button-success"></button>
+    <button *ngIf="type === 'remove'" pButton (click)="confirm()" label="Delete" class="ui-button-danger"></button>
+  </div>
+</ng-container>

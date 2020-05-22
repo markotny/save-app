@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {BudgetService} from './budgets.service';
 import {BudgetDto, BudgetVM} from '@wydatex/models';
 import {CrudEffects} from '@shared/state';
 import {BudgetActionsAll as BudgetActions} from './budgets.actions';
-import {map, withLatestFrom, exhaustMap, switchMap} from 'rxjs/operators';
+import {map, withLatestFrom, exhaustMap, first} from 'rxjs/operators';
 import * as BudgetSelectors from './budgets.selectors';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
 import {DialogService} from 'primeng/dynamicdialog';
 import {BudgetEditComponent} from '@modules/budget';
-import {logValue} from '@core/index';
+import {ModalRemoveComponent} from '@shared/components';
 
 @Injectable()
 export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
@@ -41,19 +42,60 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
     )
   );
 
+  removeActive$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BudgetActions.removeActiveDialog),
+      withLatestFrom(this.store.select(BudgetSelectors.activeId)),
+      map(([, id]) => BudgetActions.removeDialog({id}))
+    )
+  );
+
+  add$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BudgetActions.addDialog),
+      exhaustMap(() =>
+        this.dialogService
+          .open(BudgetEditComponent, {
+            header: 'Add budget'
+          })
+          .onClose.pipe(
+            first(),
+            map((item: BudgetDto) => (item ? BudgetActions.add(item) : BudgetActions.dialogCancel()))
+          )
+      )
+    )
+  );
+
   edit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.editDialog),
-      switchMap(({item: {id, isActive, unsaved, ...item}}) => {
-        const ref = this.dialogService.open(BudgetEditComponent, {
-          data: {id, item},
-          header: 'Edit budget'
-        });
-        return ref.onClose.pipe(
-          logValue('eff'),
-          map(res => BudgetActions.edit(res))
-        );
-      })
+      exhaustMap(({item: {id, isActive, unsaved, startDate, endDate, ...value}}) =>
+        this.dialogService
+          .open(BudgetEditComponent, {
+            data: {value: {...value, startDate: new Date(startDate), endDate: new Date(endDate)}},
+            header: 'Edit budget'
+          })
+          .onClose.pipe(
+            first(),
+            map((item: BudgetDto) => (item ? BudgetActions.edit({id, item}) : BudgetActions.dialogCancel()))
+          )
+      )
+    )
+  );
+
+  remove$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BudgetActions.removeDialog),
+      exhaustMap(({id}) =>
+        this.dialogService
+          .open(ModalRemoveComponent, {
+            data: {prompt: 'Delete this budget?'}
+          })
+          .onClose.pipe(
+            first(),
+            map(confirm => (confirm ? BudgetActions.remove({id}) : BudgetActions.dialogCancel()))
+          )
+      )
     )
   );
 }

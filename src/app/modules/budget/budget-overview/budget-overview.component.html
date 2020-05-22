@@ -28,8 +28,7 @@
       class="chart-card"
       styleClass="chart-card-style"
       header="Expenses"
-      [ngStyle.mob]="{height: '60vw'}"
-      [ngStyle.md]="{height: '60vw'}"
+      [ngStyle.lt-lg]="{height: '60vw'}"
     >
       <app-budget-chart></app-budget-chart>
     </p-card>
@@ -38,8 +37,6 @@
       class="list-card"
       styleClass="list-card-style"
       header="Categories"
-      [ngStyle.mob]="{'max-height': 'calc(100vh - 60vw - 80px)'}"
-      [ngStyle.md]="{'max-height': 'calc(100vh - 60vw - 116px)'}"
     >
       <app-budget-categories></app-budget-categories>
     </p-card>

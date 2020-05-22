@@ -98,7 +98,7 @@
 
 ::ng-deep .list-card {
   min-height: 400px;
-  scroll-snap-align: end;
+  scroll-snap-align: start;
 
   &-style {
     height: 100%;

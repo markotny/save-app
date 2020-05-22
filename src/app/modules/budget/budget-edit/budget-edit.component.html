@@ -1,12 +1,20 @@
-<app-modal-wrapper>
-  <form [formGroup]="budgetForm">
-    <div class="ui-float-label">
-      <input id="name-input" type="text" pInputText formControlName="name" required autofocus />
+<app-modal-wrapper #wrapper type="edit" [form]="budgetForm">
+  <form id="edit-form" [formGroup]="budgetForm" (ngSubmit)="wrapper.save()">
+    <div class="form-input">
       <label for="name-input">Name</label>
+      <input id="name-input" type="text" pInputText formControlName="name" required autofocus />
     </div>
-
-    <button (click)="save()">
-      Save
-    </button>
+    <div class="form-input">
+      <label for="start-date-input">Start date</label>
+      <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" formControlName="startDate" required></p-calendar>
+    </div>
+    <div class="form-input">
+      <label for="end-date-input">End date</label>
+      <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" formControlName="endDate" required></p-calendar>
+    </div>
+    <div class="form-input">
+      <label for="budgeted">Amount of budgeted money</label>
+      <input id="budgeted" type="text" pInputText />
+    </div>
   </form>
 </app-modal-wrapper>
