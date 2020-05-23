@@ -1,6 +1,4 @@
-import {AuthGuard} from './auth/auth.guard';
-import {AppState, reducers, metaReducers} from './core.state';
-import {selectTheme} from './settings/settings.selectors';
+import {reducers, metaReducers} from './core.state';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {TokenInterceptor} from './http-interceptors/token.interceptor';
@@ -25,7 +23,7 @@ import {CategoryEffects} from '@state/categories';
 import {ExpenseEffects} from '@state/expenses';
 import {IncomeEffects} from '@state/incomes';
 import {DialogService} from 'primeng/dynamicdialog';
-
+import {DateConverterInterceptor} from './http-interceptors/date-converter.interceptor';
 
 @NgModule({
   declarations: [AuthCallbackComponent],
@@ -69,6 +67,7 @@ import {DialogService} from 'primeng/dynamicdialog';
     DialogService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: DateConverterInterceptor, multi: true},
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   exports: [AuthCallbackComponent, HttpClientModule]

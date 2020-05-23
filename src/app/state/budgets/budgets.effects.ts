@@ -69,10 +69,10 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
   edit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.editDialog),
-      exhaustMap(({item: {id, isActive, unsaved, startDate, endDate, ...value}}) =>
+      exhaustMap(({item: {id, isActive, unsaved, ...value}}) =>
         this.dialogService
           .open(BudgetEditComponent, {
-            data: {value: {...value, startDate: new Date(startDate), endDate: new Date(endDate)}},
+            data: {value},
             header: 'Edit budget'
           })
           .onClose.pipe(
