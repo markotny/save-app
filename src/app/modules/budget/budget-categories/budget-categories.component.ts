@@ -11,7 +11,7 @@ import {pluck, share, map} from 'rxjs/operators';
   styleUrls: ['./budget-categories.component.scss']
 })
 export class BudgetCategoriesComponent implements OnInit {
-  categories$ = this.store.select(CategorySelectors.activeBudget).pipe(map(c => Array(20).fill({...c[0]})));
+  categories$ = this.store.select(CategorySelectors.activeBudgetSums);
 
   currency$ = this.store.pipe(select(BudgetSelectors.active), pluck('currencySymbol'), share());
 

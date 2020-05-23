@@ -63,8 +63,13 @@ export class ModalWrapperComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit(editForm: NgForm) {
-    if (editForm.valid) {
+    if (editForm.valid || this.validate(editForm)) {
       this.ref.close(editForm.value);
     }
+  }
+
+  private validate(form: NgForm) {
+    Object.values(form.controls).forEach(c => c.updateValueAndValidity());
+    return form.valid;
   }
 }

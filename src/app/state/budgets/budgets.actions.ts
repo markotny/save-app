@@ -1,12 +1,14 @@
 import {createAction, props} from '@ngrx/store';
 import {Budget} from './budgets.model';
 import {BudgetVM, BudgetDetailsVM, BudgetDto} from '@wydatex/models';
-import {Id} from '@shared/types';
+import {Id, randomId} from '@shared/types';
 import {crudActionsPublic, ApiModule, crudActionsInternal, crudActionsDialog} from '@shared/state';
 
 export const BudgetActions = {
   ...crudActionsPublic<BudgetDto, BudgetVM>(ApiModule.Budget),
   ...crudActionsDialog<Budget>(ApiModule.Budget),
+
+  add: createAction(`[Budget] Add`, (item: BudgetDto, setActive: boolean) => ({tempId: randomId(), item, setActive})),
 
   setActive: createAction('[Budget] Set active', props<{id: Id<Budget>}>()),
 

@@ -21,6 +21,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {SpinnerModule} from 'primeng/spinner';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputSwitchModule} from 'primeng/inputswitch';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -31,7 +32,7 @@ import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.co
 import {ModalRemoveComponent} from './components/modal-remove/modal-remove.component';
 import {CategoryEditComponent} from './components/category-edit/category-edit.component';
 import {ExpenseEditComponent} from './components/expense-edit/expense-edit.component';
-import { IncomeEditComponent } from './components/income-edit/income-edit.component';
+import {IncomeEditComponent} from './components/income-edit/income-edit.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { IncomeEditComponent } from './components/income-edit/income-edit.compon
     MultiSelectModule,
     SpinnerModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputSwitchModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -119,7 +121,8 @@ import { IncomeEditComponent } from './components/income-edit/income-edit.compon
     MultiSelectModule,
     SpinnerModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputSwitchModule
   ],
   providers: [MobileBreakPointsProvider]
 })

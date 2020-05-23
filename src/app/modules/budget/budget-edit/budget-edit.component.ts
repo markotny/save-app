@@ -14,6 +14,8 @@ export class BudgetEditComponent implements OnInit, AfterViewInit {
   currencyCodes = currencyCodes.map(c => ({label: c, value: c}));
   selectedCurrency = 'PLN';
 
+  showActiveSelection = this.config.data.showActiveSelection;
+
   selectedCategories: BudgetCategoryDto[];
 
   budgeted: number;

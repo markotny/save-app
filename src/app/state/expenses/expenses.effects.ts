@@ -25,7 +25,7 @@ export class ExpenseEffects extends CrudEffects<ExpenseDto, ExpenseVM> {
       withLatestFrom(
         this.store.select(BudgetSelectors.active),
         this.store.select(BudgetSelectors.all),
-        this.store.select(CategorySelectors.all)
+        this.store.select(CategorySelectors.activeBudget)
       ),
       exhaustMap(([, activeBudget, budgets, categories]) =>
         this.dialogService
@@ -47,7 +47,7 @@ export class ExpenseEffects extends CrudEffects<ExpenseDto, ExpenseVM> {
       withLatestFrom(
         this.store.select(BudgetSelectors.active),
         this.store.select(BudgetSelectors.all),
-        this.store.select(CategorySelectors.all)
+        this.store.select(CategorySelectors.activeBudget)
       ),
       exhaustMap(([{item: {id, unsaved, ...value}}, activeBudget, budgets, categories]) =>
         this.dialogService

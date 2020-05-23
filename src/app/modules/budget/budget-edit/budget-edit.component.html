@@ -3,6 +3,10 @@
     <label for="name-input">Name</label>
     <input id="name-input" type="text" pInputText name="name" ngModel required autofocus />
   </div>
+  <div *ngIf="showActiveSelection" class="form-input inline">
+    <label for="start-date-input">Set as active</label>
+    <p-inputSwitch name="setActive" ngModel required></p-inputSwitch>
+  </div>
   <div class="form-input">
     <label for="start-date-input">Start date</label>
     <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" name="startDate" ngModel required appDatesConflict></p-calendar>

@@ -5,7 +5,7 @@ import {BudgetService} from './budgets.service';
 import {BudgetDto, BudgetVM} from '@wydatex/models';
 import {CrudEffects} from '@shared/state';
 import {BudgetActionsAll as BudgetActions} from './budgets.actions';
-import {map, withLatestFrom, exhaustMap, first} from 'rxjs/operators';
+import {map, withLatestFrom, exhaustMap, first, filter, mergeMap, catchError} from 'rxjs/operators';
 import * as BudgetSelectors from './budgets.selectors';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
@@ -13,18 +13,32 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {BudgetEditComponent} from '@modules/budget';
 import {ModalRemoveComponent} from '@shared/components';
 import {CategorySelectors} from '@state/categories';
+import {of} from 'rxjs';
 
 @Injectable()
-export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
+export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM, BudgetService> {
   constructor(actions$: Actions, service: BudgetService, private store: Store<AppState>, private dialogService: DialogService) {
     super(actions$, service);
   }
+
+  additem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BudgetActions.add),
+      mergeMap(({tempId, item, setActive}) =>
+        this.service.add(item, setActive).pipe(
+          map(data => BudgetActions.addSuccess({tempId, item: data})),
+          catchError(error => of(BudgetActions.addFailure({tempId, error})))
+        )
+      )
+    )
+  );
 
   findActive$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.loadSuccess),
       map(({items}) => items.find(b => b.isActive)),
-      map(b => b && BudgetActions.setActive(b))
+      filter(b => !!b),
+      map(b => BudgetActions.setActive(b))
     )
   );
 
@@ -58,12 +72,19 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
       exhaustMap(([, categories]) =>
         this.dialogService
           .open(BudgetEditComponent, {
-            data: {categories},
+            data: {showActiveSelection: true, categories},
             header: 'Add budget'
           })
           .onClose.pipe(
             first(),
-            map((item: BudgetDto) => (item ? BudgetActions.add(item) : BudgetActions.dialogCancel()))
+            map((item: BudgetDto & {setActive: boolean}) => {
+              if (item) {
+                const {setActive, ...dto} = item;
+                return BudgetActions.add(dto, setActive);
+              } else {
+                return BudgetActions.dialogCancel();
+              }
+            })
           )
       )
     )

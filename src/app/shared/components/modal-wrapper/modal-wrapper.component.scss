@@ -27,6 +27,11 @@ form {
   display: flex;
   flex-direction: column;
 
+  &.inline {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   > label {
     color: $white;
     font-size: 15px;
