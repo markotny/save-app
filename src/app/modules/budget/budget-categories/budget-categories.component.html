@@ -2,8 +2,8 @@
   <div fxLayout="column" *ngFor="let category of categories$ | async" class="category">
     <div fxLayout="row" class="category-controls">
       <div>{{ category.name }}</div>
-      <a class="pi pi-pencil edit-btn"></a>
-      <a class="pi pi-trash"></a>
+      <a class="pi pi-pencil edit-btn" (click)="editCategory(category)"></a>
+      <a class="pi pi-trash" (click)="removeCategory(category)"></a>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="expenses">
       <span>{{ category.moneyBudgeted }} {{ currency }}</span>

@@ -1,7 +1,14 @@
 @import '~variables.scss';
 
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .footer {
-  justify-self: end;
   margin-top: 30px;
 
   button {
@@ -12,14 +19,6 @@
       margin-right: 20px;
     }
   }
-}
-
-form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 }
 
 ::ng-deep .form-input {
@@ -55,7 +54,8 @@ form {
   }
 
   .ui-inputgroup {
-    span:first-child, div:first-child {
+    span:first-child,
+    div:first-child {
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CategorySelectors} from '@state/categories';
+import {CategorySelectors, Category, CategoryActions} from '@state/categories';
 import {Store, select} from '@ngrx/store';
 import {AppState} from '@core/core.state';
 import {BudgetSelectors} from '@state/budgets';
@@ -18,4 +18,11 @@ export class BudgetCategoriesComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
+
+  editCategory(item: Category) {
+    this.store.dispatch(CategoryActions.editDialog({item}));
+  }
+  removeCategory(item: Category) {
+    this.store.dispatch(CategoryActions.removeDialog(item));
+  }
 }

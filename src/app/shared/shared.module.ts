@@ -28,6 +28,7 @@ import {GtMobShowHideDirective, GtMobClassDirective, GtMobStyleDirective} from '
 import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
 import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.component';
 import {ModalRemoveComponent} from './components/modal-remove/modal-remove.component';
+import {CategoryEditComponent} from './components/category-edit/category-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {ModalRemoveComponent} from './components/modal-remove/modal-remove.compo
     GtMobClassDirective,
     GtMobStyleDirective,
     ModalWrapperComponent,
-    ModalRemoveComponent
+    ModalRemoveComponent,
+    CategoryEditComponent
   ],
   imports: [
     // angular
