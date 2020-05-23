@@ -9,6 +9,7 @@ import {Store} from '@ngrx/store';
 import {BudgetActions} from '@state/budgets';
 import {CategoryActions} from '@state/categories';
 import {ExpenseActions} from '@state/expenses';
+import {IncomeActions} from '@state/incomes';
 
 @Component({
   selector: 'app-sidenav',
@@ -85,7 +86,22 @@ export class SidenavComponent implements OnInit {
     {
       label: 'Incomes',
       icon: 'pi income-icon',
-      command: () => this.onClickSidenav()
+      items: [
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/incomes'],
+          command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Add income',
+          icon: 'pi plus-icon',
+          command: () => {
+            this.store.dispatch(IncomeActions.addDialog());
+            this.onClickSidenav();
+          }
+        }
+      ]
     },
     {
       label: 'Expenses',
