@@ -14,6 +14,7 @@ export class CategoryEffects extends CrudEffects<CategoryDto, CategoryVM> {
   constructor(actions$: Actions, service: CategoryService, private dialogService: DialogService) {
     super(actions$, service);
   }
+
   add$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CategoryActions.addDialog),

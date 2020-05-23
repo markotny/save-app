@@ -44,7 +44,7 @@ export class ModalWrapperComponent implements OnInit, AfterViewInit, OnDestroy {
         this.form.addControl(model);
       });
 
-      if (this.config.data.value) {
+      if (this.config.data?.value) {
         setTimeout(() => this.form.setValue(this.config.data.value));
       }
     }

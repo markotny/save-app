@@ -7,6 +7,8 @@ import {map, share} from 'rxjs/operators';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
 import {BudgetActions} from '@state/budgets';
+import {CategoryActions} from '@state/categories';
+import {ExpenseActions} from '@state/expenses';
 
 @Component({
   selector: 'app-sidenav',
@@ -73,7 +75,10 @@ export class SidenavComponent implements OnInit {
         {
           label: 'Add category',
           icon: 'pi plus-icon',
-          command: () => this.onClickSidenav()
+          command: () => {
+            this.store.dispatch(CategoryActions.addDialog());
+            this.onClickSidenav();
+          }
         }
       ]
     },
@@ -81,6 +86,26 @@ export class SidenavComponent implements OnInit {
       label: 'Incomes',
       icon: 'pi income-icon',
       command: () => this.onClickSidenav()
+    },
+    {
+      label: 'Expenses',
+      icon: 'pi expenses-icon',
+      items: [
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/expenses'],
+          command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Add expense',
+          icon: 'pi plus-icon',
+          command: () => {
+            this.store.dispatch(ExpenseActions.addDialog());
+            this.onClickSidenav();
+          }
+        }
+      ]
     }
   ];
 

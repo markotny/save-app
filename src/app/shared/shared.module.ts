@@ -20,6 +20,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {SpinnerModule} from 'primeng/spinner';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -29,6 +30,7 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
 import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.component';
 import {ModalRemoveComponent} from './components/modal-remove/modal-remove.component';
 import {CategoryEditComponent} from './components/category-edit/category-edit.component';
+import {ExpenseEditComponent} from './components/expense-edit/expense-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {CategoryEditComponent} from './components/category-edit/category-edit.co
     GtMobStyleDirective,
     ModalWrapperComponent,
     ModalRemoveComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    ExpenseEditComponent
   ],
   imports: [
     // angular
@@ -72,7 +75,8 @@ import {CategoryEditComponent} from './components/category-edit/category-edit.co
     CalendarModule,
     MultiSelectModule,
     SpinnerModule,
-    DropdownModule
+    DropdownModule,
+    InputTextareaModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -112,7 +116,8 @@ import {CategoryEditComponent} from './components/category-edit/category-edit.co
     CalendarModule,
     MultiSelectModule,
     SpinnerModule,
-    DropdownModule
+    DropdownModule,
+    InputTextareaModule
   ],
   providers: [MobileBreakPointsProvider]
 })
