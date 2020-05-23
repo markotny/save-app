@@ -5,18 +5,51 @@
   </div>
   <div class="form-input">
     <label for="start-date-input">Start date</label>
-    <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" name="startDate" ngModel required></p-calendar>
+    <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" name="startDate" ngModel required appDatesConflict></p-calendar>
   </div>
   <div class="form-input">
     <label for="end-date-input">End date</label>
-    <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" name="endDate" ngModel required></p-calendar>
+    <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" name="endDate" ngModel required appDatesConflict></p-calendar>
   </div>
   <div class="form-input">
     <label for="budgeted">Amount of budgeted money</label>
-    <input id="budgeted" type="text" pInputText name="budgetCategories" ngModel required />
+    <div class="ui-inputgroup">
+      <span fxFlex="grow" class="ui-inputgroup-addon ui-corner-all ui-inputtext" id="budgeted">{{
+        budgeted | currency: selectedCurrency
+      }}</span>
+      <p-dropdown
+        appendTo="body"
+        [style]="{'min-width': '80px'}"
+        [options]="currencyCodes"
+        filter="true"
+        name="currencySymbol"
+        [(ngModel)]="selectedCurrency"
+        required
+      ></p-dropdown>
+    </div>
   </div>
   <div class="form-input">
-    <label for="budgeted">Amount of budgeted money</label>
-    <input id="budgeted" type="text" pInputText name="currencySymbol" ngModel required />
+    <label for="categories">Categories</label>
+    <p-multiSelect
+      id="categories"
+      appendTo="body"
+      [options]="categories"
+      name="budgetCategories"
+      [(ngModel)]="selectedCategories"
+      (onChange)="recalculateBudgeted()"
+    >
+      <ng-template let-category pTemplate="item">
+        <span class="multiselect-row">
+          <span>{{ category.label }}</span>
+          <p-spinner
+            (click)="preventPropagation($event)"
+            [inputStyle]="{width: '100px'}"
+            [min]="0"
+            [(ngModel)]="category.value.moneyBudgeted"
+            (onChange)="recalculateBudgeted()"
+          ></p-spinner>
+        </span>
+      </ng-template>
+    </p-multiSelect>
   </div>
 </app-modal-wrapper>

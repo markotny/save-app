@@ -13,7 +13,7 @@ const reducer = createReducer(
   initialState,
   ...crudReducers<ExpenseState>(ApiModule.Expense, adapter),
 
-  on(BudgetActions.getDetailsSuccess, (state, {item: {expenses}}) => adapter.upsertMany(expenses, state))
+  on(BudgetActions.getDetailsSuccess, BudgetActions.editSuccess, (state, {item: {expenses}}) => adapter.upsertMany(expenses, state))
   // TODO: handle failures
 );
 

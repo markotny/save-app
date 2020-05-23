@@ -3,7 +3,7 @@ import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
 import {selectExpenseState} from '@state/data.state';
 import {Expense} from './expenses.model';
-import {BudgetSelectors} from '@state/budgets';
+import * as BudgetSelectors from '@state/budgets/budgets.selectors';
 import {Dictionary} from '@ngrx/entity';
 
 const {selectAll, selectEntities} = adapter.getSelectors();

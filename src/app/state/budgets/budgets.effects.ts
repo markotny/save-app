@@ -12,6 +12,7 @@ import {Store} from '@ngrx/store';
 import {DialogService} from 'primeng/dynamicdialog';
 import {BudgetEditComponent} from '@modules/budget';
 import {ModalRemoveComponent} from '@shared/components';
+import {CategorySelectors} from '@state/categories';
 
 @Injectable()
 export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
@@ -53,9 +54,11 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
   add$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.addDialog),
-      exhaustMap(() =>
+      withLatestFrom(this.store.select(CategorySelectors.all)),
+      exhaustMap(([, categories]) =>
         this.dialogService
           .open(BudgetEditComponent, {
+            data: {categories},
             header: 'Add budget'
           })
           .onClose.pipe(
@@ -69,10 +72,11 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM> {
   edit$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.editDialog),
-      exhaustMap(({item: {id, isActive, unsaved, ...value}}) =>
+      withLatestFrom(this.store.select(CategorySelectors.all)),
+      exhaustMap(([{item: {id, isActive, unsaved, ...value}}, categories]) =>
         this.dialogService
           .open(BudgetEditComponent, {
-            data: {value},
+            data: {value, categories},
             header: 'Edit budget'
           })
           .onClose.pipe(

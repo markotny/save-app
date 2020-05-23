@@ -3,8 +3,8 @@ import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
 import {selectCategoryState} from '@state/data.state';
 import {Category} from './categories.model';
-import {BudgetSelectors} from '@state/budgets';
-import {ExpenseSelectors} from '@state/expenses';
+import * as BudgetSelectors from '@state/budgets/budgets.selectors';
+import * as ExpenseSelectors from '@state/expenses/expenses.selectors';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 

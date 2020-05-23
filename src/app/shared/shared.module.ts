@@ -17,6 +17,9 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {SpinnerModule} from 'primeng/spinner';
+import {DropdownModule} from 'primeng/dropdown';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -64,7 +67,10 @@ import {ModalRemoveComponent} from './components/modal-remove/modal-remove.compo
     DialogModule,
     DynamicDialogModule,
     InputTextModule,
-    CalendarModule
+    CalendarModule,
+    MultiSelectModule,
+    SpinnerModule,
+    DropdownModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -101,7 +107,10 @@ import {ModalRemoveComponent} from './components/modal-remove/modal-remove.compo
     DialogModule,
     DynamicDialogModule,
     InputTextModule,
-    CalendarModule
+    CalendarModule,
+    MultiSelectModule,
+    SpinnerModule,
+    DropdownModule
   ],
   providers: [MobileBreakPointsProvider]
 })

@@ -6,7 +6,7 @@ import {tap} from 'rxjs/operators';
 /** Converts date values to JS date */
 @Injectable()
 export class DateConverterInterceptor implements HttpInterceptor {
-  private dateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)$/;
+  private iso8601 = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/;
 
   constructor() {}
 
@@ -30,7 +30,7 @@ export class DateConverterInterceptor implements HttpInterceptor {
       if (val instanceof Object) {
         this.convertDates(val);
       }
-      if (typeof val === 'string' && this.dateRegex.test(val)) {
+      if (typeof val === 'string' && this.iso8601.test(val)) {
         object[key] = new Date(val);
       }
     });
