@@ -4,6 +4,12 @@ import {CategoryVM, BudgetCategoryDto, BudgetDto} from '@wydatex/models';
 import {SelectItem} from 'primeng/api/selectitem';
 import {currencyCodes} from './currency-codes';
 
+const addDays = (date, days) => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+
 @Component({
   selector: 'app-budget-edit',
   templateUrl: './budget-edit.component.html',
@@ -13,6 +19,9 @@ export class BudgetEditComponent implements OnInit, AfterViewInit {
   categories: SelectItem[];
   currencyCodes = currencyCodes.map(c => ({label: c, value: c}));
   selectedCurrency = 'PLN';
+
+  startDate = new Date();
+  endDate = addDays(this.startDate, 30);
 
   showActiveSelection = this.config.data.showActiveSelection;
 

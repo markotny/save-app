@@ -9,11 +9,11 @@
   </div>
   <div class="form-input">
     <label for="start-date-input">Start date</label>
-    <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" name="startDate" ngModel required appDatesConflict></p-calendar>
+    <p-calendar id="start-date-input" appendTo="body" [showIcon]="true" [maxDate]="endDate" name="startDate" [(ngModel)]="startDate" required appDatesConflict></p-calendar>
   </div>
   <div class="form-input">
     <label for="end-date-input">End date</label>
-    <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" name="endDate" ngModel required appDatesConflict></p-calendar>
+    <p-calendar id="end-date-input" appendTo="body" [showIcon]="true" [minDate]="startDate" name="endDate" [(ngModel)]="endDate" required appDatesConflict></p-calendar>
   </div>
   <div class="form-input">
     <label for="budgeted">Amount of budgeted money</label>
