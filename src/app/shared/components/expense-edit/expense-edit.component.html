@@ -10,7 +10,7 @@
   <div class="form-input">
     <label for="amount-input">Amount</label>
     <div class="ui-inputgroup">
-      <p-spinner id="amount-input" [inputStyle]="{width: '290px'}" [min]="0" name="amount" ngModel required></p-spinner>
+      <p-spinner id="amount-input" class="spinner-input" [min]="0" name="amount" ngModel required></p-spinner>
       <span style="width: 50px;" class="ui-inputgroup-addon ui-corner-all ui-inputtext">{{ currency }}</span>
     </div>
   </div>
@@ -28,7 +28,8 @@
       filter="true"
       name="budgetId"
       [(ngModel)]="selectedBudget"
-      required
+	  required
+	  [readonly]="true"
     ></p-dropdown>
   </div>
   <div class="form-input">
