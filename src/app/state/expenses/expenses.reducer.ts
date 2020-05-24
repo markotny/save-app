@@ -16,6 +16,14 @@ const reducer = createReducer(
 
   on(BudgetActions.getDetailsSuccess, BudgetActions.editSuccess, (state, {item: {expenses}}) => adapter.upsertMany(expenses, state)),
   on(CategoryActions.remove, (state, {id}) =>
+    adapter.updateMany(
+      Object.values(state.entities)
+        .filter(e => e.categoryId === id)
+        .map(e => ({id: e.id, changes: {unsaved: 'remove'}})),
+      state
+    )
+  ),
+  on(CategoryActions.removeSuccess, (state, {id}) =>
     adapter.removeMany(
       Object.values(state.entities)
         .filter(e => e.categoryId === id)
