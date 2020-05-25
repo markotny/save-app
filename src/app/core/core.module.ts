@@ -23,7 +23,10 @@ import {MessageService} from 'primeng/api';
 import {logValue} from './rxjs/log-value';
 import {CustomSerializer} from './router/custom-serializer';
 import {login as actionOidcLogin, register as actionOidcRegister} from './auth/auth.actions';
-import {BudgetEffects, CategoryEffects, ExpenseEffects, IncomeEffects} from '@state/data.state';
+import {BudgetEffects} from '@state/budgets';
+import {CategoryEffects} from '@state/categories';
+import {ExpenseEffects} from '@state/expenses';
+import {IncomeEffects} from '@state/incomes';
 
 export {AppState, LocalStorageService, AuthGuard, logValue, selectTheme, actionOidcLogin, actionOidcRegister};
 
