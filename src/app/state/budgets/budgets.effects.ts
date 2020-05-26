@@ -5,7 +5,7 @@ import {BudgetService} from './budgets.service';
 import {BudgetDto, BudgetVM} from '@wydatex/models';
 import {CrudEffects} from '@shared/state';
 import {BudgetActionsAll as BudgetActions} from './budgets.actions';
-import {map, withLatestFrom, exhaustMap, first, filter, mergeMap, catchError} from 'rxjs/operators';
+import {map, withLatestFrom, exhaustMap, first, filter, mergeMap, catchError, switchMap} from 'rxjs/operators';
 import * as BudgetSelectors from './budgets.selectors';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
@@ -33,19 +33,23 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM, BudgetServic
     )
   );
 
-  findActive$ = createEffect(() =>
+  loadActive$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BudgetActions.loadSuccess),
-      map(({items}) => items.find(b => b.isActive)),
-      filter(b => !!b),
-      map(b => BudgetActions.setActive(b))
+      ofType(BudgetActions.loadSuccess, BudgetActions.setActiveSuccess),
+      withLatestFrom(this.store.select(BudgetSelectors.activeId)),
+      map(([, id]) => id && BudgetActions.getDetails({id}))
     )
   );
 
-  loadDetails$ = createEffect(() =>
+  setActive$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BudgetActions.setActive),
-      map(({id}) => BudgetActions.getDetails({id}))
+      switchMap(({id}) =>
+        this.service.setActive(id).pipe(
+          map(() => BudgetActions.setActiveSuccess()),
+          catchError(error => of(BudgetActions.setActiveFailure({error})))
+        )
+      )
     )
   );
 

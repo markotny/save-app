@@ -18,5 +18,8 @@ export const BudgetActions = {
 
 export const BudgetActionsAll = {
   ...BudgetActions,
-  ...crudActionsInternal<BudgetVM, BudgetDetailsVM>(ApiModule.Budget)
+  ...crudActionsInternal<BudgetVM, BudgetDetailsVM>(ApiModule.Budget),
+
+  setActiveSuccess: createAction(`[Budget/API] Set active success`),
+  setActiveFailure: createAction(`[Budget/API] Set active failure`, props<{error: Error}>())
 };

@@ -13,6 +13,8 @@ export const initialState: BudgetState = adapter.getInitialState({activeBudgetId
 const reducer = createReducer(
   initialState,
   on(BudgetActions.setActive, (state, {id}) => ({...state, activeBudgetId: id})),
+  on(BudgetActions.setActiveFailure, state => ({...state, activeBudgetId: null})),
+  on(BudgetActions.loadSuccess, (state, {items}) => ({...state, activeBudgetId: items.find(b => b.isActive)?.id})),
 
   ...crudReducers<BudgetState>(ApiModule.Budget, adapter).filter(r =>
     r.types.every(t => ![BudgetActions.getDetailsSuccess.type, BudgetActions.addSuccess.type, BudgetActions.editSuccess.type].includes(t))
