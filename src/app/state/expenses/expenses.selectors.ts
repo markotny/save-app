@@ -13,9 +13,7 @@ export const entities = createSelector(selectExpenseState, selectEntities);
 
 export const byIds = (ids: Id<Expense>[]) => createSelector(all, expenses => expenses.filter(e => ids.includes(e.id)));
 
-export const activeBudget = createSelector(BudgetSelectors.activeId, all, (id, expenses) =>
-  expenses.filter(e => e.budgetId === id).map(e => ({...e, date: new Date(e.date)}))
-);
+export const activeBudget = createSelector(BudgetSelectors.activeId, all, (id, expenses) => expenses.filter(e => e.budgetId === id));
 
 export const activeBudgetSum = createSelector(activeBudget, expenses => expenses.reduce((sum, e) => sum + e.amount, 0));
 

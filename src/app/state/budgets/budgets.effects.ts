@@ -35,7 +35,7 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM, BudgetServic
 
   loadActive$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BudgetActions.loadSuccess, BudgetActions.setActiveSuccess),
+      ofType(BudgetActions.loadSuccess, BudgetActions.setActive),
       withLatestFrom(this.store.select(BudgetSelectors.activeId)),
       filter(([, id]) => !!id),
       map(([, id]) => id && BudgetActions.getDetails({id}))

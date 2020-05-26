@@ -6,14 +6,14 @@
       <a class="pi pi-trash" (click)="removeCategory(category)"></a>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="expenses">
-      <span>{{ category.moneyBudgeted }} {{ currency }}</span>
+      <span>{{ category.moneyBudgeted | currency: currency}}</span>
       <p-progressBar
         fxFlex="grow"
         [showValue]="false"
         [value]="(category.spent / category.moneyBudgeted) * 100"
         [ngClass]="{'budget-progress': true, 'budget-exceeded': category.spent > category.moneyBudgeted}"
       ></p-progressBar>
-      <span>{{ category.moneyBudgeted - category.spent }} {{ currency }}</span>
+      <span>{{ category.moneyBudgeted - category.spent | currency: currency}}</span>
     </div>
   </div>
 </div>

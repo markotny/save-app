@@ -13,13 +13,13 @@
   >
     <ng-container *ngIf="summary$ | async as summary">
       <p-card gdArea="income" header="Income:" class="info-card" styleClass="info-card-green">
-        {{ summary.incomeSum }} {{ activeBudget.currencySymbol }}
+        {{ summary.incomeSum | currency: activeBudget.currencySymbol }}
       </p-card>
       <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
-        {{ summary.balance }} {{ activeBudget.currencySymbol }}
+        {{ summary.balance | currency: activeBudget.currencySymbol }}
       </p-card>
       <p-card gdArea="expense" header="Expenses:" class="info-card" styleClass="info-card-red">
-        {{ summary.expenseSum }} {{ activeBudget.currencySymbol }}
+        {{ summary.expenseSum | currency: activeBudget.currencySymbol }}
       </p-card>
     </ng-container>
 
