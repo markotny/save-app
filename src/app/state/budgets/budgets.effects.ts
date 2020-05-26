@@ -37,6 +37,7 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM, BudgetServic
     this.actions$.pipe(
       ofType(BudgetActions.loadSuccess, BudgetActions.setActiveSuccess),
       withLatestFrom(this.store.select(BudgetSelectors.activeId)),
+      filter(([, id]) => !!id),
       map(([, id]) => id && BudgetActions.getDetails({id}))
     )
   );
@@ -98,7 +99,7 @@ export class BudgetEffects extends CrudEffects<BudgetDto, BudgetVM, BudgetServic
     this.actions$.pipe(
       ofType(BudgetActions.editDialog),
       withLatestFrom(this.store.select(CategorySelectors.all)),
-      exhaustMap(([{item: {id, isActive, unsaved, ...value}}, categories]) =>
+      exhaustMap(([{item: {id, unsaved, ...value}}, categories]) =>
         this.dialogService
           .open(BudgetEditComponent, {
             data: {value, categories},

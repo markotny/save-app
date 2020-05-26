@@ -13,18 +13,25 @@ export const initialState: BudgetState = adapter.getInitialState({activeBudgetId
 const reducer = createReducer(
   initialState,
   on(BudgetActions.setActive, (state, {id}) => ({...state, activeBudgetId: id})),
-  on(BudgetActions.setActiveFailure, state => ({...state, activeBudgetId: null})),
-  on(BudgetActions.loadSuccess, (state, {items}) => ({...state, activeBudgetId: items.find(b => b.isActive)?.id})),
 
-  ...crudReducers<BudgetState>(ApiModule.Budget, adapter).filter(r =>
-    r.types.every(t => ![BudgetActions.getDetailsSuccess.type, BudgetActions.addSuccess.type, BudgetActions.editSuccess.type].includes(t))
+  ...crudReducers<BudgetState>(ApiModule.Budget, adapter, true),
+
+  on(BudgetActions.loadSuccess, (state, {items}) =>
+    adapter.setAll(
+      items.map(({isActive, ...item}) => item),
+      {...state, activeBudgetId: items.find(b => b.isActive)?.id ?? null}
+    )
   ),
-  on(BudgetActions.getDetailsSuccess, BudgetActions.editSuccess, (state, {item: {incomes, expenses, ...details}}) =>
-    adapter.setOne(details, state)
+  on(BudgetActions.getDetailsSuccess, BudgetActions.editSuccess, (state, {item: {isActive, incomes, expenses, ...details}}) =>
+    adapter.setOne(details, {...state, activeBudgetId: isActive ? details.id : state.activeBudgetId})
   ),
-  on(BudgetActions.addSuccess, (state, {tempId, item: {incomes, expenses, ...details}}) =>
-    adapter.updateOne({id: tempId, changes: {unsaved: undefined, ...details}}, state)
-  )
+  on(BudgetActions.addSuccess, (state, {tempId, item: {isActive, incomes, expenses, ...details}}) =>
+    adapter.updateOne(
+      {id: tempId, changes: {unsaved: undefined, ...details}},
+      {...state, activeBudgetId: isActive ? details.id : state.activeBudgetId}
+    )
+  ),
+  on(BudgetActions.removeSuccess, (state, {id}) => adapter.removeOne(id, state))
   // TODO: handle failures
 );
 
