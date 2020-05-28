@@ -7,14 +7,9 @@
       <img src="assets/icons/small-wallet.svg" />
     </div>
   </div>
-  <div class="panel-background">
+  <div class="main-panel">
     <p-panelMenu [model]="sideMenuItems" [multiple]="false"></p-panelMenu>
   </div>
 
-  <p-panelMenu
-    appFade="gt-xs" showDelay="0.3s" hideDuration="0s"
-    *ngIf="userName$ | async as userName"
-    [model]="[{label: userName, items: accountMenuItems}]"
-    [style]="{'margin-top': '10px'}"
-  ></p-panelMenu>
+  <p-panelMenu fxHide.gt-mob *ngIf="userName$ | async as userName" [model]="[{label: userName, items: accountMenuItems}]"></p-panelMenu>
 </div>

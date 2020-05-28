@@ -1,0 +1,10 @@
+<div class="f-vertical table" *ngIf="popularCategoryList$ | async as popularCategoryList">
+  <div class="table-header">
+    <span>Popular Categories</span>
+  </div>
+  <div class="table-content">
+    <div class="content">
+      <app-dashboard-table-content *ngFor="let popularCategory of popularCategoryList" [model]="popularCategory"></app-dashboard-table-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="f-horizontal space-evenly text-align_center table" *ngIf="sumsHeader$ | async as sums">
+  <div class="f-vertical w-100" *ngIf="currencyLabel$ | async as currencyLabel">
+    <div class="header-top__left w-100"><span>Total Income</span></div>
+    <div class="value w-100">
+      <span>
+        {{ sums.incomeSum | currency: currencyLabel }}
+      </span>
+    </div>
+    <div class="value w-100">
+      <span>
+        {{ sums.incomeSum - sums.expenseSum | currency: currencyLabel }}
+      </span>
+    </div>
+    <div class="header-bottom__left w-100"><span>Balance</span></div>
+  </div>
+  <div class="f-vertical w-100" *ngIf="currencyLabel$ | async as currencyLabel">
+    <div class="header-top__right w-100"><span>Total Expenses</span></div>
+    <div class="value w-100">
+      <span>
+        {{ sums.expenseSum | currency: currencyLabel }}
+      </span>
+    </div>
+    <div class="value w-100">
+      <span>
+        {{ calculateBudgetPercent(sums) | percent: '1.1-2' }}
+      </span>
+    </div>
+    <div class="header-bottom__right w-100"><span>% Remaining Budget</span></div>
+  </div>
+</div>

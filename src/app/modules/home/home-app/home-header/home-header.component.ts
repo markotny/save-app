@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {OidcFacade} from 'ng-oidc-client';
+import {Store} from '@ngrx/store';
+import {actionOidcLogin} from '@core/index';
 
 @Component({
   selector: 'app-home-header',
@@ -7,11 +8,11 @@ import {OidcFacade} from 'ng-oidc-client';
   styleUrls: ['./home-header.component.scss']
 })
 export class HomeHeaderComponent {
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private store: Store) {}
 
   isOpen = false;
 
   signin() {
-    this.oidcFacade.signinRedirect();
+    this.store.dispatch(actionOidcLogin());
   }
 }

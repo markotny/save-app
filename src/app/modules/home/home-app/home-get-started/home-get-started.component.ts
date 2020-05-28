@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {Store} from '@ngrx/store';
 
-import {actionOidcRegister} from '@core/core.module';
+import {actionOidcRegister} from '@core/index';
 
 @Component({
   selector: 'app-home-get-started',
