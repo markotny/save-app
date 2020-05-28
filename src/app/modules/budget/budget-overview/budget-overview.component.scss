@@ -73,6 +73,7 @@
 ::ng-deep .chart-card {
   height: 100%;
   width: 100%;
+  min-width: 0;
   scroll-snap-align: start;
 
   &-style {
