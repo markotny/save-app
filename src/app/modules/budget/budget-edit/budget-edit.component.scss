@@ -1,0 +1,12 @@
+.multiselect-row {
+  width: calc(100% - 20px);
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 1em;
+  }
+}

@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainAppComponent} from '@shell/main-app/main-app.component';
 import {AuthCallbackComponent} from './core/auth/auth-callback/auth-callback.component';
 import {AuthCallback} from './core/auth/auth-callback/auth-callback.enum';
-import {AuthGuard} from '@core/core.module';
+import {AuthGuard} from '@core/index';
 
 const appRoutes: Routes = [
   {
@@ -16,7 +16,7 @@ const appRoutes: Routes = [
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'budgets',
+    path: 'budget',
     loadChildren: () => import('@modules/budget/budget.module').then(m => m.BudgetModule)
   }
 ];

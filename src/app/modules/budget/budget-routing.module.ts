@@ -1,11 +1,16 @@
-import {BudgetComponent} from './budget/budget.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {BudgetOverviewComponent} from './budget-overview/budget-overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BudgetComponent
+    redirectTo: 'overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'overview',
+    component: BudgetOverviewComponent
   }
 ];
 

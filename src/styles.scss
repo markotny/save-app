@@ -53,3 +53,44 @@ a:visited {
   overflow-x: hidden;
 }
 
+.dialog {
+  .ui-corner-all {
+    border-radius: 5px;
+  }
+
+  &.ui-dialog {
+    background-color: $light-grey;
+    width: 400px;
+    padding: 30px;
+
+    .ui-dialog-titlebar {
+      background-color: $light-grey;
+      padding: 10px 0;
+      border: 0 none;
+      color: $white;
+      text-align: center;
+      font: 35px 'Montserrat-Bold';
+    }
+
+    .ui-dialog-content {
+      background-color: $light-grey;
+      padding: 0;
+      border: 0 none;
+      color: $white;
+      font: 18px 'Montserrat-Medium';
+    }
+  }
+}
+.dialog-fullscreen {
+  &.ui-dialog {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+
+    .ui-dialog-content {
+      height: 100%;
+    }
+  }
+}

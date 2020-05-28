@@ -4,6 +4,12 @@ import {MenuItem} from 'primeng/api/menuitem';
 import {Observable} from 'rxjs';
 import {accountMenu} from '@shell/account-menu.model';
 import {map, share} from 'rxjs/operators';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {BudgetActions} from '@state/budgets';
+import {CategoryActions} from '@state/categories';
+import {ExpenseActions} from '@state/expenses';
+import {IncomeActions} from '@state/incomes';
 
 @Component({
   selector: 'app-sidenav',
@@ -28,13 +34,32 @@ export class SidenavComponent implements OnInit {
         {
           label: 'Overview',
           icon: 'pi overview-icon',
-          routerLink: ['/app/budgets'],
+          routerLink: ['/app/budget'],
           command: () => this.onClickSidenav()
         },
         {
           label: 'Add budget',
           icon: 'pi plus-icon',
-          command: () => this.onClickSidenav()
+          command: () => {
+            this.store.dispatch(BudgetActions.addDialog());
+            this.onClickSidenav();
+          }
+        },
+        {
+          label: 'Edit current',
+          icon: 'pi edit-icon',
+          command: () => {
+            this.store.dispatch(BudgetActions.editActiveDialog());
+            this.onClickSidenav();
+          }
+        },
+        {
+          label: 'Remove current',
+          icon: 'pi pi-trash',
+          command: () => {
+            this.store.dispatch(BudgetActions.removeActiveDialog());
+            this.onClickSidenav();
+          }
         }
       ]
     },
@@ -51,18 +76,56 @@ export class SidenavComponent implements OnInit {
         {
           label: 'Add category',
           icon: 'pi plus-icon',
-          command: () => this.onClickSidenav()
+          command: () => {
+            this.store.dispatch(CategoryActions.addDialog());
+            this.onClickSidenav();
+          }
         }
       ]
     },
     {
       label: 'Incomes',
       icon: 'pi income-icon',
-      command: () => this.onClickSidenav()
+      items: [
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/incomes'],
+          command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Add income',
+          icon: 'pi plus-icon',
+          command: () => {
+            this.store.dispatch(IncomeActions.addDialog());
+            this.onClickSidenav();
+          }
+        }
+      ]
+    },
+    {
+      label: 'Expenses',
+      icon: 'pi expenses-icon',
+      items: [
+        {
+          label: 'Overview',
+          icon: 'pi overview-icon',
+          routerLink: ['/app/expenses'],
+          command: () => this.onClickSidenav()
+        },
+        {
+          label: 'Add expense',
+          icon: 'pi plus-icon',
+          command: () => {
+            this.store.dispatch(ExpenseActions.addDialog());
+            this.onClickSidenav();
+          }
+        }
+      ]
     }
   ];
 
-  constructor(private oidcFacade: OidcFacade) {}
+  constructor(private oidcFacade: OidcFacade, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.userName$ = this.oidcFacade.identity$.pipe(
