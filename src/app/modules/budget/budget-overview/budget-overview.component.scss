@@ -1,8 +1,6 @@
 @import '~variables.scss';
 
 .wrapper {
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
   scroll-padding: 10px;
 }
 

@@ -75,7 +75,7 @@ export class CircleChartComponent implements OnInit {
   }
 
   calculateBudgetSpent(sums: {incomeSum: number; expenseSum: number; balance: number}): number {
-    const result = Math.round(sums.incomeSum / sums.expenseSum);
-    return isNaN(result) ? 1.0 : result;
+    const result = (sums.incomeSum - sums.expenseSum) / sums.incomeSum;
+    return isNaN(result) ? 0.0 : result;
   }
 }

@@ -10,7 +10,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./popular-categories.component.scss']
 })
 export class PopularCategoriesComponent implements OnInit {
-  popularCategoryList$ = this.store.select(CategorySelectors.activeBudget).pipe(
+  popularCategoryList$ = this.store.select(CategorySelectors.activeBudgetSums).pipe(
     map(cl => cl.filter(c => c.spent > 0)),
     map(cl => cl.sort((a, b) => b.spent - a.spent)),
     map(cl => cl.slice(0, 10))
