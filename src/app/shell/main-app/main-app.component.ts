@@ -47,6 +47,7 @@ export class MainAppComponent implements OnInit, OnDestroy {
 
   toggleSidebar() {
     const current = this.sidebarVisible$.getValue();
+    current ? this.document.body.classList.remove('ui-overflow-hidden') : this.document.body.classList.add('ui-overflow-hidden');
     this.sidebarVisible$.next(!current);
   }
 

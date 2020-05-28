@@ -1,0 +1,30 @@
+<div fxHide.mob>
+  <div class="chart-wrapper" [ngStyle]="{width: calcWidth, height: calcHeight}">
+    <div class="position-absolute">
+      <div class="f-vertical center" *ngIf="sums$ | async as sums">
+        <span class="budget-spent">Budget Spent</span>
+        <span class="budget-percent">{{ 1 - calculateBudgetSpent(sums) | percent: '1.1-2' }}</span>
+      </div>
+    </div>
+    <p-chart
+      class="position-absolute"
+      type="doughnut"
+      [data]="data$ | async"
+      [width]="width"
+      [height]="height"
+      responsive="false"
+      [options]="chartOptions"
+    ></p-chart>
+  </div>
+</div>
+<div fxHide [fxHide.mob]="false">
+  <div class="chart-wrapper-mobile">
+    <div class="position-absolute">
+      <div class="f-vertical center" *ngIf="sums$ | async as sums">
+        <span class="budget-spent-mobile">Budget Spent</span>
+        <span class="budget-percent-mobile">{{ 1 - calculateBudgetSpent(sums) | percent: '1.1-2' }}</span>
+      </div>
+    </div>
+    <p-chart type="doughnut" [data]="data$ | async" width="100%" height="100%" responsive="true" [options]="chartOptionsMobile"></p-chart>
+  </div>
+</div>
