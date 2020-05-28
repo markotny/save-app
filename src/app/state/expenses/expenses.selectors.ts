@@ -3,7 +3,7 @@ import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
 import {selectExpenseState} from '@state/data.state';
 import {Expense} from './expenses.model';
-import {BudgetSelectors} from '@state/budgets';
+import * as BudgetSelectors from '@state/budgets/budgets.selectors';
 import {Dictionary} from '@ngrx/entity';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
@@ -13,9 +13,7 @@ export const entities = createSelector(selectExpenseState, selectEntities);
 
 export const byIds = (ids: Id<Expense>[]) => createSelector(all, expenses => expenses.filter(e => ids.includes(e.id)));
 
-export const activeBudget = createSelector(BudgetSelectors.activeId, all, (id, expenses) =>
-  expenses.filter(e => e.budgetId === id).map(e => ({...e, date: new Date(e.date)}))
-);
+export const activeBudget = createSelector(BudgetSelectors.activeId, all, (id, expenses) => expenses.filter(e => e.budgetId === id));
 
 export const activeBudgetSum = createSelector(activeBudget, expenses => expenses.reduce((sum, e) => sum + e.amount, 0));
 

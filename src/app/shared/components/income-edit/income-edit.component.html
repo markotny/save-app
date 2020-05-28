@@ -1,0 +1,36 @@
+<app-modal-wrapper type="edit">
+	<div class="form-input">
+	  <label for="name-input">Name</label>
+	  <input id="name-input" type="text" pInputText name="name" ngModel required autofocus />
+	</div>
+	<div class="form-input">
+	  <label for="date-input">Received on</label>
+	  <p-calendar id="date-input" appendTo="body" [showIcon]="true" name="date" [ngModel]="date" required></p-calendar>
+	</div>
+	<div class="form-input">
+	  <label for="amount-input">Amount</label>
+	  <div class="ui-inputgroup">
+		<p-spinner id="amount-input" class="spinner-input" [min]="0" name="amount" ngModel required></p-spinner>
+		<span style="width: 50px;" class="ui-inputgroup-addon ui-corner-all ui-inputtext">{{ currency }}</span>
+	  </div>
+	</div>
+	<div class="form-input">
+	  <label for="label-input">Label</label>
+	  <textarea id="label-input" pInputTextarea name="label" ngModel required></textarea>
+	</div>
+	<div class="form-input">
+	  <label for="budgetId-input">Budget</label>
+	  <p-dropdown
+		id="budgetId-input"
+		appendTo="body"
+		[style]="{width: '100%'}"
+		[options]="budgets"
+		filter="true"
+		name="budgetId"
+		[(ngModel)]="selectedBudget"
+		required
+		[readonly]="true"
+	  ></p-dropdown>
+	</div>
+  </app-modal-wrapper>
+  
