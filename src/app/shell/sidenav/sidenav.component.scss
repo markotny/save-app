@@ -3,8 +3,8 @@
 .sidebar {
   background-color: $main-green;
   overflow: scroll;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
-    @extend .sidebar;
     display: none;
   }
 }

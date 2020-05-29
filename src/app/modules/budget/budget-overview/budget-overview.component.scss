@@ -1,6 +1,6 @@
 @import '~variables.scss';
 
-.budget-details {
+.wrapper {
   width: 100%;
   padding: 10px 0;
 }
@@ -91,7 +91,8 @@
 }
 
 ::ng-deep .list-card {
-
+  min-height: 200px;
+  
   &-style {
     height: 100%;
     @include card-header();

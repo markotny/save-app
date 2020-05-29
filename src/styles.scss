@@ -17,6 +17,11 @@ body {
   margin: 0px;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $main-green $dark-grey;
+}
+
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: $dark-grey;
