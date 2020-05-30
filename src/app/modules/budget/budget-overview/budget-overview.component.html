@@ -1,44 +1,30 @@
-<div fxFill fxLayout="column" class="wrapper">
-  <div
-    *ngIf="activeBudget$ | async as activeBudget"
-    class="budget-details"
-    fxFlex="noshrink"
-    fxFlex.gt-md="nogrow"
-    gdAreas.gt-md="income balance expense | chart chart list"
-    gdAreas.gt-xs="income balance expense | chart chart chart | list list list"
-    gdAreas.xs="income | balance | expense | chart | list"
-    gdColumns.gt-xs="1fr 1fr 1fr"
-    gdRows.gt-md="auto 1fr"
-    gdGap="10px"
-  >
-    <ng-container *ngIf="summary$ | async as summary">
-      <p-card gdArea="income" header="Income:" class="info-card" styleClass="info-card-green">
-        {{ summary.incomeSum | currency: activeBudget.currencySymbol }}
-      </p-card>
-      <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
-        {{ summary.balance | currency: activeBudget.currencySymbol }}
-      </p-card>
-      <p-card gdArea="expense" header="Expenses:" class="info-card" styleClass="info-card-red">
-        {{ summary.expenseSum | currency: activeBudget.currencySymbol }}
-      </p-card>
-    </ng-container>
+<div
+  *ngIf="activeBudget$ | async as activeBudget"
+  class="wrapper"
+  ngStyle.gt-md="height:100%"
+  gdAreas.gt-md="income balance expense | chart chart list"
+  gdAreas.gt-xs="income balance expense | chart chart chart | list list list"
+  gdAreas.xs="income | balance | expense | chart | list"
+  gdColumns.gt-xs="1fr 1fr 1fr"
+  gdRows.gt-md="auto 1fr"
+  gdGap="10px"
+>
+  <ng-container *ngIf="summary$ | async as summary">
+    <p-card gdArea="income" header="Income:" class="info-card" styleClass="info-card-green">
+      {{ summary.incomeSum | currency: activeBudget.currencySymbol }}
+    </p-card>
+    <p-card gdArea="balance" header="Balance:" class="info-card" styleClass="info-card-blue">
+      {{ summary.balance | currency: activeBudget.currencySymbol }}
+    </p-card>
+    <p-card gdArea="expense" header="Expenses:" class="info-card" styleClass="info-card-red">
+      {{ summary.expenseSum | currency: activeBudget.currencySymbol }}
+    </p-card>
+  </ng-container>
 
-    <p-card
-      gdArea="chart"
-      class="chart-card"
-      styleClass="chart-card-style"
-      header="Expenses"
-      [ngStyle.lt-lg]="{height: '60vw'}"
-    >
-      <app-budget-chart></app-budget-chart>
-    </p-card>
-    <p-card
-      gdArea="list"
-      class="list-card"
-      styleClass="list-card-style"
-      header="Categories"
-    >
-      <app-budget-categories></app-budget-categories>
-    </p-card>
-  </div>
+  <p-card gdArea="chart" class="chart-card" styleClass="chart-card-style" header="Expenses" [ngStyle.lt-lg]="{height: '60vw'}">
+    <app-budget-chart></app-budget-chart>
+  </p-card>
+  <p-card gdArea="list" class="list-card" styleClass="list-card-style" header="Categories">
+    <app-budget-categories></app-budget-categories>
+  </p-card>
 </div>
