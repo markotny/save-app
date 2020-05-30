@@ -5,6 +5,7 @@
   top: 0;
   bottom: 0;
   width: max(#{$min-width}, 100vw);
+  overflow-x: auto;
 
   .sidenav {
     position: absolute;
