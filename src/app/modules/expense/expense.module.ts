@@ -1,3 +1,4 @@
+import {SharedModule} from '@shared/shared.module';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -9,6 +10,6 @@ import {MobileActivebudgetExpensesComponent} from './mobile-activebudget-expense
 
 @NgModule({
   declarations: [ExpenseComponent, ActivebudgetExpensesComponent, ExpenseDetailsComponent, MobileActivebudgetExpensesComponent],
-  imports: [CommonModule, ExpenseRoutingModule]
+  imports: [CommonModule, ExpenseRoutingModule, SharedModule]
 })
 export class ExpenseModule {}

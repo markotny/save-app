@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {AppState} from '@core/core.state';
+import {Store} from '@ngrx/store';
+import {ExpenseSelectors} from '@state/expenses';
 
 @Component({
   selector: 'app-activebudget-expenses',
@@ -6,7 +9,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./activebudget-expenses.component.scss']
 })
 export class ActivebudgetExpensesComponent implements OnInit {
-  constructor() {}
+  expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 }

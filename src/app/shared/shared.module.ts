@@ -22,6 +22,7 @@ import {SpinnerModule} from 'primeng/spinner';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -80,7 +81,8 @@ import {IncomeEditComponent} from './components/income-edit/income-edit.componen
     SpinnerModule,
     DropdownModule,
     InputTextareaModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ScrollPanelModule
   ],
   exports: [
     DropdownMenuComponent,
@@ -122,7 +124,8 @@ import {IncomeEditComponent} from './components/income-edit/income-edit.componen
     SpinnerModule,
     DropdownModule,
     InputTextareaModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ScrollPanelModule
   ],
   providers: [MobileBreakPointsProvider]
 })
