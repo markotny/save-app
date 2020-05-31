@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Id} from '@shared/types';
 import {ModelBase} from '@wydatex/models';
 import {ApiModule} from './api-module.enum';
+import {map} from 'rxjs/operators';
 
 export abstract class CrudService<DTO, VM extends ModelBase> {
   protected apiPath: string;
@@ -12,7 +13,7 @@ export abstract class CrudService<DTO, VM extends ModelBase> {
   }
 
   getList() {
-    return this.http.get<VM[]>(this.apiPath);
+    return this.http.get<VM[]>(this.apiPath).pipe(map(list => list || []));
   }
 
   get(id: Id<VM>) {

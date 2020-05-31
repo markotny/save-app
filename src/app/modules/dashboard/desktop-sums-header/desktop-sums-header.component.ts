@@ -18,7 +18,7 @@ export class DesktopSumsHeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   calculateBudgetPercent(sums: {incomeSum: number; expenseSum: number; balance: number}): number {
-    const result = Math.round(sums.incomeSum / sums.expenseSum);
+    const result = (sums.incomeSum - sums.expenseSum) / sums.incomeSum;
     return isNaN(result) ? 0.0 : result;
   }
 }
