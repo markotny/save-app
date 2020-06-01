@@ -15,7 +15,7 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
   expenseList = {};
-  displayDetails: boolean = false;
+  displayDetails = false;
   selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
 
   constructor(private store: Store<AppState>) {

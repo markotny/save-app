@@ -1,0 +1,14 @@
+<div class="details-container">
+  <div style="font-size: 30px"><b>{{income.name}}</b></div>
+  <div style="float:left; width: 50%; color: red">{{income.amount}}</div>
+  <div style="float:left; width: 35%; text-align: end">{{income.date | date:'short'}}</div>
+  <div style="float:left; width: 15%; text-align: start">
+    <a class="pi pi-pencil" (click)="editExpense(income)"></a>
+    <a class="pi pi-trash" (click)="removeExpense(income)"></a>
+  </div>
+  <div>
+    <div><b>Label:</b> {{income.label}}</div>
+    <div><b>Budget:</b> {{income.budgetId}}</div>
+    <div><b>Recurring:</b> No</div>
+  </div>
+</div>
