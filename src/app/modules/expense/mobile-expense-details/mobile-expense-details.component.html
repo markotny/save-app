@@ -1,0 +1,18 @@
+<div class="details-container">
+  <div><b>Expanse description</b></div>
+  <div>{{expense.name}}</div>
+  <div><b>Amount</b></div>
+  <div>{{expense.amount}}</div>
+  <div><b>Date of expense</b></div>
+  <div>{{expense.date | date:'short'}}</div>
+  <div><b>Label</b></div>
+  <div>{{expense.label}}</div>
+  <div><b>Category</b></div>
+  <div>{{expense.categoryId}}</div>
+  <div><b>Budget</b></div>
+  <div>{{expense.budgetId}}</div>
+  <div class="footer">
+    <button class="ui-button-info" pButton label="Edit" (click)="editExpense(expense)"></button>
+    <button  class="ui-button-danger" pButton  label="Remove" (click)="removeExpense(expense)"></button>
+  </div>
+</div>

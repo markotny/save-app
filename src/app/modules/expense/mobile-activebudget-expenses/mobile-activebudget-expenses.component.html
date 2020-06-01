@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div fxLayout="column" *ngFor="let expense of expenseList$ | async" class="expense">
     <div fxLayout="row" class="expense-controls">
-      <div>{{ expense.name }}</div>
+      <a (click)="showDetails(expense)">{{ expense.name }}</a>
       <a class="pi pi-pencil edit-btn" (click)="editExpense(expense)"></a>
       <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
     </div>
@@ -13,3 +13,6 @@
 </div>
 
 
+<p-dialog [header]="'Expense details'" [draggable]="false" [(visible)]="displayDetails" modal="true">
+  <app-mobile-expense-details [expense]="selectedExpense"></app-mobile-expense-details>
+</p-dialog>

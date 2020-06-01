@@ -11,7 +11,8 @@ import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
 export class MobileActivebudgetExpensesComponent implements OnInit {
 
   expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
-
+  displayDetails: boolean = false;
+  selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
 
   constructor(private store: Store<AppState>) {}
 
@@ -22,6 +23,11 @@ export class MobileActivebudgetExpensesComponent implements OnInit {
   }
   removeExpense(item: Expense) {
     this.store.dispatch(ExpenseActions.removeDialog(item));
+  }
+
+  showDetails(expense: Expense) {
+    this.displayDetails = true;
+    this.selectedExpense = expense;
   }
 
 }
