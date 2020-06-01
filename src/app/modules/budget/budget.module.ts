@@ -10,6 +10,7 @@ import {DatesConflictDirective} from './budget-edit/dates-conflict.directive';
 
 @NgModule({
   declarations: [BudgetOverviewComponent, BudgetChartComponent, BudgetCategoriesComponent, BudgetEditComponent, DatesConflictDirective],
+  exports: [BudgetCategoriesComponent],
   imports: [CommonModule, SharedModule, BudgetRoutingModule]
 })
 export class BudgetModule {}
