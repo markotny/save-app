@@ -15,6 +15,7 @@
     }
 
     .ui-table-thead > tr > th {
+      font-family: Montserrat, serif;
       color: $white;
       background-color: $main-green;
       border-left: none;
@@ -22,6 +23,7 @@
     }
 
     .ui-table-tbody > tr > td {
+      font-family: Roboto-Medium, serif;
       text-align: center;
       border-left: none;
       border-right: none;
@@ -31,7 +33,6 @@
 }
 
 .table-wrapper {
-  margin: 10px;
   border-radius: 10px;
   overflow: hidden;
 }

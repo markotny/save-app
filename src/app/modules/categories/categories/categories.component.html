@@ -1,20 +1,8 @@
 <h1 class="title-header">Categories</h1>
+
+
 <div fxFill fxLayout="row" fxLayout.xs="column">
-  <div class="table-wrapper" [ngStyle]="{width: '30%'}" [ngStyle.xs]="{width: '98%'}">
-    <p-table [value]="allCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>List of all categories</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-category>
-        <tr>
-          <td>{{category.name}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <div class="table-wrapper" [ngStyle]="{width: '70%'}" [ngStyle.xs]="{width: '98%'}">
+  <div class="table-wrapper" [ngStyle]="{width: '70%', marginRight:'25px'}" [ngStyle.xs]="{width: '98%'}">
     <p-table [value]="activeCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh"
              fxShow.xs="false">
       <ng-template pTemplate="header">
@@ -31,12 +19,26 @@
           <td>{{category.moneyBudgeted}}</td>
           <td>{{category.spent}}</td>
           <td [ngStyle]="{width: '20%'}" class="controls">
-            <a class="pi pi-pencil"></a>
-            <a class="pi pi-trash"></a>
+            <a class="pi pi-pencil" (click)="editCategory(category)"></a>
+            <a class="pi pi-trash" (click)="removeCategory(category)"></a>
           </td>
         </tr>
       </ng-template>
     </p-table>
     <app-budget-categories fxShow.xs="true" fxShow="false"></app-budget-categories>
+  </div>
+  <div class="table-wrapper" [ngStyle]="{width: '30%'}" [ngStyle.xs]="{width: '98%'}">
+    <p-table [value]="allCategories" class="categories-table" [scrollable]="true" scrollHeight="60vh">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>List of all categories</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{category.name}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>

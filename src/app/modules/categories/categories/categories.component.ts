@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {CategorySelectors} from '@state/categories';
+import {Category, CategoryActions, CategorySelectors} from '@state/categories';
 import {AppState} from '@core/core.state';
 import {Subscription} from 'rxjs';
 import {BudgetSelectors, Budget} from '@state/budgets';
@@ -20,7 +20,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   activeBudget$ = this.store.select(BudgetSelectors.active);
   activeBudget: Budget;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -33,4 +34,14 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
+
+  editCategory(item: Category) {
+    this.store.dispatch(CategoryActions.editDialog({item}));
+  }
+
+  removeCategory(item: Category) {
+    this.store.dispatch(CategoryActions.removeDialog(item));
+  }
+
+
 }
