@@ -2,6 +2,11 @@
 
 .sidebar {
   background-color: $main-green;
+  overflow: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .main-panel {

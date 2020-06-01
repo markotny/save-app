@@ -1,0 +1,13 @@
+<ng-container>
+  <form (ngSubmit)="onSubmit(editForm)" #editForm="ngForm">
+    <ng-content></ng-content>
+
+    <div class="footer" ngStyle.xs="margin-top:auto">
+      <button pButton type="button" (click)="close()" label="Cancel" class="ui-button-secondary"></button>
+
+      <button *ngIf="type !== 'remove'" pButton type="submit" label="Save" class="ui-button-success"></button>
+
+      <button *ngIf="type === 'remove'" pButton type="button" (click)="confirm()" label="Delete" class="ui-button-danger"></button>
+    </div>
+  </form>
+</ng-container>

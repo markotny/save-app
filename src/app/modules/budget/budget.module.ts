@@ -8,6 +8,7 @@ import {BudgetEditComponent} from './budget-edit/budget-edit.component';
 import {BudgetRemoveComponent} from './budget-remove/budget-remove.component';
 import {BudgetChartComponent} from './budget-chart/budget-chart.component';
 import {BudgetCategoriesComponent} from './budget-categories/budget-categories.component';
+import {DatesConflictDirective} from './budget-edit/dates-conflict.directive';
 
 @NgModule({
   declarations: [

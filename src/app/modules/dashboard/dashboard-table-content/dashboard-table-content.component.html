@@ -1,0 +1,8 @@
+<div class="f-horizontal space-between w-100 content-padding" *ngIf="currencyLabel$ | async as currencyLabel">
+  <div class="label">
+    <span>{{ model.name }}</span>
+  </div>
+  <div class="amount">
+    <span>{{ model.spent || model.amount | currency: currencyLabel }}</span>
+  </div>
+</div>
