@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Id} from '@shared/types';
+import {Expense, ExpenseActions} from '@state/expenses';
+import {Store} from '@ngrx/store';
+import {AppState} from '@core/core.state';
 
 @Component({
   selector: 'app-expense-details',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpenseDetailsComponent implements OnInit {
 
-  constructor() { }
+  @Input() expense: Expense;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
 
+  editExpense(item: Expense) {
+    this.store.dispatch(ExpenseActions.editDialog({item}));
+  }
+
+  removeExpense(item: Expense) {
+    this.store.dispatch(ExpenseActions.removeDialog(item));
+  }
 }

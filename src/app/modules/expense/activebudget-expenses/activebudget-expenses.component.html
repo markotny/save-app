@@ -19,7 +19,7 @@
           <td>{{ expense.amount }}</td>
           <td>{{ expense.categoryId }}</td>
           <td [ngStyle]="{width: '20%'}">
-            <a class="pi pi-paperclip"></a>
+            <a class="pi pi-paperclip" (click)="showDetails(expense)"></a>
             <a class="pi pi-pencil" (click)="editExpense(expense)"></a>
             <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
           </td>
@@ -27,5 +27,9 @@
       </ng-template>
     </p-table>
   </div>
-
 </div>
+
+<p-dialog [draggable]="false" [(visible)]="displayDetails" modal="true">
+  <app-expense-details [expense]="selectedExpense"></app-expense-details>
+</p-dialog>
+

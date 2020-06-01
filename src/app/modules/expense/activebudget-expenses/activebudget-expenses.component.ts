@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
 import {Subscription} from 'rxjs';
 import {Category, CategoryActions} from '@state/categories';
+import {Id} from '@shared/types';
 
 @Component({
   selector: 'app-activebudget-expenses',
@@ -14,6 +15,8 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
   expenseList = {};
+  displayDetails: boolean = false;
+  selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
 
   constructor(private store: Store<AppState>) {
   }
@@ -32,5 +35,10 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
 
   removeExpense(item: Expense) {
     this.store.dispatch(ExpenseActions.removeDialog(item));
+  }
+
+  showDetails(expense: Expense) {
+    this.displayDetails = true;
+    this.selectedExpense = expense;
   }
 }
