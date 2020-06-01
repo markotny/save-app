@@ -1,0 +1,50 @@
+@import '../dashboard/dashboard.component.scss';
+@import '~variables.scss';
+
+.chart-wrapper {
+  position: relative;
+  background-color: $white;
+  margin-top: -3vw;
+  &-mobile {
+    position: relative;
+    background-color: $white;
+    height: 60vw;
+    margin-top: 25px;
+    margin-bottom: 25px
+  }
+}
+
+.position-absolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* This is a shorthand of
+                                       translateX(-50%) and translateY(-50%) */
+}
+
+.center {
+  align-items: center;
+}
+
+.budget {
+  &-spent {
+    font-size: 1.2vw;
+    white-space: nowrap;
+    font-family: 'Roboto-Medium';
+    color: $dark-grey;
+    &-mobile {
+      @extend .budget-spent;
+      font-size: 5vw;
+    }
+  }
+  &-percent {
+    font-size: 2.4vw;
+    white-space: nowrap;
+    font-family: 'Roboto-Medium';
+    color: $dark-grey;
+    &-mobile {
+      @extend .budget-percent;
+      font-size: 12vw;
+    }
+  }
+}

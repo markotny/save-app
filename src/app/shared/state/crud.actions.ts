@@ -3,6 +3,16 @@ import {ModelBase} from '@wydatex/models';
 import {randomId, Id} from '@shared/types';
 import {ApiModule} from './api-module.enum';
 
+export const crudActionsDialog = <Model extends ModelBase>(module: ApiModule) => {
+  const name = ApiModule[module];
+  return {
+    addDialog: createAction(`[${name}] Add dialog`),
+    editDialog: createAction(`[${name}] Edit dialog`, props<{item: Model}>()),
+    removeDialog: createAction(`[${name}] Remove dialog`, props<{id: Id<Model>}>()),
+    dialogCancel: createAction(`[${name}] Dialog cancel`)
+  };
+};
+
 export const crudActionsPublic = <DTO extends Partial<VM>, VM extends ModelBase>(module: ApiModule) => {
   const name = ApiModule[module];
   return {

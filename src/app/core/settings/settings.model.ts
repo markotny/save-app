@@ -1,4 +1,4 @@
-import {AppState} from '@core/core.module';
+import {AppState} from '@core/index';
 
 export const DARK_MODE_THEME = 'DARK-THEME';
 

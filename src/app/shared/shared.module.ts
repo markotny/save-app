@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -11,13 +11,28 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
+import {DialogModule} from 'primeng/dialog';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {SpinnerModule} from 'primeng/spinner';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputSwitchModule} from 'primeng/inputswitch';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
 import {MobShowHideDirective, MobStyleDirective, MobClassDirective} from './layout/directives/mob.directives';
 import {GtMobShowHideDirective, GtMobClassDirective, GtMobStyleDirective} from './layout/directives/gt-mob.directives';
 import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
+import {ModalWrapperComponent} from './components/modal-wrapper/modal-wrapper.component';
+import {ModalRemoveComponent} from './components/modal-remove/modal-remove.component';
+import {CategoryEditComponent} from './components/category-edit/category-edit.component';
+import {ExpenseEditComponent} from './components/expense-edit/expense-edit.component';
+import {IncomeEditComponent} from './components/income-edit/income-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +44,18 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     MobStyleDirective,
     GtMobShowHideDirective,
     GtMobClassDirective,
-    GtMobStyleDirective
+    GtMobStyleDirective,
+    ModalWrapperComponent,
+    ModalRemoveComponent,
+    CategoryEditComponent,
+    ExpenseEditComponent,
+    IncomeEditComponent
   ],
   imports: [
     // angular
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     // ngx
@@ -49,10 +70,21 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     ToastModule,
     CheckboxModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChartModule,
+    DialogModule,
+    DynamicDialogModule,
+    InputTextModule,
+    CalendarModule,
+    MultiSelectModule,
+    SpinnerModule,
+    DropdownModule,
+    InputTextareaModule,
+    InputSwitchModule
   ],
   exports: [
     DropdownMenuComponent,
+    ModalWrapperComponent,
     VarDirective,
     FadeDirective,
     MobShowHideDirective,
@@ -65,6 +97,7 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     // angular
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     // ngx
@@ -79,7 +112,17 @@ import {MobileBreakPointsProvider} from './layout/mobile-breakpoints.provider';
     ToastModule,
     CheckboxModule,
     CardModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChartModule,
+    DialogModule,
+    DynamicDialogModule,
+    InputTextModule,
+    CalendarModule,
+    MultiSelectModule,
+    SpinnerModule,
+    DropdownModule,
+    InputTextareaModule,
+    InputSwitchModule
   ],
   providers: [MobileBreakPointsProvider]
 })

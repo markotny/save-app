@@ -3,7 +3,8 @@ import {createSelector} from '@ngrx/store';
 import {Id} from '@shared/types';
 import {selectExpenseState} from '@state/data.state';
 import {Expense} from './expenses.model';
-import {BudgetSelectors} from '@state/budgets';
+import * as BudgetSelectors from '@state/budgets/budgets.selectors';
+import {Dictionary} from '@ngrx/entity';
 
 const {selectAll, selectEntities} = adapter.getSelectors();
 
@@ -16,6 +17,7 @@ export const activeBudget = createSelector(BudgetSelectors.activeId, all, (id, e
 
 export const activeBudgetSum = createSelector(activeBudget, expenses => expenses.reduce((sum, e) => sum + e.amount, 0));
 
-export const activeBudgetGroupedSums = createSelector(activeBudget, expenses =>
-  expenses.reduce((dict, e) => ({...dict, [e.categoryId]: (dict[e.categoryId] || 0) + e.amount}), {})
+export const activeBudgetGroupedSums = createSelector(
+  activeBudget,
+  expenses => expenses.reduce((dict, e) => ({...dict, [e.categoryId]: (dict[e.categoryId] || 0) + e.amount}), {}) as Dictionary<number>
 );

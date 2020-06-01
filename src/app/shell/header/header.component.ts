@@ -2,10 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {accountMenu} from '@shell/account-menu.model';
 import {OidcFacade} from 'ng-oidc-client';
 import {MenuItem} from 'primeng/api/menuitem';
-import {Observable} from 'rxjs';
-import {map, share, withLatestFrom} from 'rxjs/operators';
+import {Observable, combineLatest} from 'rxjs';
+import {map, share} from 'rxjs/operators';
 import {AppState} from '@core/core.state';
-import {Store, select} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {BudgetSelectors, BudgetActions} from '@state/budgets';
 
 @Component({
@@ -20,9 +20,10 @@ export class HeaderComponent implements OnInit {
   userName$: Observable<string>;
 
   activeBudget$ = this.store.select(BudgetSelectors.active);
-  activeBudgetMenuItems$: Observable<MenuItem[]> = this.store.pipe(
-    select(BudgetSelectors.all),
-    withLatestFrom(this.store.select(BudgetSelectors.activeId)),
+  activeBudgetMenuItems$: Observable<MenuItem[]> = combineLatest([
+    this.store.select(BudgetSelectors.all),
+    this.store.select(BudgetSelectors.activeId)
+  ]).pipe(
     map(([budgets, activeId]) =>
       budgets.filter(b => b.id !== activeId).map(b => ({label: b.name, command: () => this.store.dispatch(BudgetActions.setActive(b))}))
     )
