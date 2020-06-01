@@ -1,1 +1,15 @@
-<p>mobile-activebudget-expenses works!</p>
+<div class="wrapper">
+  <div fxLayout="column" *ngFor="let expense of expenseList$ | async" class="expense">
+    <div fxLayout="row" class="expense-controls">
+      <div>{{ expense.name }}</div>
+      <a class="pi pi-pencil edit-btn" (click)="editExpense(expense)"></a>
+      <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="expenses">
+      <span>{{expense.amount}}</span>
+      <span>{{expense.date | date:'short'}}</span>
+    </div>
+  </div>
+</div>
+
+
