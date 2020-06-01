@@ -1,24 +1,31 @@
-<div class="f-vertical table">
-  <div class="h-100">
-    <table class="w-100">
-      <thead class="table-head">
-        <tr class="table-header">
+
+<div fxFill fxLayout="row" fxLayout.xs="column">
+  <div class="table-wrapper" >
+    <p-table [value]="expenseList" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+             fxShow.xs="false">
+      <ng-template pTemplate="header">
+        <tr>
           <th>Expense</th>
           <th>Date of expense</th>
           <th>Amount</th>
           <th>Category</th>
-          <th>Action</th>
+          <th [ngStyle]="{width: '20%'}">Action</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let expense of expenseList$ | async as expenseList">
+      </ng-template>
+      <ng-template pTemplate="body" let-expense>
+        <tr>
           <td>{{ expense.name }}</td>
           <td>{{ expense.date | date }}</td>
           <td>{{ expense.amount }}</td>
           <td>{{ expense.categoryId }}</td>
-          <td></td>
+          <td [ngStyle]="{width: '20%'}">
+            <a class="pi pi-paperclip"></a>
+            <a class="pi pi-pencil" (click)="editExpense(expense)"></a>
+            <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
+          </td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+    </p-table>
   </div>
+
 </div>
