@@ -11,7 +11,7 @@ import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
 export class MobileActivebudgetExpensesComponent implements OnInit {
 
   expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
-  displayDetails: boolean = false;
+  displayDetails = false;
   selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
 
   constructor(private store: Store<AppState>) {}
