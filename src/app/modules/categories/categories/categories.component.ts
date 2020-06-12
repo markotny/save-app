@@ -14,8 +14,7 @@ import {CategoryVM} from '@wydatex/models';
 export class CategoriesComponent implements OnInit, OnDestroy {
 
   allCategories$ = this.store.select(CategorySelectors.all);
-  activeCategories$ = this.store.select(CategorySelectors.activeBudget);
-  activeBudget$ = this.store.select(BudgetSelectors.active);
+  activeCategories$ = this.store.select(CategorySelectors.activeBudgetSums);
 
   constructor(private store: Store<AppState>) {
   }

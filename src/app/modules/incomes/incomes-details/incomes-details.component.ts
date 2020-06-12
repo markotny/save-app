@@ -27,11 +27,11 @@ export class IncomesDetailsComponent implements OnInit {
   console.warn(this.dupa)
   }
 
-  editExpense(item: Income) {
+  editIncome(item: Income) {
     this.store.dispatch(IncomeActions.editDialog({item}));
   }
 
-  removeExpense(item: Income) {
+  removeIncome(item: Income) {
     this.store.dispatch(IncomeActions.removeDialog(item));
   }
 }

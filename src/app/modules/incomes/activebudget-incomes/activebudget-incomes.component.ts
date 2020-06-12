@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
-import {Subscription} from 'rxjs';
 
 import {Income, IncomeActions, IncomeSelectors} from '@state/incomes';
 
@@ -13,7 +12,7 @@ import {Income, IncomeActions, IncomeSelectors} from '@state/incomes';
 export class ActivebudgetIncomesComponent implements OnInit, OnDestroy {
   incomeList$ = this.store.select(IncomeSelectors.all);
   displayDetails = false;
-  selectedIncome: Income =undefined;
+  selectedIncome: Income = undefined;
 
   constructor(private store: Store<AppState>) {
   }

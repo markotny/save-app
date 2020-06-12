@@ -5,10 +5,9 @@
              fxShow.xs="false">
       <ng-template pTemplate="header">
         <tr>
-          <th>Expense</th>
-          <th>Date of expense</th>
+          <th>Income</th>
+          <th>Date of income</th>
           <th>Amount</th>
-          <th>Category</th>
           <th [ngStyle]="{width: '20%'}">Action</th>
         </tr>
       </ng-template>
@@ -17,7 +16,6 @@
           <td>{{ income.name }}</td>
           <td>{{ income.date | date }}</td>
           <td>{{ income.amount }}</td>
-          <td>{{ income.categoryId }}</td>
           <td [ngStyle]="{width: '20%'}">
             <a class="pi pi-pencil" (click)="editExpense(income)"></a>
             <a class="pi pi-trash" (click)="removeExpense(income)"></a>

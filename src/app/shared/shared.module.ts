@@ -34,6 +34,7 @@ import {ModalRemoveComponent} from './components/modal-remove/modal-remove.compo
 import {CategoryEditComponent} from './components/category-edit/category-edit.component';
 import {ExpenseEditComponent} from './components/expense-edit/expense-edit.component';
 import {IncomeEditComponent} from './components/income-edit/income-edit.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,9 @@ import {IncomeEditComponent} from './components/income-edit/income-edit.componen
     DropdownModule,
     InputTextareaModule,
     InputSwitchModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    TableModule,
+
   ],
   exports: [
     DropdownMenuComponent,
