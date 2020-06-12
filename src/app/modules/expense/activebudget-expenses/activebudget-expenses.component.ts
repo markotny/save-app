@@ -12,9 +12,9 @@ import {Id} from '@shared/types';
   styleUrls: ['./activebudget-expenses.component.scss']
 })
 export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+
   expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
-  expenseList = {};
+
   displayDetails = false;
   selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
 
@@ -22,11 +22,9 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.expenseList$.subscribe(o => this.expenseList = o));
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   editExpense(item: Expense) {

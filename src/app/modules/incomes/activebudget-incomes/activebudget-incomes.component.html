@@ -1,7 +1,7 @@
 
 <div fxFill fxLayout="row" fxLayout.xs="column">
   <div class="table-wrapper" >
-    <p-table [value]="incomeList" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+    <p-table [value]="incomeList$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh"
              fxShow.xs="false">
       <ng-template pTemplate="header">
         <tr>
@@ -12,14 +12,13 @@
           <th [ngStyle]="{width: '20%'}">Action</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-income>
-        <tr>
+      <ng-template pTemplate="body" let-income >
+        <tr (click)="showDetails(income)">
           <td>{{ income.name }}</td>
           <td>{{ income.date | date }}</td>
           <td>{{ income.amount }}</td>
           <td>{{ income.categoryId }}</td>
           <td [ngStyle]="{width: '20%'}">
-            <a class="pi pi-paperclip" (click)="showDetails(income)"></a>
             <a class="pi pi-pencil" (click)="editExpense(income)"></a>
             <a class="pi pi-trash" (click)="removeExpense(income)"></a>
           </td>
@@ -29,7 +28,7 @@
   </div>
 </div>
 
-<p-dialog [draggable]="false" [(visible)]="displayDetails" modal="true">
+<p-dialog [draggable]="false" [(visible)]="displayDetails" modal="true" *ngIf="selectedIncome!==undefined">
   <app-incomes-details [income]="selectedIncome"></app-incomes-details>
 </p-dialog>
 

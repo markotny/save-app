@@ -1,7 +1,7 @@
 
 <div fxFill fxLayout="row" fxLayout.xs="column">
   <div class="table-wrapper" >
-    <p-table [value]="expenseList" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+    <p-table [value]="expenseList$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh"
              fxShow.xs="false">
       <ng-template pTemplate="header">
         <tr>
@@ -13,13 +13,12 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-expense>
-        <tr>
+        <tr (click)="showDetails(expense)">
           <td>{{ expense.name }}</td>
           <td>{{ expense.date | date }}</td>
           <td>{{ expense.amount }}</td>
           <td>{{ expense.categoryId }}</td>
           <td [ngStyle]="{width: '20%'}">
-            <a class="pi pi-paperclip" (click)="showDetails(expense)"></a>
             <a class="pi pi-pencil" (click)="editExpense(expense)"></a>
             <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
           </td>

@@ -11,21 +11,17 @@ import {Income, IncomeActions, IncomeSelectors} from '@state/incomes';
   styleUrls: ['./activebudget-incomes.component.scss']
 })
 export class ActivebudgetIncomesComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
   incomeList$ = this.store.select(IncomeSelectors.all);
-  incomeList = {};
   displayDetails = false;
-  selectedIncome: Income = {amount: 0, budgetId: 0, date: undefined, label: '', name: '', id: -1};
+  selectedIncome: Income =undefined;
 
   constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.incomeList$.subscribe(o => this.incomeList = o));
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   editExpense(item: Income) {

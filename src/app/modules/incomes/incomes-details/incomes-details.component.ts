@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {resultMemoize, select, Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
 import {Income, IncomeActions} from '@state/incomes';
+import {BudgetSelectors} from '@state/budgets';
+import {filter, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-incomes-details',
@@ -12,9 +14,17 @@ export class IncomesDetailsComponent implements OnInit {
 
   @Input() income: Income;
 
-  constructor(private store: Store<AppState>) { }
+  budget$ = this.store.pipe(
+    select(BudgetSelectors.all),
+    map(result => result.filter(b => b.id === this.income.budgetId))
+  );
 
-  ngOnInit(): void {
+  dupa = {}
+  constructor(private store: Store<AppState>) {
+  }
+
+  ngOnInit(): void {    this.budget$.subscribe(o =>this.dupa = o)
+  console.warn(this.dupa)
   }
 
   editExpense(item: Income) {
