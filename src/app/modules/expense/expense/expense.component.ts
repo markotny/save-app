@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Expense, ExpenseExtended} from '@state/expenses';
 
 @Component({
   selector: 'app-expense',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./expense.component.scss']
 })
 export class ExpenseComponent implements OnInit {
+
+  static toExpenseType(item: ExpenseExtended): Expense {
+    delete item.budgetName;
+    delete item.categoryName;
+    delete item.currencySymbol;
+    return item;
+  }
 
   constructor() { }
 

@@ -3,6 +3,7 @@ import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
 import {Expense, ExpenseActions, ExpenseExtended, ExpenseSelectors} from '@state/expenses';
 import {activeBudgetExpenses} from '@state/selectors';
+import {ExpenseComponent} from '@modules/expense/expense/expense.component';
 
 
 @Component({
@@ -22,12 +23,7 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   displayDetails = false;
   selectedExpense: ExpenseExtended = undefined;
 
-  static toExpenseType(item: ExpenseExtended): Expense {
-    delete item.budgetName;
-    delete item.categoryName;
-    delete item.currencySymbol;
-    return item;
-  }
+
 
   ngOnInit(): void {
   }
@@ -36,12 +32,12 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   }
 
   editExpense(expense: ExpenseExtended) {
-    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
+    const item = ExpenseComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.editDialog({item}));
   }
 
   removeExpense(expense: ExpenseExtended) {
-    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
+    const item = ExpenseComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.removeDialog(item));
   }
 

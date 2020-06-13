@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
-import {Income, IncomeActions} from '@state/incomes';
+import {IncomeActions, IncomeExtended} from '@state/incomes';
+import {IncomesComponent} from '@modules/incomes/incomes/incomes.component';
 
 @Component({
   selector: 'app-mobile-incomes-details',
@@ -10,18 +11,20 @@ import {Income, IncomeActions} from '@state/incomes';
 })
 export class MobileIncomesDetailsComponent implements OnInit {
 
-  @Input() income: Income;
+  @Input() income: IncomeExtended;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
 
-  editIncome(item: Income) {
+  editIncome(income: IncomeExtended) {
+    const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.editDialog({item}));
   }
 
-  removeIncome(item: Income) {
+  removeIncome(income: IncomeExtended) {
+    const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.removeDialog(item));
   }
 

@@ -2,13 +2,13 @@
   <div><b>Income description</b></div>
   <div>{{income.name}}</div>
   <div><b>Amount</b></div>
-  <div>{{income.amount}}</div>
+  <div>{{income.amount}} {{income.currencySymbol}}</div>
   <div><b>Date of expense</b></div>
   <div>{{income.date | date:'short'}}</div>
   <div><b>Label</b></div>
   <div>{{income.label}}</div>
   <div><b>Budget</b></div>
-  <div>{{income.budgetId}}</div>
+  <div>{{income.budgetName}}</div>
   <div class="footer">
     <button class="ui-button-info" pButton label="Edit" (click)="editIncome(income)"></button>
     <button  class="ui-button-danger" pButton  label="Remove" (click)="removeIncome(income)"></button>

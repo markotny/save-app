@@ -6,13 +6,13 @@
       <a class="pi pi-trash" (click)="removeIncome(income)"></a>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="incomes">
-      <span>{{income.amount}}</span>
+      <span>{{income.amount}} {{income.currencySymbol}}</span>
       <span>{{income.date | date:'short'}}</span>
     </div>
   </div>
 </div>
 
 
-<p-dialog [header]="'Income details'" [draggable]="false" [(visible)]="displayDetails" modal="true">
+<p-dialog [header]="'Income details'" [draggable]="false" [(visible)]="displayDetails" modal="true" *ngIf="selectedIncome!==undefined">
   <app-mobile-incomes-details [income]="selectedIncome"></app-mobile-incomes-details>
 </p-dialog>

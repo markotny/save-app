@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
-import {Income, IncomeActions, IncomeSelectors} from '@state/incomes';
+import {IncomeActions, IncomeExtended, IncomeSelectors} from '@state/incomes';
+import {IncomesComponent} from '@modules/incomes/incomes/incomes.component';
 
 @Component({
   selector: 'app-mobile-activebudget-incomes',
@@ -10,22 +11,24 @@ import {Income, IncomeActions, IncomeSelectors} from '@state/incomes';
 })
 export class MobileActivebudgetIncomesComponent implements OnInit {
 
-  incomeList$ = this.store.select(IncomeSelectors.all);
+  incomeList$ = this.store.select(IncomeSelectors.extended);
   displayDetails = false;
-  selectedIncome: Income = {amount: 0, budgetId: 0, date: undefined, label: '', name: '', id: -1};
+  selectedIncome: IncomeExtended = undefined;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
-  editIncome(item: Income) {
+  editIncome(income: IncomeExtended) {
+    const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.editDialog({item}));
   }
-  removeIncome(item: Income) {
+  removeIncome(income: IncomeExtended) {
+    const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.removeDialog(item));
   }
 
-  showDetails(income: Income) {
+  showDetails(income: IncomeExtended) {
     this.displayDetails = true;
     this.selectedIncome = income;
   }
