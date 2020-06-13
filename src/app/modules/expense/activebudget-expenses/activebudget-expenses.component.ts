@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
-import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
-import {Subscription} from 'rxjs';
-import {Category, CategoryActions} from '@state/categories';
-import {Id} from '@shared/types';
+import {Expense, ExpenseActions} from '@state/expenses';
+import {activeBudgetExpenses} from '@state/selectors';
+
 
 @Component({
   selector: 'app-activebudget-expenses',
@@ -13,10 +12,12 @@ import {Id} from '@shared/types';
 })
 export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
 
-  expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
+
+  expenseList$ = this.store.select(activeBudgetExpenses);
+
 
   displayDetails = false;
-  selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
+  selectedExpense: Expense = undefined;
 
   constructor(private store: Store<AppState>) {
   }
