@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Expense, ExpenseActions} from '@state/expenses';
+import {Expense, ExpenseActions, ExpenseExtended} from '@state/expenses';
 import {Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
+import {ActivebudgetExpensesComponent} from '@modules/expense/activebudget-expenses/activebudget-expenses.component';
 
 @Component({
   selector: 'app-mobile-expense-details',
@@ -10,18 +11,20 @@ import {AppState} from '@core/core.state';
 })
 export class MobileExpenseDetailsComponent implements OnInit {
 
-  @Input() expense: Expense;
+  @Input() expense: ExpenseExtended;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
 
-  editExpense(item: Expense) {
+  editExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.editDialog({item}));
   }
 
-  removeExpense(item: Expense) {
+  removeExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.removeDialog(item));
   }
 

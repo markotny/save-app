@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '@core/core.state';
-import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
+import {Expense, ExpenseActions, ExpenseExtended, ExpenseSelectors} from '@state/expenses';
+import {ActivebudgetExpensesComponent} from '@modules/expense/activebudget-expenses/activebudget-expenses.component';
+import {activeBudgetExpenses} from '@state/selectors';
 
 @Component({
   selector: 'app-mobile-activebudget-expenses',
@@ -10,22 +12,24 @@ import {Expense, ExpenseActions, ExpenseSelectors} from '@state/expenses';
 })
 export class MobileActivebudgetExpensesComponent implements OnInit {
 
-  expenseList$ = this.store.select(ExpenseSelectors.activeBudget);
+  expenseList$ = this.store.select(activeBudgetExpenses);
   displayDetails = false;
-  selectedExpense: Expense = {amount: 0, budgetId: 0, categoryId: 0, date: undefined, label: '', name: '', id: -1};
+  selectedExpense: ExpenseExtended = undefined;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
-  editExpense(item: Expense) {
+  editExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.editDialog({item}));
   }
-  removeExpense(item: Expense) {
+  removeExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.removeDialog(item));
   }
 
-  showDetails(expense: Expense) {
+  showDetails(expense: ExpenseExtended) {
     this.displayDetails = true;
     this.selectedExpense = expense;
   }

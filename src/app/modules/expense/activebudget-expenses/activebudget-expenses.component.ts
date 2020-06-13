@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
-import {Expense, ExpenseActions} from '@state/expenses';
+import {Expense, ExpenseActions, ExpenseExtended, ExpenseSelectors} from '@state/expenses';
 import {activeBudgetExpenses} from '@state/selectors';
 
 
@@ -12,14 +12,21 @@ import {activeBudgetExpenses} from '@state/selectors';
 })
 export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
 
+  constructor(private store: Store<AppState>) {
+  }
+
 
   expenseList$ = this.store.select(activeBudgetExpenses);
 
 
   displayDetails = false;
-  selectedExpense: Expense = undefined;
+  selectedExpense: ExpenseExtended = undefined;
 
-  constructor(private store: Store<AppState>) {
+  static toExpenseType(item: ExpenseExtended): Expense {
+    delete item.budgetName;
+    delete item.categoryName;
+    delete item.currencySymbol;
+    return item;
   }
 
   ngOnInit(): void {
@@ -28,15 +35,17 @@ export class ActivebudgetExpensesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  editExpense(item: Expense) {
+  editExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.editDialog({item}));
   }
 
-  removeExpense(item: Expense) {
+  removeExpense(expense: ExpenseExtended) {
+    const item = ActivebudgetExpensesComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.removeDialog(item));
   }
 
-  showDetails(expense: Expense) {
+  showDetails(expense: ExpenseExtended) {
     this.displayDetails = true;
     this.selectedExpense = expense;
   }
