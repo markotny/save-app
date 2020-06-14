@@ -16,14 +16,17 @@ export class ActivebudgetExpensesComponent {
   displayDetails = false;
   selectedExpense: ExpenseExtended = undefined;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {
+  }
 
-  editExpense(expense: ExpenseExtended) {
+  editExpense(event: Event, expense: ExpenseExtended) {
+    event.stopPropagation();
     const item = ExpenseComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.editDialog({item}));
   }
 
-  removeExpense(expense: ExpenseExtended) {
+  removeExpense(event: Event, expense: ExpenseExtended) {
+    event.stopPropagation();
     const item = ExpenseComponent.toExpenseType(expense);
     this.store.dispatch(ExpenseActions.removeDialog(item));
   }

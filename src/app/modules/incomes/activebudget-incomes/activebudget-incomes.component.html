@@ -17,8 +17,8 @@
           <td>{{ income.date | date }}</td>
           <td>{{ income.amount | currency: income.currencySymbol }}</td>
           <td [ngStyle]="{width: '20%'}">
-            <a class="pi pi-pencil" (click)="editExpense(income)"></a>
-            <a class="pi pi-trash" (click)="removeExpense(income)"></a>
+            <a class="pi pi-pencil" (click)="editExpense($event, income)"></a>
+            <a class="pi pi-trash" (click)="removeExpense($event, income)"></a>
           </td>
         </tr>
       </ng-template>

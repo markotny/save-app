@@ -16,12 +16,14 @@ export class ActivebudgetIncomesComponent {
 
   constructor(private store: Store<AppState>) {}
 
-  editExpense(income: IncomeExtended) {
+  editExpense(event: Event, income: IncomeExtended) {
+    event.stopPropagation();
     const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.editDialog({item}));
   }
 
-  removeExpense(income: IncomeExtended) {
+  removeExpense(event: Event, income: IncomeExtended) {
+    event.stopPropagation();
     const item = IncomesComponent.toIncomeType(income);
     this.store.dispatch(IncomeActions.removeDialog(item));
   }
