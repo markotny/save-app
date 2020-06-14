@@ -15,7 +15,7 @@
         <tr (click)="showDetails(income)">
           <td>{{ income.name }}</td>
           <td>{{ income.date | date }}</td>
-          <td>{{ income.amount }}</td>
+          <td>{{ income.amount | currency: income.currencySymbol }}</td>
           <td [ngStyle]="{width: '20%'}">
             <a class="pi pi-pencil" (click)="editExpense(income)"></a>
             <a class="pi pi-trash" (click)="removeExpense(income)"></a>

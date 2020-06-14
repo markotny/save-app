@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppState} from '@core/core.state';
 import {Store} from '@ngrx/store';
-
 import {IncomeActions, IncomeExtended, IncomeSelectors} from '@state/incomes';
 import {IncomesComponent} from '@modules/incomes/incomes/incomes.component';
 
@@ -10,19 +9,12 @@ import {IncomesComponent} from '@modules/incomes/incomes/incomes.component';
   templateUrl: './activebudget-incomes.component.html',
   styleUrls: ['./activebudget-incomes.component.scss']
 })
-export class ActivebudgetIncomesComponent implements OnInit, OnDestroy {
+export class ActivebudgetIncomesComponent {
   incomeList$ = this.store.select(IncomeSelectors.extended);
   displayDetails = false;
   selectedIncome: IncomeExtended = undefined;
 
-  constructor(private store: Store<AppState>) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-  }
+  constructor(private store: Store<AppState>) {}
 
   editExpense(income: IncomeExtended) {
     const item = IncomesComponent.toIncomeType(income);

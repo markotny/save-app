@@ -1,7 +1,6 @@
 <h1 class="title-header">Categories</h1>
 
-
-<div fxFill fxLayout="row" fxLayout.xs="column">
+<div fxLayout="row" fxLayout.xs="column">
   <div class="table-wrapper" [ngStyle]="{width: '70%', marginRight:'25px'}" [ngStyle.xs]="{width: '98%'}">
     <p-table [value]="activeCategories$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh"
              fxShow.xs="false">
@@ -16,8 +15,8 @@
       <ng-template pTemplate="body" let-category>
         <tr>
           <td>{{category.name}}</td>
-          <td>{{category.moneyBudgeted}}</td>
-          <td>{{category.spent}}</td>
+          <td>{{category.moneyBudgeted | currency: (currencySymbol$ | async)}}</td>
+          <td>{{category.spent | currency: (currencySymbol$ | async)}}</td>
           <td [ngStyle]="{width: '20%'}" class="controls">
             <a class="pi pi-pencil" (click)="editCategory(category)"></a>
             <a class="pi pi-trash" (click)="removeCategory(category)"></a>

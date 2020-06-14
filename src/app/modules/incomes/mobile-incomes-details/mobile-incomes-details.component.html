@@ -2,7 +2,7 @@
   <div><b>Income description</b></div>
   <div>{{income.name}}</div>
   <div><b>Amount</b></div>
-  <div>{{income.amount}} {{income.currencySymbol}}</div>
+  <div>{{income.amount | currency: income.currencySymbol}}</div>
   <div><b>Date of expense</b></div>
   <div>{{income.date | date:'short'}}</div>
   <div><b>Label</b></div>

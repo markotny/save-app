@@ -2,7 +2,7 @@
   <div><b>Expanse description</b></div>
   <div>{{expense.name}}</div>
   <div><b>Amount</b></div>
-  <div>{{expense.amount}} {{expense.currencySymbol}}</div>
+  <div>{{expense.amount | currency: expense.currencySymbol}}</div>
   <div><b>Date of expense</b></div>
   <div>{{expense.date | date:'short'}}</div>
   <div><b>Label</b></div>
