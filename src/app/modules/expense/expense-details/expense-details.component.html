@@ -1,0 +1,15 @@
+<div class="details-container">
+  <div style="font-size: 30px"><b>{{expense.name}}</b></div>
+  <div style="float:left; width: 50%; color: red">{{expense.amount | currency: expense.currencySymbol}}</div>
+  <div style="float:left; width: 35%; text-align: end">{{expense.date | date:'short'}}</div>
+  <div style="float:left; width: 15%; text-align: start">
+    <a class="pi pi-pencil" (click)="editExpense(expense)"></a>
+    <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
+  </div>
+  <div>
+    <div><b>Category:</b> {{expense.categoryName}}</div>
+    <div><b>Label:</b> {{expense.label}}</div>
+    <div><b>Budget:</b> {{expense.budgetName}}</div>
+    <div><b>Recurring:</b> No</div>
+  </div>
+</div>

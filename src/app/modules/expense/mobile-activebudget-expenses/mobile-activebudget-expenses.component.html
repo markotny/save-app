@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div fxLayout="column" *ngFor="let expense of expenseList$ | async" class="expense">
+    <div fxLayout="row" class="expense-controls">
+      <a (click)="showDetails(expense)">{{ expense.name }}</a>
+      <a class="pi pi-pencil edit-btn" (click)="editExpense(expense)"></a>
+      <a class="pi pi-trash" (click)="removeExpense(expense)"></a>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="expenses">
+      <span>{{expense.amount | currency: expense.currencySymbol}}</span>
+      <span>{{expense.date | date:'short'}}</span>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [header]="'Expense details'" [draggable]="false" [(visible)]="displayDetails" modal="true"
+          *ngIf="selectedExpense!==undefined">
+  <app-mobile-expense-details [expense]="selectedExpense"></app-mobile-expense-details>
+</p-dialog>

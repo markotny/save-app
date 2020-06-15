@@ -1,19 +1,20 @@
 import {Component} from '@angular/core';
-import {CategorySelectors, Category, CategoryActions} from '@state/categories';
 import {Store, select} from '@ngrx/store';
+import {Category, CategoryActions, CategorySelectors} from '@state/categories';
 import {AppState} from '@core/core.state';
 import {BudgetSelectors} from '@state/budgets';
 import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-budget-categories',
-  templateUrl: './budget-categories.component.html',
-  styleUrls: ['./budget-categories.component.scss']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss']
 })
-export class BudgetCategoriesComponent {
-  categories$ = this.store.select(CategorySelectors.activeBudgetSums);
+export class CategoriesComponent {
+  allCategories$ = this.store.select(CategorySelectors.all);
+  activeCategories$ = this.store.select(CategorySelectors.activeBudgetSums);
 
-  currency$ = this.store.pipe(
+  currencySymbol$ = this.store.pipe(
     select(BudgetSelectors.active),
     map(x => x && x.currencySymbol)
   );
@@ -23,6 +24,7 @@ export class BudgetCategoriesComponent {
   editCategory(item: Category) {
     this.store.dispatch(CategoryActions.editDialog({item}));
   }
+
   removeCategory(item: Category) {
     this.store.dispatch(CategoryActions.removeDialog(item));
   }

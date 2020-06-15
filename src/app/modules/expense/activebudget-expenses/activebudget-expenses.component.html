@@ -1,0 +1,33 @@
+<div fxFill fxLayout="row" fxLayout.xs="column">
+  <div class="table-wrapper">
+    <p-table [value]="expenseList$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+             fxShow.xs="false">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Expense</th>
+          <th>Date of expense</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th [ngStyle]="{width: '20%'}">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-expense>
+        <tr (click)="showDetails(expense)">
+          <td>{{ expense.name }}</td>
+          <td>{{ expense.date | date }}</td>
+          <td>{{ expense.amount | currency: expense.currencySymbol}}</td>
+          <td>{{ expense.categoryName }}</td>
+          <td [ngStyle]="{width: '20%'}">
+            <a class="pi pi-pencil" (click)="editExpense($event, expense)"></a>
+            <a class="pi pi-trash" (click)="removeExpense($event, expense)"></a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog [draggable]="false" [(visible)]="displayDetails" modal="true" *ngIf="selectedExpense!==undefined">
+  <app-expense-details [expense]="selectedExpense"></app-expense-details>
+</p-dialog>
+

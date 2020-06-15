@@ -1,0 +1,37 @@
+@import '~variables.scss';
+
+:host .categories-table {
+  ::ng-deep .ui-table {
+
+    .ui-table-scrollable-header {
+      width: 100%;
+    }
+
+    .ui-table-scrollable-body {
+      overflow: auto;
+      scrollbar-color: $main-green $dark-grey;
+      scrollbar-width: thin;
+    }
+
+    .ui-table-thead > tr > th {
+      font-family: Montserrat, serif;
+      color: $white;
+      background-color: $main-green;
+      border-left: none;
+      border-right: none;
+    }
+
+    .ui-table-tbody > tr > td {
+      font-family: Roboto-Medium, serif;
+      text-align: center;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+}
+
+.table-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}

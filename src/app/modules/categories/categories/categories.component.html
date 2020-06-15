@@ -1,0 +1,47 @@
+<h1 class="title-header">Categories</h1>
+
+<div fxLayout="row" fxLayout.xs="column">
+  <div class="table-wrapper" [ngStyle]="{width: '70%', marginRight:'25px'}" [ngStyle.xs]="{width: '98%'}">
+    <p-table [value]="activeCategories$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh"
+             fxShow.xs="false">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name of category</th>
+          <th>Money budgeted</th>
+          <th>Money spent</th>
+          <th [ngStyle]="{width: '20%'}">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{category.name}}</td>
+          <td>{{category.moneyBudgeted | currency: (currencySymbol$ | async)}}</td>
+          <td>{{category.spent | currency: (currencySymbol$ | async)}}</td>
+          <td [ngStyle]="{width: '20%'}" class="controls">
+            <a class="pi pi-pencil" (click)="editCategory(category)"></a>
+            <a class="pi pi-trash" (click)="removeCategory(category)"></a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <app-budget-categories fxShow.xs="true" fxShow="false" ></app-budget-categories>
+  </div>
+  <div class="table-wrapper" [ngStyle]="{width: '30%'}" [ngStyle.xs]="{width: '98%'}">
+    <p-table [value]="allCategories$ | async" class="categories-table" [scrollable]="true" scrollHeight="60vh">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>List of all categories</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{category.name}}</td>
+          <td [ngStyle]="{width: '40%'}" class="controls">
+            <a class="pi pi-pencil" (click)="editCategory(category)"></a>
+            <a class="pi pi-trash" (click)="removeCategory(category)"></a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
