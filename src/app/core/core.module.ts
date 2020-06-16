@@ -14,6 +14,7 @@ import {NgOidcClientModule} from 'ng-oidc-client';
 import {AppErrorHandler} from './error-handler/app-error-handler.service';
 import {SettingsEffects} from './settings/settings.effects';
 import {AuthEffects} from './auth/auth.effects';
+
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageService} from 'primeng/api';
@@ -33,7 +34,6 @@ import {DateConverterInterceptor} from './http-interceptors/date-converter.inter
     ToastModule,
     ProgressSpinnerModule,
     HttpClientModule,
-
     // ngrx
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot({

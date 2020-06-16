@@ -1,0 +1,37 @@
+@import '~variables.scss';
+
+.wrapper {
+  height: 100%;
+  padding-top: 10px;
+  overflow-y: auto;
+}
+
+.expense {
+  padding-bottom: 5px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    border-bottom-width: 1px;
+    border-bottom-style: groove;
+  }
+}
+
+.expense-controls {
+  font-family: 'Roboto-Medium';
+  font-size: 25px;
+  margin-bottom: 5px;
+
+  .edit-btn {
+    margin-left: auto;
+  }
+}
+
+.expenses {
+  font-family: 'Roboto-Regular';
+  font-size: 15px;
+
+  span {
+    width: 130px;
+  }
+}
+

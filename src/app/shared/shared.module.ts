@@ -22,6 +22,7 @@ import {SpinnerModule} from 'primeng/spinner';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {VarDirective} from './directives/app-var.directive';
 import {DropdownMenuComponent} from './components/dropdown-menu/dropdown-menu.component';
 import {FadeDirective} from './directives/fade.directive';
@@ -33,6 +34,7 @@ import {ModalRemoveComponent} from './components/modal-remove/modal-remove.compo
 import {CategoryEditComponent} from './components/category-edit/category-edit.component';
 import {ExpenseEditComponent} from './components/expense-edit/expense-edit.component';
 import {IncomeEditComponent} from './components/income-edit/income-edit.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,10 @@ import {IncomeEditComponent} from './components/income-edit/income-edit.componen
     SpinnerModule,
     DropdownModule,
     InputTextareaModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ScrollPanelModule,
+    TableModule,
+
   ],
   exports: [
     DropdownMenuComponent,
@@ -122,7 +127,8 @@ import {IncomeEditComponent} from './components/income-edit/income-edit.componen
     SpinnerModule,
     DropdownModule,
     InputTextareaModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ScrollPanelModule
   ],
   providers: [MobileBreakPointsProvider]
 })

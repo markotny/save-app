@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div fxLayout="column" *ngFor="let income of incomeList$ | async" class="income">
+    <div fxLayout="row" class="income-controls">
+      <a (click)="showDetails(income)">{{ income.name }}</a>
+      <a class="pi pi-pencil edit-btn" (click)="editIncome(income)"></a>
+      <a class="pi pi-trash" (click)="removeIncome(income)"></a>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center" class="incomes">
+      <span>{{income.amount | currency: income.currencySymbol}}</span>
+      <span>{{income.date | date:'short'}}</span>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [header]="'Income details'" [draggable]="false" [(visible)]="displayDetails" modal="true" *ngIf="selectedIncome!==undefined">
+  <app-mobile-incomes-details [income]="selectedIncome"></app-mobile-incomes-details>
+</p-dialog>
