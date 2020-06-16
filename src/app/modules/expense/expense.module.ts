@@ -8,10 +8,16 @@ import {ActivebudgetExpensesComponent} from './activebudget-expenses/activebudge
 import {ExpenseDetailsComponent} from './expense-details/expense-details.component';
 import {MobileActivebudgetExpensesComponent} from './mobile-activebudget-expenses/mobile-activebudget-expenses.component';
 import {TableModule} from 'primeng';
-import { MobileExpenseDetailsComponent } from './mobile-expense-details/mobile-expense-details.component';
+import {MobileExpenseDetailsComponent} from './mobile-expense-details/mobile-expense-details.component';
 
 @NgModule({
-  declarations: [ExpenseComponent, ActivebudgetExpensesComponent, ExpenseDetailsComponent, MobileActivebudgetExpensesComponent, MobileExpenseDetailsComponent],
+  declarations: [
+    ExpenseComponent,
+    ActivebudgetExpensesComponent,
+    ExpenseDetailsComponent,
+    MobileActivebudgetExpensesComponent,
+    MobileExpenseDetailsComponent
+  ],
   imports: [CommonModule, ExpenseRoutingModule, SharedModule, TableModule]
 })
 export class ExpenseModule {}

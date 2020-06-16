@@ -9,10 +9,14 @@ import {TableModule} from 'primeng';
 import {IncomesDetailsComponent} from '@modules/incomes/incomes-details/incomes-details.component';
 import {MobileActivebudgetIncomesComponent} from '@modules/incomes/mobile-activebudget-incomes/mobile-activebudget-incomes.component';
 
-
 @NgModule({
-  declarations: [IncomesComponent, ActivebudgetIncomesComponent, IncomesDetailsComponent, MobileActivebudgetIncomesComponent, MobileIncomesDetailsComponent],
+  declarations: [
+    IncomesComponent,
+    ActivebudgetIncomesComponent,
+    IncomesDetailsComponent,
+    MobileActivebudgetIncomesComponent,
+    MobileIncomesDetailsComponent
+  ],
   imports: [CommonModule, IncomesRoutingModule, SharedModule, TableModule]
 })
-export class IncomesModule {
-}
+export class IncomesModule {}

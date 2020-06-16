@@ -7,17 +7,13 @@ import {Income, IncomeExtended} from '@state/incomes';
   styleUrls: ['./incomes.component.scss']
 })
 export class IncomesComponent implements OnInit {
-
   static toIncomeType(item: IncomeExtended): Income {
     delete item.budgetName;
     delete item.currencySymbol;
     return item;
   }
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
